@@ -2,6 +2,7 @@ const fs = require('fs');
 const { carbohydratePathways } = require('./src/lib/data/carbohydrates');
 const { lipidPathways } = require('./src/lib/data/lipids');
 const { proteinPathways } = require('./src/lib/data/proteins');
+const { extraPathways } = require('./src/lib/data/extra');
 
 const dbLines = fs.readFileSync('src/lib/db.ts', 'utf8').split('\n');
 const gluconeogenesisReactions = JSON.parse(fs.readFileSync('gluconeogenesis.json', 'utf8'));
@@ -28,7 +29,7 @@ if (splitIndex === -1) {
 // Keep the top part (interfaces, firebase init, etc.)
 const topPart = dbLines.slice(0, splitIndex).join('\n');
 
-const allPathways = [...carbohydratePathways, ...lipidPathways, ...proteinPathways, gluconeogenesis];
+const allPathways = [...carbohydratePathways, ...lipidPathways, ...proteinPathways, gluconeogenesis, ...extraPathways];
 
 const enrichPathway = (p) => {
   return {
