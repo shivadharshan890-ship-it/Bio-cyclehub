@@ -147,7 +147,7 @@ export default function PathwayViewer({ pathway }: PathwayViewerProps) {
       `}</style>
 
       <div className="flex-grow h-full relative medical-grid">
-        <div className="absolute top-6 left-6 z-10 flex space-x-3 bg-slate-900/90 backdrop-blur-xl p-2 rounded-2xl border border-slate-700 shadow-2xl">
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 sm:bottom-auto sm:translate-x-0 sm:top-6 sm:left-6 z-10 flex space-x-3 bg-slate-900/90 backdrop-blur-xl p-2 rounded-2xl border border-slate-700 shadow-2xl">
           <button
             onClick={togglePlay}
             className="flex items-center space-x-2 bg-gradient-to-r from-primary to-blue-600 hover:from-blue-500 hover:to-blue-400 text-white px-5 py-2.5 rounded-xl text-xs font-black uppercase tracking-wider transition-all shadow-lg shadow-primary/30"
