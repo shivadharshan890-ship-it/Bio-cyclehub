@@ -59,12 +59,18 @@ export default function StudyNotes() {
       ];
       
       // Escape special regex chars and replace safely
+    // Escape special regex chars and replace safely
       keywords.forEach(keyword => {
         const escaped = keyword.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
         const regex = new RegExp(`\\b(${escaped})(?!([^<]*>))\\b`, 'gi');
-        text = text.replace(regex, '<mark class="bg-yellow-300 dark:bg-yellow-600/50 text-foreground px-0.5 rounded font-semibold">$1</mark>');
+        text = text.replace(regex, '<mark class="bg-primary/20 text-primary px-1 rounded font-bold shadow-sm">$1</mark>');
       });
     }
+
+    // Bold formatting
+    text = text.replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold text-foreground">$1</strong>');
+    // Italics
+    text = text.replace(/\*(.*?)\*/g, '<em class="italic text-foreground/90">$1</em>');
 
     const lines = text.split("\n");
     let inTable = false;
@@ -75,15 +81,15 @@ export default function StudyNotes() {
       // 1. Headers
       if (line.startsWith("# ")) {
         inTable = false;
-        return <h1 key={idx} className="text-xl sm:text-2xl font-black text-foreground border-b border-border pb-2 mt-6 mb-4">{line.substring(2)}</h1>;
+        return <h1 key={idx} className="text-2xl sm:text-3xl font-black text-foreground border-b-2 border-primary/20 pb-2 mt-8 mb-4 tracking-tight">{line.substring(2)}</h1>;
       }
       if (line.startsWith("## ")) {
         inTable = false;
-        return <h2 key={idx} className="text-lg font-bold text-foreground mt-5 mb-3">{line.substring(3)}</h2>;
+        return <h2 key={idx} className="text-xl sm:text-2xl font-black text-foreground mt-8 mb-4 flex items-center gap-2"><Sparkles className="w-5 h-5 text-primary"/>{line.substring(3)}</h2>;
       }
       if (line.startsWith("### ")) {
         inTable = false;
-        return <h3 key={idx} className="text-sm font-bold text-primary mt-4 mb-2">{line.substring(4)}</h3>;
+        return <h3 key={idx} className="text-md sm:text-lg font-bold text-primary bg-primary/5 px-3 py-1.5 rounded-lg inline-block mt-6 mb-3 border border-primary/10">{line.substring(4)}</h3>;
       }
 
       // 2. Table Parsing
@@ -135,7 +141,7 @@ export default function StudyNotes() {
       if (line.startsWith("* ") || line.startsWith("- ")) {
         inTable = false;
         return (
-          <ul key={idx} className="list-disc list-inside space-y-1 my-2.5 pl-2 text-xs">
+          <ul key={idx} className="list-disc list-inside space-y-2 my-3 pl-4 text-sm sm:text-base leading-relaxed text-muted-foreground">
             <li dangerouslySetInnerHTML={{ __html: line.substring(2) }} />
           </ul>
         );
@@ -151,22 +157,31 @@ export default function StudyNotes() {
         );
       }
 
-      // 4. Code / Equation Block
-      if (line.startsWith("`") && line.endsWith("`")) {
+      // 4. Blockquotes
+      if (line.startsWith("> ")) {
         inTable = false;
         return (
-          <code key={idx} className="block bg-muted p-2 rounded-lg my-2 font-mono text-[10px] text-primary" dangerouslySetInnerHTML={{ __html: line.replaceAll("`", "") }} />
+          <blockquote key={idx} className="border-l-4 border-primary bg-primary/5 p-4 my-4 rounded-r-lg italic text-foreground shadow-sm">
+            <span dangerouslySetInnerHTML={{ __html: line.substring(2) }} />
+          </blockquote>
         );
       }
 
-      // 5. Blank line
-      if (!line.trim()) return <div key={idx} className="h-3" />;
+      // 5. Code / Equation Block
+      if (line.startsWith("`") && line.endsWith("`")) {
+        inTable = false;
+        return (
+          <code key={idx} className="block bg-muted/80 p-3 rounded-lg my-3 font-mono text-xs sm:text-sm text-primary shadow-inner" dangerouslySetInnerHTML={{ __html: line.replaceAll("`", "") }} />
+        );
+      }
 
-      // 6. Regular paragraph
-      inTable = false;
-      return (
-        <p key={idx} className="my-2.5 text-xs text-muted-foreground leading-relaxed" dangerouslySetInnerHTML={{ __html: line }} />
-      );
+      // 6. Normal text
+      if (line.trim().length > 0) {
+        inTable = false;
+        return <p key={idx} className="my-3 text-sm sm:text-base text-muted-foreground leading-relaxed" dangerouslySetInnerHTML={{ __html: line }} />;
+      }
+      
+      return null;
     });
   };
 

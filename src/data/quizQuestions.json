@@ -1,0 +1,803 @@
+[
+  {
+    "id": "glycolysis_001",
+    "topic": "glycolysis",
+    "category": "Carbohydrate Metabolism",
+    "difficulty": "Easy",
+    "type": "MCQ",
+    "question": "What is the rate-limiting enzyme of glycolysis?",
+    "options": [
+      "Hexokinase",
+      "Phosphofructokinase-1",
+      "Pyruvate Kinase",
+      "Glucose-6-phosphatase"
+    ],
+    "correctAnswer": "Phosphofructokinase-1",
+    "explanation": "PFK-1 catalyzes the committed and rate-limiting step of glycolysis."
+  },
+  {
+    "id": "glycolysis_002",
+    "topic": "glycolysis",
+    "category": "Carbohydrate Metabolism",
+    "difficulty": "Easy",
+    "type": "MCQ",
+    "question": "Which of the following is the net ATP yield from one molecule of glucose during aerobic glycolysis?",
+    "options": [
+      "2 ATP",
+      "4 ATP",
+      "32 ATP",
+      "36 ATP"
+    ],
+    "correctAnswer": "2 ATP",
+    "explanation": "During glycolysis, 4 ATP are produced via substrate-level phosphorylation, but 2 ATP are consumed in the preparatory phase (by hexokinase and PFK-1), resulting in a net yield of 2 ATP.",
+    "tags": [
+      "aerobic",
+      "energy_yield"
+    ],
+    "memoryTrick": "Gross 4, Net 2. You invest 2 to make 4."
+  },
+  {
+    "id": "glycolysis_003",
+    "topic": "glycolysis",
+    "category": "Carbohydrate Metabolism",
+    "difficulty": "Hard",
+    "type": "Clinical",
+    "question": "A patient with hemolytic anemia is found to have decreased ATP in red blood cells and elevated 2,3-BPG levels. Which glycolytic enzyme is most likely deficient?",
+    "options": [
+      "Hexokinase",
+      "Phosphofructokinase-1",
+      "Pyruvate Kinase",
+      "Aldolase"
+    ],
+    "correctAnswer": "Pyruvate Kinase",
+    "explanation": "Pyruvate kinase deficiency is the most common glycolytic enzyme defect causing hemolytic anemia. It decreases ATP production in RBCs, leading to loss of membrane integrity. 2,3-BPG accumulates upstream of the block.",
+    "clinicalImportance": "RBCs completely rely on glycolysis for ATP since they lack mitochondria."
+  },
+  {
+    "id": "krebs_001",
+    "topic": "krebs-cycle",
+    "category": "Carbohydrate Metabolism",
+    "difficulty": "Medium",
+    "type": "TrueFalse",
+    "question": "The Krebs cycle directly utilizes oxygen as a substrate.",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correctAnswer": "False",
+    "explanation": "The Krebs cycle itself does not directly consume oxygen. Oxygen is used exclusively at the end of the Electron Transport Chain by Cytochrome c oxidase. However, the Krebs cycle will halt without oxygen because NAD+ and FAD cannot be regenerated."
+  },
+  {
+    "id": "krebs_002",
+    "topic": "krebs-cycle",
+    "category": "Energy Metabolism",
+    "difficulty": "Easy",
+    "type": "MCQ",
+    "question": "How many molecules of NADH are produced per one turn of the Krebs cycle?",
+    "options": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "correctAnswer": "3",
+    "explanation": "One turn of the Krebs cycle (from one Acetyl-CoA) produces 3 NADH, 1 FADH2, and 1 GTP (or ATP)."
+  },
+  {
+    "id": "krebs_003",
+    "topic": "krebs-cycle",
+    "category": "Energy Metabolism",
+    "difficulty": "Hard",
+    "type": "MCQ",
+    "question": "Which enzyme in the TCA cycle is embedded in the inner mitochondrial membrane and also participates in the electron transport chain?",
+    "options": [
+      "Isocitrate dehydrogenase",
+      "Succinate dehydrogenase",
+      "Malate dehydrogenase",
+      "Alpha-ketoglutarate dehydrogenase"
+    ],
+    "correctAnswer": "Succinate dehydrogenase",
+    "explanation": "Succinate dehydrogenase (Complex II of the ETC) is the only TCA cycle enzyme embedded in the inner mitochondrial membrane. It oxidizes succinate to fumarate while reducing FAD to FADH2.",
+    "memoryTrick": "Succinate Dehydrogenase = Second Complex (Complex II)."
+  },
+  {
+    "id": "etc_001",
+    "topic": "electron-transport-chain",
+    "category": "Energy Metabolism",
+    "difficulty": "Medium",
+    "type": "Match",
+    "question": "Match the ETC complex to its primary inhibitor.",
+    "options": [
+      "Complex I - Rotenone",
+      "Complex III - Antimycin A",
+      "Complex IV - Cyanide",
+      "ATP Synthase - Oligomycin"
+    ],
+    "correctAnswer": [
+      "Complex I - Rotenone",
+      "Complex III - Antimycin A",
+      "Complex IV - Cyanide",
+      "ATP Synthase - Oligomycin"
+    ],
+    "explanation": "Rotenone inhibits Complex I. Antimycin A inhibits Complex III. Cyanide and CO inhibit Complex IV. Oligomycin blocks the proton channel of ATP synthase.",
+    "memoryTrick": "1 Rotten (Rotenone), 3 Ants (Antimycin), 4 Cyans (Cyanide)."
+  },
+  {
+    "id": "etc_002",
+    "topic": "electron-transport-chain",
+    "category": "Energy Metabolism",
+    "difficulty": "Hard",
+    "type": "MCQ",
+    "question": "Which molecule acts as a mobile electron carrier between Complex III and Complex IV?",
+    "options": [
+      "Coenzyme Q (Ubiquinone)",
+      "Cytochrome C",
+      "NADH",
+      "Oxygen"
+    ],
+    "correctAnswer": "Cytochrome C",
+    "explanation": "Cytochrome C is a water-soluble peripheral membrane protein that shuttles electrons from Complex III (Cytochrome bc1) to Complex IV (Cytochrome c oxidase). Coenzyme Q shuttles from I/II to III."
+  },
+  {
+    "id": "gluco_001",
+    "topic": "gluconeogenesis",
+    "category": "Carbohydrate Metabolism",
+    "difficulty": "Easy",
+    "type": "MCQ",
+    "question": "Gluconeogenesis occurs primarily in which organ?",
+    "options": [
+      "Muscle",
+      "Liver",
+      "Brain",
+      "Adipose tissue"
+    ],
+    "correctAnswer": "Liver",
+    "explanation": "The liver is the primary site of gluconeogenesis (~90%), with the kidney cortex contributing the rest during prolonged fasting.",
+    "clinicalImportance": "In severe liver failure, patients are at high risk for fatal hypoglycemia because they cannot perform gluconeogenesis."
+  },
+  {
+    "id": "gluco_002",
+    "topic": "gluconeogenesis",
+    "category": "Carbohydrate Metabolism",
+    "difficulty": "Medium",
+    "type": "MCQ",
+    "question": "Which of the following is an obligate activator of pyruvate carboxylase in gluconeogenesis?",
+    "options": [
+      "Citrate",
+      "Fructose 2,6-bisphosphate",
+      "Acetyl-CoA",
+      "AMP"
+    ],
+    "correctAnswer": "Acetyl-CoA",
+    "explanation": "Acetyl-CoA acts as an obligate allosteric activator of Pyruvate Carboxylase. During fasting, beta-oxidation provides high levels of Acetyl-CoA, pushing pyruvate toward gluconeogenesis rather than the TCA cycle."
+  },
+  {
+    "id": "beta_001",
+    "topic": "beta-oxidation",
+    "category": "Lipid Metabolism",
+    "difficulty": "Hard",
+    "type": "FillBlank",
+    "question": "Fatty acids must be conjugated to _______ to be transported across the inner mitochondrial membrane.",
+    "options": [],
+    "correctAnswer": [
+      "carnitine",
+      "Carnitine",
+      "L-carnitine"
+    ],
+    "explanation": "Long-chain fatty acids (LCFAs) cannot cross the inner mitochondrial membrane alone. They use the Carnitine shuttle (CPT1 and CPT2) to enter the mitochondria for beta-oxidation.",
+    "clinicalImportance": "Primary carnitine deficiency presents with hypoketotic hypoglycemia, muscle weakness, and cardiomyopathy."
+  },
+  {
+    "id": "beta_002",
+    "topic": "beta-oxidation",
+    "category": "Lipid Metabolism",
+    "difficulty": "Medium",
+    "type": "MCQ",
+    "question": "The complete beta-oxidation of Palmitic Acid (16 carbons) yields how many molecules of Acetyl-CoA?",
+    "options": [
+      "7",
+      "8",
+      "9",
+      "16"
+    ],
+    "correctAnswer": "8",
+    "explanation": "Beta-oxidation cleaves fatty acids in 2-carbon units. Palmitic acid (C16) undergoes 7 cycles of cleavage, yielding 8 molecules of Acetyl-CoA."
+  },
+  {
+    "id": "urea_001",
+    "topic": "urea-cycle",
+    "category": "Protein Metabolism",
+    "difficulty": "Medium",
+    "type": "Clinical",
+    "question": "A neonate presents with lethargy, vomiting, and hyperventilation. Labs show severely elevated ammonia and very low BUN. A defect in which cycle is most likely?",
+    "options": [
+      "Cori cycle",
+      "Urea cycle",
+      "Krebs cycle",
+      "Methionine cycle"
+    ],
+    "correctAnswer": "Urea cycle",
+    "explanation": "The Urea cycle is responsible for detoxifying ammonia into urea. Defects in any of its enzymes lead to hyperammonemia, neurologic symptoms, and low Blood Urea Nitrogen (BUN)."
+  },
+  {
+    "id": "urea_002",
+    "topic": "urea-cycle",
+    "category": "Protein Metabolism",
+    "difficulty": "Hard",
+    "type": "MCQ",
+    "question": "Which of the following is the rate-limiting enzyme of the Urea Cycle?",
+    "options": [
+      "Ornithine transcarbamylase (OTC)",
+      "Carbamoyl phosphate synthetase I (CPS I)",
+      "Argininosuccinate synthetase",
+      "Arginase"
+    ],
+    "correctAnswer": "Carbamoyl phosphate synthetase I (CPS I)",
+    "explanation": "CPS I catalyzes the formation of carbamoyl phosphate from ammonia and CO2 in the mitochondria, requiring N-acetylglutamate (NAG) as an essential allosteric activator."
+  },
+  {
+    "id": "cholest_001",
+    "topic": "cholesterol-biosynthesis",
+    "category": "Lipid Metabolism",
+    "difficulty": "Medium",
+    "type": "MCQ",
+    "question": "Statins lower cholesterol by competitively inhibiting which enzyme?",
+    "options": [
+      "Squalene synthase",
+      "HMG-CoA reductase",
+      "Thiolase",
+      "HMG-CoA synthase"
+    ],
+    "correctAnswer": "HMG-CoA reductase",
+    "explanation": "Statins competitively inhibit HMG-CoA reductase, the rate-limiting enzyme in cholesterol biosynthesis that converts HMG-CoA to mevalonate."
+  },
+  {
+    "id": "ppp_001",
+    "topic": "pentose-phosphate-pathway",
+    "category": "Carbohydrate Metabolism",
+    "difficulty": "Easy",
+    "type": "TrueFalse",
+    "question": "The primary purpose of the oxidative phase of the Pentose Phosphate Pathway is to generate ATP.",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correctAnswer": "False",
+    "explanation": "The PPP generates NADPH (for reductive synthesis and antioxidant defense) and Ribose-5-phosphate (for nucleotide synthesis). It does NOT produce ATP.",
+    "memoryTrick": "PPP = Produces Powerful Power (NADPH), not ATP."
+  },
+  {
+    "id": "ppp_002",
+    "topic": "pentose-phosphate-pathway",
+    "category": "Carbohydrate Metabolism",
+    "difficulty": "Medium",
+    "type": "Clinical",
+    "question": "A patient taking primaquine (an antimalarial) develops dark urine and jaundice. Smear shows Heinz bodies and bite cells. This is caused by a deficiency in which enzyme?",
+    "options": [
+      "Pyruvate kinase",
+      "Glucose-6-phosphate dehydrogenase",
+      "Transketolase",
+      "Glutathione reductase"
+    ],
+    "correctAnswer": "Glucose-6-phosphate dehydrogenase",
+    "explanation": "G6PD deficiency impairs the generation of NADPH in the PPP. Without NADPH, red blood cells cannot maintain reduced glutathione, leading to oxidative damage (Heinz bodies) when exposed to stress like primaquine or fava beans."
+  },
+  {
+    "id": "purine_001",
+    "topic": "purine-metabolism",
+    "category": "Nucleotide Metabolism",
+    "difficulty": "Hard",
+    "type": "Clinical",
+    "question": "A 5-year-old boy presents with self-mutilating behavior (biting lips/fingers), intellectual disability, and orange sand-like crystals in his diaper. He likely has a deficiency in which enzyme?",
+    "options": [
+      "Adenosine deaminase (ADA)",
+      "Hypoxanthine-guanine phosphoribosyltransferase (HGPRT)",
+      "Xanthine oxidase",
+      "Orotate phosphoribosyltransferase"
+    ],
+    "correctAnswer": "Hypoxanthine-guanine phosphoribosyltransferase (HGPRT)",
+    "explanation": "The patient has Lesch-Nyhan syndrome, an X-linked recessive disorder caused by HGPRT deficiency. This prevents the salvage of purines, leading to massive overproduction of uric acid.",
+    "memoryTrick": "HGPRT = He's Got Purine Recovery Trouble (causes self-mutilation)."
+  },
+  {
+    "id": "purine_002",
+    "topic": "purine-metabolism",
+    "category": "Nucleotide Metabolism",
+    "difficulty": "Medium",
+    "type": "MCQ",
+    "question": "Allopurinol is used to treat gout by inhibiting which enzyme?",
+    "options": [
+      "PRPP Synthetase",
+      "HGPRT",
+      "Xanthine Oxidase",
+      "Adenosine Deaminase"
+    ],
+    "correctAnswer": "Xanthine Oxidase",
+    "explanation": "Allopurinol is a suicide inhibitor of Xanthine Oxidase, the enzyme responsible for converting hypoxanthine to xanthine, and xanthine to uric acid."
+  },
+  {
+    "id": "glycogenesis_001",
+    "topic": "glycogenesis",
+    "category": "Carbohydrate Metabolism",
+    "difficulty": "Medium",
+    "type": "MCQ",
+    "question": "Which of the following molecules acts as the primer required for the initiation of glycogen synthesis?",
+    "options": [
+      "Glycogen synthase",
+      "Glycogenin",
+      "UDP-glucose",
+      "Branching enzyme"
+    ],
+    "correctAnswer": "Glycogenin",
+    "explanation": "Glycogen synthase can only elongate existing glycogen chains. Glycogenin is a protein that auto-glycosylates to create a short primer of glucose residues, allowing glycogen synthase to begin."
+  },
+  {
+    "id": "glycogenolysis_001",
+    "topic": "glycogenolysis",
+    "category": "Carbohydrate Metabolism",
+    "difficulty": "Medium",
+    "type": "MCQ",
+    "question": "Which enzyme is responsible for cleaving alpha-1,4-glycosidic bonds during glycogen breakdown?",
+    "options": [
+      "Debranching enzyme",
+      "Glycogen phosphorylase",
+      "Glycogen synthase",
+      "Phosphoglucomutase"
+    ],
+    "correctAnswer": "Glycogen phosphorylase",
+    "explanation": "Glycogen phosphorylase cleaves alpha-1,4 bonds sequentially from the non-reducing ends of glycogen, releasing Glucose-1-phosphate until it reaches 4 residues from a branch point."
+  },
+  {
+    "id": "cori_001",
+    "topic": "cori-cycle",
+    "category": "Metabolic Integration",
+    "difficulty": "Easy",
+    "type": "TrueFalse",
+    "question": "The Cori cycle describes the shuttling of lactate from muscle to liver, where it is converted back to glucose.",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correctAnswer": "True",
+    "explanation": "During anaerobic exercise, muscle produces lactate. This travels via blood to the liver, where gluconeogenesis converts it back to glucose to fuel the muscle."
+  },
+  {
+    "id": "alanine_001",
+    "topic": "alanine-cycle",
+    "category": "Metabolic Integration",
+    "difficulty": "Medium",
+    "type": "MCQ",
+    "question": "In the Cahill (Alanine) cycle, muscle tissue shuttles nitrogen to the liver primarily in the form of which amino acid?",
+    "options": [
+      "Glutamine",
+      "Alanine",
+      "Aspartate",
+      "Arginine"
+    ],
+    "correctAnswer": "Alanine",
+    "explanation": "Pyruvate in muscle is transaminated to Alanine (by ALT), which travels to the liver. There, it is deaminated back to Pyruvate (for gluconeogenesis) and the nitrogen enters the Urea Cycle."
+  },
+  {
+    "id": "fas_001",
+    "topic": "fatty-acid-synthesis",
+    "category": "Lipid Metabolism",
+    "difficulty": "Hard",
+    "type": "MCQ",
+    "question": "What is the rate-limiting enzyme of Fatty Acid Synthesis?",
+    "options": [
+      "Acetyl-CoA carboxylase",
+      "Fatty acid synthase",
+      "Citrate lyase",
+      "Malic enzyme"
+    ],
+    "correctAnswer": "Acetyl-CoA carboxylase",
+    "explanation": "Acetyl-CoA carboxylase (ACC) catalyzes the carboxylation of Acetyl-CoA to Malonyl-CoA. It requires Biotin, ATP, and CO2, and is strongly activated by Citrate and Insulin."
+  },
+  {
+    "id": "keto_001",
+    "topic": "ketogenesis",
+    "category": "Lipid Metabolism",
+    "difficulty": "Medium",
+    "type": "MCQ",
+    "question": "Which organ is the primary site of ketone body synthesis?",
+    "options": [
+      "Brain",
+      "Skeletal Muscle",
+      "Liver",
+      "Kidney"
+    ],
+    "correctAnswer": "Liver",
+    "explanation": "The liver mitochondria synthesize ketone bodies (acetoacetate, beta-hydroxybutyrate, acetone) during prolonged fasting/starvation, but the liver CANNOT use them because it lacks thiophorase."
+  },
+  {
+    "id": "pyrimidine_001",
+    "topic": "pyrimidine-metabolism",
+    "category": "Nucleotide Metabolism",
+    "difficulty": "Hard",
+    "type": "Clinical",
+    "question": "A child presents with megaloblastic anemia, failure to thrive, and extremely elevated orotic acid in the urine. Treatment with Uridine improves the symptoms. Diagnosis?",
+    "options": [
+      "OTC Deficiency",
+      "Orotic Aciduria",
+      "Lesch-Nyhan Syndrome",
+      "Folate Deficiency"
+    ],
+    "correctAnswer": "Orotic Aciduria",
+    "explanation": "Orotic aciduria is an autosomal recessive defect in UMP synthase. Unlike OTC deficiency (which also elevates orotic acid), it does NOT cause hyperammonemia. Giving Uridine bypasses the defect."
+  },
+  {
+    "id": "dna_001",
+    "topic": "dna-replication",
+    "category": "Molecular Biology",
+    "difficulty": "Medium",
+    "type": "MCQ",
+    "question": "Which enzyme prevents DNA supercoiling ahead of the replication fork during DNA replication?",
+    "options": [
+      "Helicase",
+      "Primase",
+      "Topoisomerase",
+      "DNA Ligase"
+    ],
+    "correctAnswer": "Topoisomerase",
+    "explanation": "Topoisomerases (like DNA gyrase in prokaryotes) create single- or double-strand breaks to relieve torsional strain (supercoiling) introduced by Helicase unwinding the DNA."
+  },
+  {
+    "id": "transcription_001",
+    "topic": "transcription",
+    "category": "Molecular Biology",
+    "difficulty": "Easy",
+    "type": "MCQ",
+    "question": "In eukaryotes, mRNA is synthesized by which specific enzyme?",
+    "options": [
+      "RNA Polymerase I",
+      "RNA Polymerase II",
+      "RNA Polymerase III",
+      "DNA Polymerase alpha"
+    ],
+    "correctAnswer": "RNA Polymerase II",
+    "explanation": "RNA Polymerase I makes rRNA. RNA Polymerase II makes mRNA. RNA Polymerase III makes tRNA.",
+    "memoryTrick": "1, 2, 3 = r, m, t (read from left to right)."
+  },
+  {
+    "id": "translation_001",
+    "topic": "translation",
+    "category": "Molecular Biology",
+    "difficulty": "Medium",
+    "type": "MCQ",
+    "question": "Which site on the ribosome accepts the incoming aminoacyl-tRNA during elongation?",
+    "options": [
+      "A site",
+      "P site",
+      "E site",
+      "T site"
+    ],
+    "correctAnswer": "A site",
+    "explanation": "The A (Aminoacyl) site accepts the incoming charged tRNA. The P (Peptidyl) site holds the growing polypeptide chain. The E (Exit) site releases the empty tRNA."
+  },
+  {
+    "id": "heme_001",
+    "topic": "heme-metabolism",
+    "category": "Porphyrin Metabolism",
+    "difficulty": "Hard",
+    "type": "MCQ",
+    "question": "What is the rate-limiting enzyme of Heme synthesis?",
+    "options": [
+      "ALAS (Aminolevulinic acid synthase)",
+      "ALAD (Aminolevulinic acid dehydratase)",
+      "Ferrochelatase",
+      "Uroporphyrinogen decarboxylase"
+    ],
+    "correctAnswer": "ALAS (Aminolevulinic acid synthase)",
+    "explanation": "ALAS converts Glycine and Succinyl-CoA to delta-ALA. It requires Vitamin B6 (pyridoxal phosphate) as a cofactor and is inhibited by Heme (negative feedback)."
+  },
+  {
+    "id": "p450_001",
+    "topic": "cytochrome-p450",
+    "category": "Pharmacology",
+    "difficulty": "Medium",
+    "type": "MCQ",
+    "question": "Grapefruit juice is known to cause drug toxicity because it acts as a strong INHIBITOR of which major Cytochrome P450 enzyme?",
+    "options": [
+      "CYP1A2",
+      "CYP2C9",
+      "CYP2D6",
+      "CYP3A4"
+    ],
+    "correctAnswer": "CYP3A4",
+    "explanation": "Grapefruit juice strongly inhibits intestinal CYP3A4, which is responsible for metabolizing over 50% of prescription drugs. This leads to increased drug bioavailability and potential toxicity."
+  },
+  {
+    "id": "glycolysis_004",
+    "topic": "glycolysis",
+    "category": "Carbohydrate Metabolism",
+    "difficulty": "Medium",
+    "type": "MCQ",
+    "question": "Which enzyme is responsible for the conversion of Glucose-6-phosphate to Fructose-6-phosphate?",
+    "options": [
+      "Phosphofructokinase-1",
+      "Phosphoglucose isomerase",
+      "Hexokinase",
+      "Aldolase"
+    ],
+    "correctAnswer": "Phosphoglucose isomerase",
+    "explanation": "Phosphoglucose isomerase catalyzes the reversible isomerization of G6P to F6P."
+  },
+  {
+    "id": "glycolysis_005",
+    "topic": "glycolysis",
+    "category": "Carbohydrate Metabolism",
+    "difficulty": "Hard",
+    "type": "MCQ",
+    "question": "Which glycolytic reaction generates the first ATP by substrate-level phosphorylation?",
+    "options": [
+      "Phosphoglycerate kinase",
+      "Pyruvate kinase",
+      "Glyceraldehyde-3-phosphate dehydrogenase",
+      "Enolase"
+    ],
+    "correctAnswer": "Phosphoglycerate kinase",
+    "explanation": "Phosphoglycerate kinase converts 1,3-bisphosphoglycerate to 3-phosphoglycerate, generating ATP."
+  },
+  {
+    "id": "glycolysis_006",
+    "topic": "glycolysis",
+    "category": "Carbohydrate Metabolism",
+    "difficulty": "Medium",
+    "type": "TrueFalse",
+    "question": "Glucokinase has a higher affinity (lower Km) for glucose than Hexokinase.",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correctAnswer": "False",
+    "explanation": "Glucokinase (in liver/pancreas) has a high Km (low affinity) and high Vmax, acting as a glucose sensor. Hexokinase has a low Km (high affinity)."
+  },
+  {
+    "id": "glycolysis_007",
+    "topic": "glycolysis",
+    "category": "Carbohydrate Metabolism",
+    "difficulty": "Easy",
+    "type": "MCQ",
+    "question": "What is the final product of anaerobic glycolysis in human muscle?",
+    "options": [
+      "Pyruvate",
+      "Lactate",
+      "Acetyl-CoA",
+      "Ethanol"
+    ],
+    "correctAnswer": "Lactate",
+    "explanation": "Under anaerobic conditions, pyruvate is reduced to lactate by lactate dehydrogenase to regenerate NAD+."
+  },
+  {
+    "id": "glycolysis_008",
+    "topic": "glycolysis",
+    "category": "Carbohydrate Metabolism",
+    "difficulty": "Hard",
+    "type": "MCQ",
+    "question": "Arsenate poisoning inhibits glycolysis by competing with inorganic phosphate at which step?",
+    "options": [
+      "Hexokinase",
+      "Phosphofructokinase-1",
+      "Glyceraldehyde-3-phosphate dehydrogenase",
+      "Pyruvate kinase"
+    ],
+    "correctAnswer": "Glyceraldehyde-3-phosphate dehydrogenase",
+    "explanation": "Arsenate substitutes for Pi in the GAPDH reaction, forming 1-arseno-3-phosphoglycerate which spontaneously hydrolyzes, bypassing the ATP-generating step."
+  },
+  {
+    "id": "glycolysis_009",
+    "topic": "glycolysis",
+    "category": "Carbohydrate Metabolism",
+    "difficulty": "Medium",
+    "type": "FillBlank",
+    "question": "The conversion of phosphoenolpyruvate to pyruvate is catalyzed by _________.",
+    "options": [],
+    "correctAnswer": [
+      "pyruvate kinase",
+      "Pyruvate kinase"
+    ],
+    "explanation": "Pyruvate kinase catalyzes this irreversible step, generating ATP."
+  },
+  {
+    "id": "glycolysis_010",
+    "topic": "glycolysis",
+    "category": "Carbohydrate Metabolism",
+    "difficulty": "Medium",
+    "type": "MCQ",
+    "question": "Which of the following allosterically inhibits Phosphofructokinase-1 (PFK-1)?",
+    "options": [
+      "AMP",
+      "Fructose 2,6-bisphosphate",
+      "ATP",
+      "Insulin"
+    ],
+    "correctAnswer": "ATP",
+    "explanation": "High levels of ATP signal adequate energy, thus allosterically inhibiting PFK-1 to slow down glycolysis."
+  },
+  {
+    "id": "krebs_004",
+    "topic": "krebs-cycle",
+    "category": "Energy Metabolism",
+    "difficulty": "Hard",
+    "type": "MCQ",
+    "question": "Which enzyme of the TCA cycle catalyzes a substrate-level phosphorylation?",
+    "options": [
+      "Succinyl-CoA synthetase",
+      "Succinate dehydrogenase",
+      "Isocitrate dehydrogenase",
+      "Citrate synthase"
+    ],
+    "correctAnswer": "Succinyl-CoA synthetase",
+    "explanation": "Succinyl-CoA synthetase converts Succinyl-CoA to Succinate, generating one GTP (or ATP) per cycle."
+  },
+  {
+    "id": "krebs_005",
+    "topic": "krebs-cycle",
+    "category": "Energy Metabolism",
+    "difficulty": "Medium",
+    "type": "MCQ",
+    "question": "Fluoroacetate (rat poison) inhibits which TCA cycle enzyme?",
+    "options": [
+      "Aconitase",
+      "Isocitrate dehydrogenase",
+      "Fumarase",
+      "Malate dehydrogenase"
+    ],
+    "correctAnswer": "Aconitase",
+    "explanation": "Fluoroacetate is converted to fluorocitrate, a suicide inhibitor of Aconitase."
+  },
+  {
+    "id": "krebs_006",
+    "topic": "krebs-cycle",
+    "category": "Energy Metabolism",
+    "difficulty": "Easy",
+    "type": "FillBlank",
+    "question": "Acetyl-CoA condenses with oxaloacetate to form _________.",
+    "options": [],
+    "correctAnswer": [
+      "citrate",
+      "Citrate"
+    ],
+    "explanation": "This is the first step of the Krebs cycle, catalyzed by Citrate synthase."
+  },
+  {
+    "id": "krebs_007",
+    "topic": "krebs-cycle",
+    "category": "Energy Metabolism",
+    "difficulty": "Medium",
+    "type": "MCQ",
+    "question": "Which coenzymes are required by Alpha-ketoglutarate dehydrogenase?",
+    "options": [
+      "NAD+, FAD, TPP, Lipoic acid, CoA",
+      "NAD+, Biotin, B12",
+      "NADP+, FAD, Pyridoxal phosphate",
+      "SAM, THF"
+    ],
+    "correctAnswer": "NAD+, FAD, TPP, Lipoic acid, CoA",
+    "explanation": "It requires the same 5 coenzymes as Pyruvate Dehydrogenase (Tender Loving Care For Nancy: TPP, Lipoic acid, CoA, FAD, NAD+)."
+  },
+  {
+    "id": "krebs_008",
+    "topic": "krebs-cycle",
+    "category": "Energy Metabolism",
+    "difficulty": "Medium",
+    "type": "TrueFalse",
+    "question": "The Krebs cycle is strictly an catabolic pathway.",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correctAnswer": "False",
+    "explanation": "It is amphibolic (both catabolic and anabolic) because its intermediates are used for biosynthesis (e.g., citrate for fatty acids, oxaloacetate for gluconeogenesis)."
+  },
+  {
+    "id": "etc_003",
+    "topic": "electron-transport-chain",
+    "category": "Energy Metabolism",
+    "difficulty": "Medium",
+    "type": "MCQ",
+    "question": "Which complex in the Electron Transport Chain does NOT pump protons?",
+    "options": [
+      "Complex I",
+      "Complex II",
+      "Complex III",
+      "Complex IV"
+    ],
+    "correctAnswer": "Complex II",
+    "explanation": "Complex II (Succinate Dehydrogenase) does not span the entire membrane and does not pump protons."
+  },
+  {
+    "id": "etc_004",
+    "topic": "electron-transport-chain",
+    "category": "Energy Metabolism",
+    "difficulty": "Hard",
+    "type": "MCQ",
+    "question": "Brown adipose tissue generates heat using Thermogenin (UCP1). How does it work?",
+    "options": [
+      "It inhibits Complex IV",
+      "It uncouples oxidative phosphorylation by providing an alternative proton channel",
+      "It increases ATP synthase activity",
+      "It acts as an artificial electron acceptor"
+    ],
+    "correctAnswer": "It uncouples oxidative phosphorylation by providing an alternative proton channel",
+    "explanation": "UCP1 allows protons to re-enter the mitochondrial matrix without passing through ATP synthase, dissipating the gradient as heat instead of ATP."
+  },
+  {
+    "id": "gluco_003",
+    "topic": "gluconeogenesis",
+    "category": "Carbohydrate Metabolism",
+    "difficulty": "Hard",
+    "type": "MCQ",
+    "question": "Which enzyme bypasses Pyruvate Kinase in gluconeogenesis?",
+    "options": [
+      "Pyruvate carboxylase and PEP carboxykinase",
+      "Fructose-1,6-bisphosphatase",
+      "Glucose-6-phosphatase",
+      "Malate dehydrogenase"
+    ],
+    "correctAnswer": "Pyruvate carboxylase and PEP carboxykinase",
+    "explanation": "The conversion of Pyruvate back to PEP requires two steps: Pyruvate to Oxaloacetate (Pyruvate carboxylase) and Oxaloacetate to PEP (PEPCK)."
+  },
+  {
+    "id": "ppp_003",
+    "topic": "pentose-phosphate-pathway",
+    "category": "Carbohydrate Metabolism",
+    "difficulty": "Medium",
+    "type": "MCQ",
+    "question": "Which enzyme of the non-oxidative phase of the PPP requires Thiamine Pyrophosphate (TPP)?",
+    "options": [
+      "Transketolase",
+      "Transaldolase",
+      "Glucose-6-phosphate dehydrogenase",
+      "Phosphopentose isomerase"
+    ],
+    "correctAnswer": "Transketolase",
+    "explanation": "Transketolase requires TPP. Its activity in red blood cells is often used to measure thiamine (B1) nutritional status."
+  },
+  {
+    "id": "beta_003",
+    "topic": "beta-oxidation",
+    "category": "Lipid Metabolism",
+    "difficulty": "Medium",
+    "type": "TrueFalse",
+    "question": "Beta-oxidation of fatty acids yields exactly the same amount of ATP per carbon as glucose oxidation.",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correctAnswer": "False",
+    "explanation": "Fatty acids are more highly reduced than glucose, so they yield significantly more ATP per carbon."
+  },
+  {
+    "id": "urea_003",
+    "topic": "urea-cycle",
+    "category": "Protein Metabolism",
+    "difficulty": "Easy",
+    "type": "MCQ",
+    "question": "The Urea Cycle takes place exclusively in which two cellular compartments?",
+    "options": [
+      "Cytosol and Lysosome",
+      "Mitochondria and Cytosol",
+      "Nucleus and Cytosol",
+      "Mitochondria and ER"
+    ],
+    "correctAnswer": "Mitochondria and Cytosol",
+    "explanation": "The first two steps (CPS I and OTC) occur in the mitochondria, while the remaining steps occur in the cytosol."
+  },
+  {
+    "id": "cholest_002",
+    "topic": "cholesterol-biosynthesis",
+    "category": "Lipid Metabolism",
+    "difficulty": "Hard",
+    "type": "MCQ",
+    "question": "What is the immediate precursor to squalene in cholesterol biosynthesis?",
+    "options": [
+      "Mevalonate",
+      "Farnesyl pyrophosphate",
+      "Isopentenyl pyrophosphate",
+      "Lanosterol"
+    ],
+    "correctAnswer": "Farnesyl pyrophosphate",
+    "explanation": "Two molecules of Farnesyl pyrophosphate (15C) condense to form Squalene (30C), catalyzed by Squalene synthase."
+  }
+]

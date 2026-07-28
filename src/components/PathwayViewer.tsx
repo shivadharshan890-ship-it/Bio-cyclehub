@@ -1,9 +1,299 @@
 "use client";
 
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useCallback } from "react";
 import { Pathway, ReactionNode } from "@/lib/db";
-import { motion, AnimatePresence } from "framer-motion";
-import { Play, Pause, RotateCcw, Activity, ShieldAlert, Sparkles, Droplet, Stethoscope, Pill, BookOpen, FlaskConical, Wind } from "lucide-react";
+import { validatePathway } from "@/lib/validation";
+import { pathwayEnergy } from "@/lib/pathwayData";
+import { 
+  Play, Pause, RotateCcw, ShieldAlert, CheckCircle, MapPin, Eye, EyeOff, Network
+} from "lucide-react";
+import {
+  ReactFlow,
+  Controls,
+  Background,
+  useNodesState,
+  useEdgesState,
+  Handle,
+  Position,
+  MarkerType,
+  Edge,
+  Node,
+  BackgroundVariant
+} from '@xyflow/react';
+import '@xyflow/react/dist/style.css';
+import dagre from 'dagre';
+
+// -------------------------------------------------------------
+// 1. HELPERS & STYLES
+// -------------------------------------------------------------
+
+const getCarbonCount = (molecule: string) => {
+  const mol = molecule.toLowerCase();
+  if (mol.includes('glucose') || mol.includes('fructose') || mol.includes('citrate') || mol.includes('isocitrate')) return '6C';
+  if (mol.includes('ketoglutarate')) return '5C';
+  if (mol.includes('succinate') || mol.includes('fumarate') || mol.includes('malate') || mol.includes('oxaloacetate')) return '4C';
+  if (mol.includes('pyruvate') || mol.includes('glyceraldehyde') || mol.includes('dhap') || mol.includes('phosphoglycerate') || mol.includes('enol')) return '3C';
+  if (mol.includes('acetyl')) return '2C';
+  return '';
+};
+
+const getMoleculeStyle = (mol: string) => {
+  switch (mol) {
+    case 'ATP': return { bg: '#facc1520', border: '#facc15', text: '#facc15', shadow: 'shadow-[0_0_8px_rgba(250,204,21,0.8)]' };
+    case 'ADP': return { bg: '#ca8a0420', border: '#ca8a04', text: '#ca8a04', shadow: '' };
+    case 'NADH': return { bg: '#22c55e20', border: '#22c55e', text: '#22c55e', shadow: 'shadow-[0_0_8px_rgba(34,197,94,0.8)]' };
+    case 'NAD_plus': return { bg: '#16a34a20', border: '#16a34a', text: '#16a34a', shadow: '' };
+    case 'NADPH': return { bg: '#84cc1620', border: '#84cc16', text: '#84cc16', shadow: 'shadow-[0_0_8px_rgba(132,204,22,0.8)]' };
+    case 'NADP_plus': return { bg: '#65a30d20', border: '#65a30d', text: '#65a30d', shadow: '' };
+    case 'FADH2': return { bg: '#f9731620', border: '#f97316', text: '#f97316', shadow: 'shadow-[0_0_8px_rgba(249,115,22,0.8)]' };
+    case 'FAD': return { bg: '#c2410c20', border: '#c2410c', text: '#c2410c', shadow: '' };
+    case 'GTP': return { bg: '#06b6d420', border: '#06b6d4', text: '#06b6d4', shadow: 'shadow-[0_0_8px_rgba(6,182,212,0.8)]' };
+    case 'GDP': return { bg: '#0891b220', border: '#0891b2', text: '#0891b2', shadow: '' };
+    case 'CO2': return { bg: '#ef444420', border: '#ef4444', text: '#ef4444', shadow: 'shadow-[0_0_8px_rgba(239,68,68,0.8)]' };
+    case 'CoA':
+    case 'Acetyl_CoA': return { bg: '#a855f720', border: '#a855f7', text: '#a855f7', shadow: 'shadow-[0_0_8px_rgba(168,85,247,0.8)]' };
+    case 'H2O': return { bg: '#3b82f620', border: '#3b82f6', text: '#3b82f6', shadow: 'shadow-[0_0_8px_rgba(59,130,246,0.8)]' };
+    case 'O2': return { bg: '#7dd3fc20', border: '#7dd3fc', text: '#7dd3fc', shadow: '' };
+    default: return { bg: '#cbd5e120', border: '#cbd5e1', text: '#cbd5e1', shadow: '' };
+  }
+};
+
+const getSubstrateColor = (step: number, isFinal: boolean) => {
+  if (step === 1) return { bg: "#22c55e15", border: "#22c55e" };
+  if (isFinal) return { bg: "#16653420", border: "#166534", shadow: 'drop-shadow-[0_0_15px_rgba(22,101,52,0.8)]' };
+  return { bg: "#3b82f615", border: "#3b82f6" };
+};
+
+const getEnzymeColor = (isRateLimiting?: boolean) => isRateLimiting ? { bg: "#ef444415", border: "#ef4444" } : { bg: "#a855f715", border: "#a855f7" };
+
+// -------------------------------------------------------------
+// 2. CUSTOM NODE
+// -------------------------------------------------------------
+
+function BiochemicalNodeComponent({ data }: { data: any }) {
+  const rxn: ReactionNode = data.reaction;
+  const isFinal = data.isFinal;
+  const isActive = data.isActive;
+  const showStructures = data.showStructures;
+  
+  const subStyle = getSubstrateColor(rxn.step, false);
+  const enzStyle = getEnzymeColor(rxn.isRateLimiting);
+  const finalSubStyle = getSubstrateColor(rxn.step + 1, true);
+
+  const consumes = rxn.molecules?.consumes ? Object.entries(rxn.molecules.consumes) : [];
+  const produces = rxn.molecules?.produces ? Object.entries(rxn.molecules.produces) : [];
+
+  return (
+    <div className={`relative flex flex-col items-center w-[300px] font-sans transition-all duration-500 ${isActive ? 'scale-105' : 'opacity-90'}`}>
+      <Handle type="target" position={Position.Top} className="opacity-0" />
+      
+      {/* 1. Substrate */}
+      <div className="flex flex-col items-center mb-6">
+        <div 
+          className="px-6 py-3 rounded-xl border-2 text-center shadow-lg transition-all flex flex-col items-center"
+          style={{ backgroundColor: subStyle.bg, borderColor: subStyle.border, boxShadow: isActive ? `0 0 15px ${subStyle.border}80` : '' }}
+        >
+          {showStructures && (
+            <div className="w-24 h-24 mb-2 bg-white rounded-md overflow-hidden flex items-center justify-center p-1 opacity-90 dark:invert transition-transform duration-300 hover:scale-[2.5] active:scale-[2.5] hover:z-50 hover:shadow-2xl cursor-pointer origin-center">
+              <img 
+                src={`https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/${encodeURIComponent(rxn.substrate)}/PNG`} 
+                alt={rxn.substrate} 
+                className="max-w-full max-h-full object-contain pointer-events-none"
+                draggable={false}
+                onError={(e) => { e.currentTarget.style.display = 'none'; }}
+              />
+            </div>
+          )}
+          <span className="text-white font-bold text-sm block">{rxn.substrate}</span>
+          {getCarbonCount(rxn.substrate) && (
+            <span className="text-slate-400 font-black tracking-widest text-[10px] mt-1 block">{getCarbonCount(rxn.substrate)}</span>
+          )}
+        </div>
+      </div>
+
+      {/* 2. Enzyme Section */}
+      <div className="relative flex items-center justify-center w-full my-2">
+        {/* Consume Badges (Left) */}
+        <div className="absolute left-0 flex flex-col space-y-2 translate-x-[-10px]">
+          {consumes.map(([mol, count]) => {
+            const st = getMoleculeStyle(mol);
+            const label = mol.replace('_plus', '+').replace('_', '-');
+            return (
+              <div key={mol} className={`px-3 py-1 rounded-full border-2 text-[10px] font-black uppercase whitespace-nowrap ${st.shadow}`} style={{ backgroundColor: st.bg, borderColor: st.border, color: st.text }}>
+                - {label} {count && count > 1 ? `×${count}` : ''}
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Central Enzyme Circle */}
+        <div 
+          className={`relative w-24 h-24 rounded-full border-4 flex flex-col items-center justify-center z-10 bg-[#020617] ${rxn.isRateLimiting ? 'animate-pulse' : ''}`}
+          style={{ backgroundColor: enzStyle.bg, borderColor: enzStyle.border, boxShadow: isActive ? `0 0 20px ${enzStyle.border}90` : '' }}
+        >
+          {rxn.isRateLimiting && (
+            <div className="absolute inset-0 rounded-full border-2 border-red-500 border-dashed animate-[spin_4s_linear_infinite] scale-110 opacity-70"></div>
+          )}
+          <div className="absolute -top-3 -left-3 w-8 h-8 rounded-full bg-slate-900 border-2 flex items-center justify-center" style={{ borderColor: enzStyle.border }}>
+            <span className="text-white font-black text-xs">{rxn.step}</span>
+          </div>
+          <span className="text-center font-black uppercase tracking-widest text-[10px] px-2" style={{ color: enzStyle.border }}>
+            {rxn.enzyme.length > 15 ? rxn.enzyme.substring(0, 13) + "..." : rxn.enzyme}
+          </span>
+        </div>
+
+        {/* Produce Badges (Right) */}
+        <div className="absolute right-0 flex flex-col space-y-2 translate-x-[10px]">
+          {produces.map(([mol, count]) => {
+            const st = getMoleculeStyle(mol);
+            const label = mol.replace('_plus', '+').replace('_', '-');
+            return (
+              <div key={mol} className={`px-3 py-1 rounded-full border-2 text-[10px] font-black uppercase whitespace-nowrap ${st.shadow}`} style={{ backgroundColor: st.bg, borderColor: st.border, color: st.text }}>
+                + {label} {count && count > 1 ? `×${count}` : ''}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* 3. Final Product (Only if it's the last step) */}
+      {isFinal && (
+        <div className="flex flex-col items-center mt-6">
+          <div 
+            className={`px-6 py-3 rounded-xl border-[3px] text-center ${finalSubStyle.shadow} transition-all flex flex-col items-center`}
+            style={{ backgroundColor: finalSubStyle.bg, borderColor: finalSubStyle.border }}
+          >
+            {showStructures && (
+              <div className="w-24 h-24 mb-2 bg-white rounded-md overflow-hidden flex items-center justify-center p-1 opacity-90 dark:invert transition-transform duration-300 hover:scale-[2.5] active:scale-[2.5] hover:z-50 hover:shadow-2xl cursor-pointer origin-center">
+                <img 
+                  src={`https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/${encodeURIComponent(rxn.product)}/PNG`} 
+                  alt={rxn.product} 
+                  className="max-w-full max-h-full object-contain pointer-events-none"
+                  draggable={false}
+                  onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                />
+              </div>
+            )}
+            <span className="text-white font-black text-sm uppercase tracking-widest block">{rxn.product}</span>
+            {getCarbonCount(rxn.product) && (
+              <span className="text-slate-400 font-black tracking-widest text-[10px] mt-1 block">{getCarbonCount(rxn.product)}</span>
+            )}
+          </div>
+          <Handle type="source" position={Position.Bottom} className="opacity-0" id="final-source" />
+        </div>
+      )}
+
+      {/* Main outgoing handle */}
+      <Handle type="source" position={Position.Bottom} className="opacity-0" id="main-source" />
+    </div>
+  );
+}
+
+const nodeTypes = {
+  biochemical: BiochemicalNodeComponent
+};
+
+// -------------------------------------------------------------
+// 3. LAYOUT ENGINES
+// -------------------------------------------------------------
+
+const getLayoutedElements = (reactions: ReactionNode[], isCycle: boolean, currentStep: number, showStructures: boolean) => {
+  const nodes: Node[] = [];
+  const edges: Edge[] = [];
+
+  // 1. Create raw nodes and edges
+  reactions.forEach((r, idx) => {
+    const isFinal = idx === reactions.length - 1;
+    const isActive = currentStep === 0 || currentStep === r.step;
+    
+    nodes.push({
+      id: r.step.toString(),
+      type: 'biochemical',
+      position: { x: 0, y: 0 },
+      data: { reaction: r, isFinal, isActive, showStructures }
+    });
+
+    if (idx < reactions.length - 1) {
+      edges.push({
+        id: `e${r.step}-${reactions[idx + 1].step}`,
+        source: r.step.toString(),
+        target: reactions[idx + 1].step.toString(),
+        sourceHandle: 'main-source',
+        type: isCycle ? 'bezier' : 'smoothstep',
+        animated: isActive || currentStep > r.step,
+        style: { stroke: (isActive || currentStep > r.step) ? '#06b6d4' : '#1e293b', strokeWidth: (isActive || currentStep > r.step) ? 4 : 2 },
+        markerEnd: { type: MarkerType.ArrowClosed, color: (isActive || currentStep > r.step) ? '#06b6d4' : '#1e293b' }
+      });
+    }
+  });
+
+  // Cyclic connection
+  if (isCycle && reactions.length > 0) {
+    edges.push({
+      id: `e${reactions[reactions.length - 1].step}-1`,
+      source: reactions[reactions.length - 1].step.toString(),
+      target: reactions[0].step.toString(),
+      sourceHandle: 'final-source',
+      type: 'bezier',
+      animated: currentStep === 0 || currentStep === reactions.length,
+      style: { stroke: (currentStep === 0 || currentStep === reactions.length) ? '#06b6d4' : '#1e293b', strokeWidth: (currentStep === 0 || currentStep === reactions.length) ? 4 : 2 },
+      markerEnd: { type: MarkerType.ArrowClosed, color: (currentStep === 0 || currentStep === reactions.length) ? '#06b6d4' : '#1e293b' }
+    });
+  }
+
+  // 2. Apply Layout
+  if (isCycle) {
+    // CIRCULAR LAYOUT (Mathematical)
+    const radius = reactions.length * 60; // Scale radius based on steps
+    const center = { x: 0, y: 0 };
+    
+    nodes.forEach((n, idx) => {
+      // Start at top (90 degrees, or -PI/2 in radians) and go clockwise
+      const angle = (idx / reactions.length) * 2 * Math.PI - Math.PI / 2;
+      n.position = {
+        x: center.x + Math.cos(angle) * radius - 150, // -150 to center the 300px wide node
+        y: center.y + Math.sin(angle) * radius - 100
+      };
+      
+      // Customize handles based on quadrant for cleaner curved lines
+      if (idx === reactions.length - 1) {
+        // Last node connects back to first node
+        n.targetPosition = Position.Right;
+        n.sourcePosition = Position.Left;
+      }
+    });
+  } else {
+    // LINEAR LAYOUT (Dagre)
+    const dagreGraph = new dagre.graphlib.Graph();
+    dagreGraph.setDefaultEdgeLabel(() => ({}));
+    dagreGraph.setGraph({ rankdir: 'TB', nodesep: 100, ranksep: 100 }); // Top to Bottom
+
+    nodes.forEach(node => {
+      dagreGraph.setNode(node.id, { width: 300, height: 250 });
+    });
+    edges.forEach(edge => {
+      dagreGraph.setEdge(edge.source, edge.target);
+    });
+
+    dagre.layout(dagreGraph);
+
+    nodes.forEach(node => {
+      const nodeWithPosition = dagreGraph.node(node.id);
+      node.targetPosition = Position.Top;
+      node.sourcePosition = Position.Bottom;
+      node.position = {
+        x: nodeWithPosition.x - 150, // center
+        y: nodeWithPosition.y - 125
+      };
+    });
+  }
+
+  return { layoutedNodes: nodes, layoutedEdges: edges };
+};
+
+// -------------------------------------------------------------
+// 4. MAIN COMPONENT
+// -------------------------------------------------------------
 
 interface PathwayViewerProps {
   pathway: Pathway;
@@ -13,12 +303,25 @@ interface PathwayViewerProps {
 export default function PathwayViewer({ pathway }: PathwayViewerProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentStep, setCurrentStep] = useState(0); 
-  const [selectedReaction, setSelectedReaction] = useState<ReactionNode | null>(null);
-  
-  // Hover Tooltip State
-  const [hoveredReaction, setHoveredReaction] = useState<ReactionNode | null>(null);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [showStructures, setShowStructures] = useState(false); 
+  const [viewMode, setViewMode] = useState<'flow' | 'mindmap'>('flow');
 
+  const isCycle = pathway.slug.includes('cycle');
+  const isPathwayVerified = useMemo(() => validatePathway(pathway), [pathway]);
+
+  // Layout state
+  const [nodes, setNodes, onNodesChange] = useNodesState<Node>([]);
+  const [edges, setEdges, onEdgesChange] = useEdgesState<Edge>([]);
+
+  // Setup/Update Layout whenever step or pathway changes
+  useEffect(() => {
+    if (!pathway.reactions || pathway.reactions.length === 0) return;
+    const { layoutedNodes, layoutedEdges } = getLayoutedElements(pathway.reactions, isCycle, currentStep, showStructures);
+    setNodes(layoutedNodes);
+    setEdges(layoutedEdges);
+  }, [pathway, isCycle, currentStep, showStructures, setNodes, setEdges]);
+
+  // Animation Loop
   useEffect(() => {
     let interval: NodeJS.Timeout;
     if (isPlaying) {
@@ -27,7 +330,7 @@ export default function PathwayViewer({ pathway }: PathwayViewerProps) {
           if (prev >= pathway.reactions.length) return 1;
           return prev + 1;
         });
-      }, 3000); // 3s per step for better readability
+      }, 3000); 
     }
     return () => clearInterval(interval);
   }, [isPlaying, pathway.reactions.length]);
@@ -40,410 +343,88 @@ export default function PathwayViewer({ pathway }: PathwayViewerProps) {
   const resetAnimation = () => {
     setIsPlaying(false);
     setCurrentStep(0);
-    setSelectedReaction(null);
-  };
-
-  const handleNodeClick = (rxn: ReactionNode) => {
-    setIsPlaying(false);
-    setCurrentStep(rxn.step);
-    setSelectedReaction(rxn);
-  };
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (hoveredReaction) {
-      setMousePos({ x: e.clientX, y: e.clientY });
-    }
-  };
-
-  const viewBox = useMemo(() => {
-    if (!pathway.reactions || pathway.reactions.length === 0) return "0 0 1000 800";
-    let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
-    pathway.reactions.forEach(r => {
-      if (r.x < minX) minX = r.x;
-      if (r.x > maxX) maxX = r.x;
-      if (r.y < minY) minY = r.y;
-      if (r.y > maxY) maxY = r.y;
-    });
-    const width = Math.max(maxX - minX, 400);
-    const height = Math.max(maxY - minY, 400);
-    return `${minX - 300} ${minY - 250} ${width + 600} ${height + 500}`;
-  }, [pathway]);
-
-  // Color Mapping Engine based on Phase 1 specs
-  const getSubstrateColor = (step: number, isFinal: boolean) => {
-    if (step === 1) return "#22c55e"; // Start = Bright Green
-    if (isFinal) return "#166534"; // Final Product = Dark Green
-    return "#3b82f6"; // Metabolites = Bright Blue
-  };
-  const getEnzymeColor = (isRateLimiting?: boolean) => isRateLimiting ? "#ef4444" : "#a855f7"; 
-
-  const renderConnections = () => {
-    return pathway.reactions.map((rxn, idx) => {
-      if (idx === pathway.reactions.length - 1) return null;
-      const nextRxn = pathway.reactions[idx + 1];
-      
-      const isCurrentActive = currentStep === rxn.step || currentStep === 0;
-      const isPast = currentStep > rxn.step;
-      
-      const startX = rxn.x;
-      const startY = rxn.y + 60; 
-      const endX = nextRxn.x;
-      const endY = nextRxn.y - 120; 
-      
-      const cy1 = startY + (endY - startY) / 2;
-      const cy2 = endY - (endY - startY) / 2;
-      const d = `M ${startX} ${startY} C ${startX} ${cy1}, ${endX} ${cy2}, ${endX} ${endY}`;
-
-      return (
-        <g key={`edge-${rxn.step}`}>
-          <path
-            d={d}
-            fill="none"
-            stroke="#1e293b" 
-            strokeWidth={4}
-            className="transition-all duration-500"
-          />
-          <path
-            d={d}
-            fill="none"
-            stroke={isCurrentActive || isPast ? "#38bdf8" : "transparent"} 
-            strokeWidth={5}
-            strokeDasharray="15, 15"
-            className={isCurrentActive || isPast ? "flow-animation filter drop-shadow-[0_0_8px_rgba(56,189,248,0.8)]" : ""}
-          />
-        </g>
-      );
-    });
   };
 
   return (
-    <div 
-      className="relative w-full h-[65vh] md:h-[750px] bg-[#020617] rounded-3xl border border-slate-800 shadow-2xl overflow-hidden font-sans flex text-slate-100"
-      onMouseMove={handleMouseMove}
-    >
-      <style>{`
-        .flow-animation { animation: flow 1.2s linear infinite; }
-        @keyframes flow { to { stroke-dashoffset: -30; } }
-        .glow-active { filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3)); }
-        .dimmed { opacity: 0.15; filter: grayscale(95%) blur(1px); }
-        .medical-grid {
-          background-image: 
-            linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-          background-size: 50px 50px;
-        }
-        @keyframes subtle-pulse {
-          0% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(239,68,68,0.5)); }
-          50% { transform: scale(1.03); filter: drop-shadow(0 0 15px rgba(239,68,68,0.9)); }
-          100% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(239,68,68,0.5)); }
-        }
-        .rate-limiting-pulse { animation: subtle-pulse 1.5s infinite ease-in-out; }
-        
-        @keyframes float-badge {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-5px); }
-        }
-        .animate-float { animation: float-badge 3s ease-in-out infinite; }
-      `}</style>
-
-      <div className="flex-grow h-full relative medical-grid">
-        <motion.div 
-          drag
-          dragMomentum={false}
-          className="absolute z-50 bottom-8 left-4 sm:bottom-auto sm:top-6 sm:left-6 flex space-x-3 bg-slate-900/90 backdrop-blur-xl p-2 rounded-2xl border border-slate-700 shadow-2xl cursor-grab active:cursor-grabbing"
+    <div className="relative w-full h-[65vh] md:h-[750px] bg-[#020617] rounded-3xl border border-slate-800 shadow-2xl overflow-hidden font-sans flex text-slate-100">
+      
+      {/* UI Overlay */}
+      <div className="absolute z-10 bottom-8 left-4 sm:bottom-auto sm:top-6 sm:left-6 flex space-x-3 bg-slate-900/90 backdrop-blur-xl p-2 rounded-2xl border border-slate-700 shadow-2xl">
+        <button
+          onClick={togglePlay}
+          className="flex items-center space-x-2 bg-gradient-to-r from-primary to-blue-600 hover:from-blue-500 hover:to-blue-400 text-white px-5 py-2.5 rounded-xl text-xs font-black uppercase tracking-wider transition-all shadow-lg shadow-primary/30"
         >
-          <button
-            onClick={togglePlay}
-            className="flex items-center space-x-2 bg-gradient-to-r from-primary to-blue-600 hover:from-blue-500 hover:to-blue-400 text-white px-5 py-2.5 rounded-xl text-xs font-black uppercase tracking-wider transition-all shadow-lg shadow-primary/30"
-          >
-            {isPlaying ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
-            <span>{isPlaying ? "Pause Flow" : currentStep === 0 ? "Start Animation" : "Resume Flow"}</span>
-          </button>
-          
-          <button
-            onClick={resetAnimation}
-            className="flex items-center space-x-2 bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2.5 rounded-xl text-xs font-black uppercase transition-all"
-            title="Reset"
-          >
-            <RotateCcw className="h-4 w-4" />
-          </button>
-        </motion.div>
+          {isPlaying ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
+          <span>{isPlaying ? "Pause Flow" : currentStep === 0 ? "Start Animation" : "Resume Flow"}</span>
+        </button>
+        
+        <button
+          onClick={resetAnimation}
+          className="flex items-center space-x-2 bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2.5 rounded-xl text-xs font-black uppercase transition-all"
+          title="Reset"
+        >
+          <RotateCcw className="h-4 w-4" />
+        </button>
 
-        <svg viewBox={viewBox} preserveAspectRatio="xMidYMid meet" className="w-full h-full">
-          {renderConnections()}
-          
-          {pathway.reactions.map((rxn) => {
-            const isActive = currentStep === rxn.step;
-            const isDimmed = currentStep !== 0 && !isActive;
-            const isFinalStep = rxn.step === pathway.reactions.length;
-            
-            const substrateColor = getSubstrateColor(rxn.step, false);
-            const productColor = getSubstrateColor(rxn.step + 1, isFinalStep);
-            const enzymeColor = getEnzymeColor(rxn.isRateLimiting);
-            
-            // Derive Badges from text or strict properties
-            const str = rxn.energyChange?.toLowerCase() || "";
-            const producesATP = str.includes("atp") && !str.includes("consumes") && !str.includes("-> adp");
-            const consumesATP = str.includes("consumes") || str.includes("atp -> adp");
-            const producesNADH = rxn.nadhProduced || str.includes("nadh");
-            const producesFADH2 = rxn.fadh2Produced || str.includes("fadh2");
-            const producesWater = rxn.waterProduced || str.includes("h2o") || str.includes("water");
-            const producesCO2 = rxn.co2Produced || str.includes("co2") || str.includes("carbon dioxide");
+        <button
+          onClick={() => setViewMode(viewMode === 'flow' ? 'mindmap' : 'flow')}
+          className={`flex items-center space-x-2 px-4 py-2.5 rounded-xl text-xs font-black uppercase transition-all ${viewMode === 'mindmap' ? 'bg-purple-500/20 text-purple-400 border border-purple-500/50' : 'bg-slate-800 hover:bg-slate-700 text-slate-200'}`}
+          title="Toggle Mindmap View"
+        >
+          <Network className="h-4 w-4" />
+          <span className="hidden sm:inline">Mindmap</span>
+        </button>
 
-            return (
-              <g 
-                key={`node-${rxn.step}`}
-                transform={`translate(${rxn.x}, ${rxn.y})`}
-                className={`cursor-pointer transition-all duration-700 ${isActive ? 'glow-active scale-[1.12]' : ''} ${isDimmed ? 'dimmed' : ''}`}
-                onClick={() => handleNodeClick(rxn)}
-                onMouseEnter={(e) => { setHoveredReaction(rxn); setMousePos({ x: e.clientX, y: e.clientY }); }}
-                onMouseLeave={() => setHoveredReaction(null)}
-                style={{ transformOrigin: `${rxn.x}px ${rxn.y}px` }}
-              >
-                {/* SUBSTRATE NODE */}
-                <g transform="translate(0, -95)">
-                  <rect x="-100" y="-20" width="200" height="40" rx="20" fill={`${substrateColor}15`} stroke={substrateColor} strokeWidth="2.5" className="transition-all duration-300 hover:fill-opacity-30" />
-                  <text x="0" y="5" textAnchor="middle" fill="#f8fafc" className="text-[15px] font-bold" style={{ pointerEvents: 'none' }}>
-                    {rxn.substrate.length > 24 ? rxn.substrate.substring(0, 22) + "..." : rxn.substrate}
-                  </text>
-                </g>
-
-                {/* ENZYME NODE */}
-                <circle cx="0" cy="0" r="50" fill={`${enzymeColor}15`} stroke={enzymeColor} strokeWidth="4" className="transition-all duration-300 hover:fill-opacity-30" />
-                {rxn.isRateLimiting && (
-                  <circle cx="0" cy="0" r="60" fill="none" stroke="#ef4444" strokeWidth="2" strokeDasharray="6 6" className="rate-limiting-pulse" />
-                )}
-                
-                {/* Step Badge */}
-                <circle cx="-45" cy="-45" r="18" fill="#0f172a" stroke={enzymeColor} strokeWidth="2" />
-                <text x="-45" y="-39" textAnchor="middle" fill="#f8fafc" className="text-[18px] font-black">{rxn.step}</text>
-
-                <text x="0" y="5" textAnchor="middle" fill={enzymeColor} className="text-[13px] font-black uppercase tracking-widest" style={{ pointerEvents: 'none' }}>
-                  {rxn.enzyme.length > 15 ? rxn.enzyme.substring(0, 13) + "..." : rxn.enzyme}
-                </text>
-
-                {/* FLOATING REWARD BADGES */}
-                <g className="animate-float">
-                  {consumesATP && (
-                    <g transform="translate(-105, -20)">
-                      <rect x="-35" y="-16" width="70" height="32" rx="16" fill="#f9731620" stroke="#f97316" strokeWidth="2" />
-                      <text x="0" y="4" textAnchor="middle" fill="#f97316" className="text-[12px] font-black">- ATP</text>
-                    </g>
-                  )}
-                  {producesATP && (
-                    <g transform="translate(105, -20)">
-                      <rect x="-35" y="-16" width="70" height="32" rx="16" fill="#facc1520" stroke="#facc15" strokeWidth="2" />
-                      <text x="0" y="4" textAnchor="middle" fill="#facc15" className="text-[12px] font-black">+ ATP</text>
-                    </g>
-                  )}
-                  {producesNADH && (
-                    <g transform="translate(105, 20)">
-                      <rect x="-40" y="-16" width="80" height="32" rx="16" fill="#10b98120" stroke="#10b981" strokeWidth="2" />
-                      <text x="0" y="4" textAnchor="middle" fill="#10b981" className="text-[12px] font-black">+ NADH</text>
-                    </g>
-                  )}
-                  {producesFADH2 && (
-                    <g transform="translate(105, 20)">
-                      <rect x="-40" y="-16" width="80" height="32" rx="16" fill="#06b6d420" stroke="#06b6d4" strokeWidth="2" />
-                      <text x="0" y="4" textAnchor="middle" fill="#06b6d4" className="text-[12px] font-black">+ FADH₂</text>
-                    </g>
-                  )}
-                  {producesWater && (
-                    <g transform="translate(105, 60)">
-                      <rect x="-30" y="-16" width="60" height="32" rx="16" fill="#94a3b820" stroke="#94a3b8" strokeWidth="2" />
-                      <text x="0" y="4" textAnchor="middle" fill="#94a3b8" className="text-[12px] font-black">+ H₂O</text>
-                    </g>
-                  )}
-                  {producesCO2 && (
-                    <g transform="translate(-105, 60)">
-                      <rect x="-35" y="-16" width="70" height="32" rx="16" fill="#a1620720" stroke="#a16207" strokeWidth="2" />
-                      <text x="0" y="4" textAnchor="middle" fill="#eab308" className="text-[12px] font-black">+ CO₂</text>
-                    </g>
-                  )}
-                </g>
-
-                {/* PRODUCT NODE (Rendered physically if it's the final step) */}
-                {isFinalStep && (
-                  <g transform="translate(0, 110)">
-                    <rect x="-100" y="-20" width="200" height="40" rx="20" fill={`${productColor}20`} stroke={productColor} strokeWidth="3" className="filter drop-shadow-[0_0_10px_rgba(22,101,52,0.8)]" />
-                    <text x="0" y="6" textAnchor="middle" fill="#f8fafc" className="text-[16px] font-black uppercase tracking-widest" style={{ pointerEvents: 'none' }}>
-                      {rxn.product}
-                    </text>
-                  </g>
-                )}
-              </g>
-            );
-          })}
-        </svg>
-
-        {/* HOVER TOOLTIP */}
-        <AnimatePresence>
-          {hoveredReaction && !selectedReaction && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.15 }}
-              className="fixed pointer-events-none z-50 bg-slate-900/95 backdrop-blur-xl border border-slate-700 p-4 rounded-2xl shadow-2xl w-64"
-              style={{ 
-                left: mousePos.x + 20, 
-                top: mousePos.y + 20,
-                // Prevent falling off right edge
-                transform: mousePos.x > window.innerWidth - 300 ? "translateX(-110%)" : "none"
-              }}
-            >
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-[10px] font-black text-cyan-400 uppercase bg-cyan-500/10 px-2 py-0.5 rounded">Step {hoveredReaction.step}</span>
-                {hoveredReaction.isRateLimiting && <span className="text-[10px] font-black text-red-400 uppercase bg-red-500/10 px-2 py-0.5 rounded animate-pulse">Rate Limit</span>}
-              </div>
-              <h4 className="text-sm font-bold text-white mb-1 leading-tight">{hoveredReaction.title}</h4>
-              <p className="text-[11px] text-slate-400 line-clamp-2">{hoveredReaction.description}</p>
-              <div className="mt-2 pt-2 border-t border-slate-700/50 flex flex-col space-y-1 text-[10px] text-slate-300 font-medium">
-                <div className="flex justify-between"><span>Substrate:</span><span className="text-white">{hoveredReaction.substrate}</span></div>
-                <div className="flex justify-between"><span>Enzyme:</span><span className="text-purple-400">{hoveredReaction.enzyme}</span></div>
-                <div className="flex justify-between"><span>Product:</span><span className="text-blue-400">{hoveredReaction.product}</span></div>
-              </div>
-              <div className="mt-2 text-center text-[9px] text-slate-500 font-bold uppercase tracking-widest">Click for Full Details</div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <button
+          onClick={() => setShowStructures(!showStructures)}
+          className={`flex items-center space-x-2 px-4 py-2.5 rounded-xl text-xs font-black uppercase transition-all ${showStructures ? 'bg-amber-500/20 text-amber-400 border border-amber-500/50' : 'bg-slate-800 hover:bg-slate-700 text-slate-200'}`}
+          title="Toggle 2D Chemical Structures"
+        >
+          {showStructures ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+          <span className="hidden sm:inline">{showStructures ? "Hide Structures" : "Show Structures"}</span>
+        </button>
+        
+        {isPathwayVerified && (
+          <div className="flex items-center space-x-2 bg-green-500/10 border border-green-500/30 text-green-400 px-4 py-2.5 rounded-xl text-xs font-black uppercase tracking-wider shadow-[0_0_15px_rgba(34,197,94,0.3)]">
+            <CheckCircle className="h-4 w-4" />
+            <span className="hidden sm:inline">Verified Graph</span>
+          </div>
+        )}
       </div>
 
-      {/* FULL INFORMATION SIDE PANEL */}
-      <AnimatePresence>
-        {selectedReaction && (
-          <motion.div
-            initial={{ opacity: 0, x: "100%" }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: "100%" }}
-            transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="w-80 md:w-[420px] h-full bg-[#020617]/95 backdrop-blur-3xl border-l border-slate-700/50 p-6 overflow-y-auto z-40 shadow-2xl absolute right-0 top-0 bottom-0"
-          >
-            <div className="flex justify-between items-center mb-6">
-              <span className="text-xs font-black tracking-widest text-primary uppercase bg-primary/15 px-3 py-1.5 rounded-full border border-primary/30">
-                Reaction {selectedReaction.step}
-              </span>
-              <button 
-                onClick={() => setSelectedReaction(null)}
-                className="text-slate-400 hover:text-white transition text-xs font-bold bg-slate-800 hover:bg-slate-700 px-4 py-2 rounded-lg"
-              >
-                Close Panel
-              </button>
+      {/* Canvas */}
+      {viewMode === 'mindmap' ? (
+        <div className="w-full h-full flex items-center justify-center bg-[#020617] overflow-auto p-4 pt-24 sm:pt-4">
+          {pathway.mindMapUrl ? (
+            <img 
+              src={pathway.mindMapUrl} 
+              alt={`${pathway.title} Mind Map`} 
+              className="max-w-full max-h-full object-contain rounded-xl border border-slate-800 shadow-2xl" 
+            />
+          ) : (
+            <div className="text-slate-400 text-lg flex flex-col items-center">
+              <Network className="h-16 w-16 mb-4 opacity-20" />
+              <p className="font-semibold tracking-wide">Mind map not available</p>
             </div>
+          )}
+        </div>
+      ) : (
+        <ReactFlow
+          nodes={nodes}
+          edges={edges}
+          onNodesChange={onNodesChange}
+          onEdgesChange={onEdgesChange}
+          nodeTypes={nodeTypes}
+          fitView
+          fitViewOptions={{ padding: 0.2 }}
+          minZoom={0.2}
+          className="bg-[#020617]"
+        >
+          <Background variant={BackgroundVariant.Dots} gap={30} size={2} color="#1e293b" />
+          <Controls className="bg-slate-800 border-slate-700 fill-white" />
+        </ReactFlow>
+      )}
 
-            <h2 className="text-2xl font-black text-white leading-tight mb-4">
-              {selectedReaction.title}
-            </h2>
-
-            {/* Reaction Flow Graphic */}
-            <div className="flex flex-col space-y-2 text-sm text-slate-300 bg-slate-900 p-5 rounded-2xl border border-slate-800 mb-6 shadow-inner">
-              <div className="flex items-center space-x-3">
-                <div className="w-3 h-3 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]" />
-                <span className="font-bold text-xs text-slate-400 uppercase tracking-widest">From</span>
-              </div>
-              <span className="font-bold text-base text-white pl-6 pb-3 border-b border-slate-800">{selectedReaction.substrate}</span>
-              
-              <div className="flex items-center space-x-3 pt-2">
-                <div className="w-3 h-3 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.6)]" />
-                <span className="font-bold text-xs text-slate-400 uppercase tracking-widest">To</span>
-              </div>
-              <span className="font-bold text-base text-white pl-6">{selectedReaction.product}</span>
-            </div>
-
-            <div className="space-y-4 pb-10">
-              
-              {/* ENZYME & COFACTORS */}
-              <div className="bg-purple-500/10 border border-purple-500/30 p-5 rounded-2xl space-y-3">
-                <h3 className="text-sm font-black uppercase text-purple-400 flex items-center">
-                  <Activity className="w-4 h-4 mr-2" />
-                  Catalytic Enzyme
-                </h3>
-                <p className="text-lg font-black text-white">{selectedReaction.enzyme}</p>
-                <p className="text-sm text-slate-300 leading-relaxed">
-                  {selectedReaction.description}
-                </p>
-                {selectedReaction.isRateLimiting && (
-                  <div className="mt-3 inline-block bg-red-500/20 border border-red-500/50 text-red-400 text-xs font-black uppercase px-4 py-2 rounded-xl animate-pulse">
-                    ⚠️ Rate-Limiting Step
-                  </div>
-                )}
-                {selectedReaction.cofactors && selectedReaction.cofactors.length > 0 && (
-                  <div className="pt-3 mt-3 border-t border-purple-500/20">
-                    <span className="text-xs font-bold text-purple-300 uppercase block mb-1.5">Required Cofactors</span>
-                    <div className="flex flex-wrap gap-2">
-                      {selectedReaction.cofactors.map(c => (
-                        <span key={c} className="text-xs font-bold bg-purple-900/50 text-purple-200 px-2 py-1 rounded">{c}</span>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              {/* ENERGY YIELD */}
-              {selectedReaction.energyChange && (
-                <div className="bg-yellow-500/10 border border-yellow-500/30 p-5 rounded-2xl space-y-2">
-                  <h3 className="text-sm font-black uppercase text-yellow-500 flex items-center">
-                    <Sparkles className="w-4 h-4 mr-2" />
-                    Energy Balance
-                  </h3>
-                  <p className="text-sm font-black text-yellow-400">{selectedReaction.energyChange}</p>
-                </div>
-              )}
-
-              {/* HIGH YIELD EXAM POINTS */}
-              {selectedReaction.highYield && (
-                <div className="bg-amber-500/10 border border-amber-500/30 p-5 rounded-2xl space-y-2">
-                  <h3 className="text-sm font-black uppercase text-amber-500 flex items-center">
-                    <BookOpen className="w-4 h-4 mr-2" />
-                    High-Yield Exam Point
-                  </h3>
-                  <p className="text-sm text-amber-200/90 font-medium leading-relaxed">{selectedReaction.highYield}</p>
-                </div>
-              )}
-
-              {/* CLINICAL SIGNIFICANCE */}
-              <div className="bg-slate-800/50 border border-slate-700 p-5 rounded-2xl space-y-5">
-                <div className="space-y-2">
-                  <h3 className="text-sm font-black uppercase text-cyan-400 flex items-center">
-                    <Stethoscope className="w-4 h-4 mr-2" />
-                    Clinical Significance
-                  </h3>
-                  <p className="text-sm text-slate-300 leading-relaxed">
-                    Mutations or deficiencies in <span className="font-bold text-white">{selectedReaction.enzyme}</span> lead to metabolic blockades, accumulating <span className="font-bold text-white">{selectedReaction.substrate}</span>.
-                  </p>
-                  {selectedReaction.diseases && selectedReaction.diseases.length > 0 && (
-                    <div className="pt-2 flex flex-wrap gap-2">
-                      {selectedReaction.diseases.map(d => (
-                        <span key={d} className="text-xs font-bold bg-cyan-900/40 border border-cyan-800 text-cyan-200 px-2 py-1 rounded">{d}</span>
-                      ))}
-                    </div>
-                  )}
-                </div>
-                
-                <div className="h-px bg-slate-700 w-full" />
-                
-                <div className="space-y-2">
-                  <h3 className="text-sm font-black uppercase text-emerald-400 flex items-center">
-                    <Pill className="w-4 h-4 mr-2" />
-                    Pharmacology
-                  </h3>
-                  <p className="text-sm text-slate-300 leading-relaxed">
-                    {selectedReaction.isRateLimiting ? "As a rate-limiting enzyme, this is a prime target for pharmacological inhibitors to downregulate the entire pathway." : "Typically targeted by specific allosteric modulators."}
-                  </p>
-                  {selectedReaction.drugs && selectedReaction.drugs.length > 0 && (
-                    <div className="pt-2 flex flex-wrap gap-2">
-                      {selectedReaction.drugs.map(d => (
-                        <span key={d} className="text-xs font-bold bg-emerald-900/40 border border-emerald-800 text-emerald-200 px-2 py-1 rounded">{d}</span>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              </div>
-
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
   );
 }

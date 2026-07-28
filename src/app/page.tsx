@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Header from "@/components/Header";
 import { dbService, Pathway, StudyNote } from "@/lib/db";
+import { pathwayEnergy } from "@/lib/pathwayData";
 import { Button } from "@/components/ui/button";
 import { 
   Search, 
@@ -57,22 +58,21 @@ export default function Home() {
     // Filter pathways
     const matchedPathways = pathways.filter(p => {
       return (
-        p.name.toLowerCase().includes(query) ||
-        p.category.toLowerCase().includes(query) ||
-        p.location.organ.toLowerCase().includes(query) ||
-        p.location.cellularLocation.toLowerCase().includes(query) ||
-        p.reactions.some(r => r.enzyme.toLowerCase().includes(query)) ||
-        p.clinicalSignificance.diseases.some(d => d.toLowerCase().includes(query)) ||
-        p.rateLimitingStep.enzyme.toLowerCase().includes(query)
+        p.title?.toLowerCase().includes(query) ||
+        p.category?.toLowerCase().includes(query) ||
+        p.cellularLocation?.toLowerCase().includes(query) ||
+        p.reactions?.some(r => r.enzyme?.toLowerCase().includes(query)) ||
+        p.clinicalSignificance?.diseases?.some(d => d?.toLowerCase().includes(query)) ||
+        p.rateLimitingStep?.enzyme?.toLowerCase().includes(query)
       );
     });
 
     // Filter notes
     const matchedNotes = notes.filter(n => {
       return (
-        n.title.toLowerCase().includes(query) ||
-        n.category.toLowerCase().includes(query) ||
-        n.content.toLowerCase().includes(query)
+        n.title?.toLowerCase().includes(query) ||
+        n.category?.toLowerCase().includes(query) ||
+        n.content?.toLowerCase().includes(query)
       );
     });
 
@@ -159,7 +159,7 @@ export default function Home() {
       `}</style>
 
       {/* 1. HERO SECTION */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-primary/10 via-transparent to-transparent py-20 px-4 sm:px-6 lg:px-8">
+      <section className="relative bg-gradient-to-b from-primary/10 via-transparent to-transparent py-20 px-4 sm:px-6 lg:px-8">
         {/* Decorative Grid */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:16px_28px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
         
@@ -272,8 +272,8 @@ export default function Home() {
                               href={`/pathways/${p.slug}`}
                               className="flex items-center justify-between p-2 rounded-lg hover:bg-muted text-xs transition-colors"
                             >
-                              <div>
-                                <span className="font-bold text-foreground">{p.name}</span>
+                                <div>
+                                  <span className="font-bold text-foreground">{p.title}</span>
                                 <span className="text-[10px] text-muted-foreground ml-2">({p.category})</span>
                               </div>
                               <ChevronRight className="h-3.5 w-3.5 text-muted-foreground" />
@@ -412,7 +412,7 @@ export default function Home() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {pathways.slice(0, 3).map((p) => {
-            const level = p.rateLimitingStep.enzyme;
+            const level = p.rateLimitingStep?.enzyme;
             return (
               <div 
                 key={p.slug}
@@ -432,22 +432,22 @@ export default function Home() {
 
                   {/* Pathway Title */}
                   <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors">
-                    {p.name}
+                    {p.title}
                   </h3>
 
                   <p className="text-xs text-muted-foreground leading-relaxed line-clamp-3">
-                    {p.overview.definition}
+                    {p.description}
                   </p>
 
                   {/* Visual specs */}
                   <div className="grid grid-cols-2 gap-3 pt-2 text-[10px] font-semibold text-muted-foreground">
                     <div className="bg-muted/40 p-2 rounded-lg">
                       <span className="block text-[9px] font-black uppercase text-muted-foreground/80">Location</span>
-                      <span className="text-foreground truncate block">{p.location.cellularLocation.split(" ")[0]}</span>
+                      <span className="text-foreground truncate block">{p.cellularLocation?.split(" ")[0]}</span>
                     </div>
                     <div className="bg-muted/40 p-2 rounded-lg">
                       <span className="block text-[9px] font-black uppercase text-muted-foreground/80">ATP Yield</span>
-                      <span className="text-foreground block">{p.energyBalance.atpProduced - p.energyBalance.atpUsed} Net</span>
+                      <span className="text-foreground block">{pathwayEnergy[p.slug]?.netATP ?? 0} Net</span>
                     </div>
                   </div>
                 </div>

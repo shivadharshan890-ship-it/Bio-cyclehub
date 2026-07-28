@@ -1,245 +1,247 @@
 "use client";
 
-import React, { useState, useEffect, Suspense } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
+import React, { useState, useEffect } from "react";
 import { useAuth } from "@/lib/auth-context";
-import { dbService, QuizQuestion, Pathway } from "@/lib/db";
+import { quizService, QuizConfig, Question, QuizAttempt } from "@/firebase/quizService";
 import Header from "@/components/Header";
-import QuizCard from "@/components/QuizCard";
+import QuizEngine from "@/components/quiz/QuizEngine";
+import QuizResults from "@/components/quiz/QuizResults";
+import { Button } from "@/components/ui/button";
 import { 
-  Award, 
-  BookOpen, 
-  HelpCircle, 
   Play, 
-  History, 
-  TrendingUp, 
-  ArrowLeft,
-  Calendar,
+  Settings, 
+  Brain,
   Layers,
-  Sparkles
+  Activity,
+  History,
+  AlertCircle
 } from "lucide-react";
+import { isFirebaseEnabled } from "@/lib/db";
 
-// Sub-component that does search-param queries inside Suspense
-function QuizContent() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
+// Hardcoded for now. In a full version, we'd fetch these from Firestore or a constants file.
+const ALL_TOPICS = [
+  "glycolysis", "krebs-cycle", "electron-transport-chain", 
+  "pentose-phosphate-pathway", "gluconeogenesis", "beta-oxidation", 
+  "urea-cycle", "cholesterol-biosynthesis", "purine-metabolism"
+];
+
+export default function QuizPage() {
   const { user } = useAuth();
   
-  const slug = searchParams.get("slug");
-  
-  // State for lobby
-  const [pathways, setPathways] = useState<Pathway[]>(() => dbService.getStaticPathways());
-  const progress = user ? dbService.getUserProgress(user.uid) : null;
+  const [config, setConfig] = useState<QuizConfig>({
+    mode: "Practice",
+    topics: [], // Empty means Mixed if mode is Mixed
+    questionCount: 10,
+    difficulty: "Mixed",
+    isTimed: false,
+  });
 
-  useEffect(() => {
-    setPathways(dbService.getPathways());
-  }, []);
+  const [quizState, setQuizState] = useState<"lobby" | "playing" | "results" | "loading">("lobby");
+  const [questions, setQuestions] = useState<Question[]>([]);
+  const [attemptData, setAttemptData] = useState<QuizAttempt | null>(null);
+  const [error, setError] = useState("");
 
-  const handleStartQuiz = (pSlug: string) => {
-    router.push(`/quiz?slug=${pSlug}`);
+  const handleStartQuiz = async () => {
+    if (!isFirebaseEnabled) {
+      setError("Firebase is not configured. The advanced quiz engine requires Firestore.");
+      return;
+    }
+    
+    setError("");
+    setQuizState("loading");
+    
+    try {
+      const uid = user ? user.uid : "guest";
+      const fetchedQuestions = await quizService.generateQuizSession(uid, config);
+      
+      if (fetchedQuestions.length === 0) {
+        setError("No questions found matching your criteria.");
+        setQuizState("lobby");
+        return;
+      }
+      
+      setQuestions(fetchedQuestions);
+      setQuizState("playing");
+    } catch (e: any) {
+      console.error(e);
+      setError("Failed to generate quiz: " + e.message);
+      setQuizState("lobby");
+    }
   };
 
-  const handleBackToLobby = () => {
-    router.push("/quiz");
+  const handleQuizComplete = async (attempt: Omit<QuizAttempt, "id" | "timestamp">) => {
+    setQuizState("loading");
+    try {
+      const uid = user ? user.uid : "guest";
+      const attemptId = await quizService.submitQuizAttempt(uid, attempt);
+      setAttemptData({
+        ...attempt,
+        id: attemptId,
+        timestamp: new Date().toISOString()
+      });
+      setQuizState("results");
+    } catch (e: any) {
+      console.error(e);
+      setError("Failed to save results: " + e.message);
+      setQuizState("lobby");
+    }
   };
 
-  // --- 1. ACTIVE QUIZ PLAY VIEW ---
-  if (slug) {
-    const pway = pathways.find(p => p.slug === slug);
-    return (
-      <div className="space-y-4">
-        <button
-          onClick={handleBackToLobby}
-          className="text-xs font-bold text-muted-foreground hover:text-foreground flex items-center space-x-1"
-        >
-          <ArrowLeft className="h-3.5 w-3.5" />
-          <span>Exit Quiz / Back to Lobby</span>
-        </button>
+  const toggleTopic = (topic: string) => {
+    setConfig(prev => {
+      if (prev.topics.includes(topic)) {
+        return { ...prev, topics: prev.topics.filter(t => t !== topic) };
+      } else {
+        return { ...prev, topics: [...prev.topics, topic] };
+      }
+    });
+  };
+
+  return (
+    <div className="min-h-screen bg-background text-foreground pb-20">
+      <Header />
+      
+      <main className="container mx-auto px-4 pt-8">
         
-        {pway ? (
-          <h2 className="text-xl font-black text-center mt-2">
-            Practice: {pway.name} Quiz
-          </h2>
-        ) : (
-          <h2 className="text-xl font-black text-center mt-2">
-            Practice: General Biochemistry Quiz
-          </h2>
+        {error && (
+           <div className="max-w-3xl mx-auto mb-6 p-6 bg-red-500/10 border border-red-500/20 text-red-500 rounded-xl flex flex-col sm:flex-row items-center gap-4 justify-between">
+             <div className="flex items-center gap-3">
+               <AlertCircle className="w-6 h-6 shrink-0" />
+               <p className="text-sm font-bold">{error}</p>
+             </div>
+             <Button variant="outline" onClick={() => { setError(""); setQuizState("lobby"); }} className="border-red-500/50 hover:bg-red-500/20">
+               Retry
+             </Button>
+           </div>
         )}
 
-        <QuizCard 
-          pathwaySlug={slug} 
-          onQuizComplete={() => {
-            // refresh data if needed
-          }}
-        />
-      </div>
-    );
-  }
+        {quizState === "loading" && (
+          <div className="flex flex-col items-center justify-center py-32 space-y-4">
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+            <p className="text-muted-foreground font-bold animate-pulse">Generating your custom quiz...</p>
+          </div>
+        )}
 
-  // --- 2. LOBBY VIEW ---
-  return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-      {/* Quiz Lobby Cards */}
-      <div className="lg:col-span-2 space-y-6">
-        <div>
-          <h2 className="text-lg font-bold text-foreground">Select Practice Module</h2>
-          <p className="text-xs text-muted-foreground">Select a pathway to start a timed exam preparation session</p>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {/* General Quiz Card */}
-          <div 
-            className="bg-gradient-to-br from-primary/10 via-card to-card border border-primary/20 rounded-2xl p-5 hover:border-primary/40 shadow-sm flex flex-col justify-between"
-          >
-            <div className="space-y-2">
-              <div className="flex justify-between items-center text-[10px] font-bold">
-                <span className="bg-primary/20 text-primary px-2.5 py-0.5 rounded-full uppercase">
-                  General
-                </span>
-                <span className="text-muted-foreground">{dbService.getQuizzes().length} Questions</span>
-              </div>
-              <h3 className="text-sm font-bold text-foreground mt-1">General Practice Arena</h3>
-              <p className="text-[11px] text-muted-foreground line-clamp-2">
-                Timed exam with mixed questions from all B.Pharmacy biochemical pathways.
+        {quizState === "lobby" && (
+          <div className="max-w-4xl mx-auto space-y-8">
+            <div className="text-center space-y-3">
+              <h1 className="text-3xl md:text-4xl font-black">BioCycle Hub Quiz Engine</h1>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                Configure your practice session. Our engine guarantees no immediate repetitions, 
+                blending clinical cases with fundamental biochemistry.
               </p>
             </div>
 
-            <button
-              onClick={() => handleStartQuiz("general")}
-              className="mt-4 w-full bg-primary hover:bg-primary-hover text-white font-bold text-xs py-2 px-4 rounded-lg flex items-center justify-center space-x-1 shadow-sm"
-            >
-              <Play className="h-3.5 w-3.5 fill-white mr-1" />
-              <span>Start Mixed Quiz</span>
-            </button>
-          </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* Settings Card */}
+              <div className="bg-card border border-border p-6 rounded-3xl shadow-sm space-y-6">
+                <h2 className="text-lg font-bold flex items-center gap-2 border-b border-border pb-3">
+                  <Settings className="w-5 h-5 text-primary" /> Configuration
+                </h2>
 
-          {pathways.map((p) => {
-            const rxnsCount = dbService.getQuizzesByPathway(p.slug).length;
-            
-            return (
-              <div 
-                key={p.slug}
-                className="bg-card border border-border rounded-2xl p-5 hover:border-primary/20 shadow-sm flex flex-col justify-between"
-              >
-                <div className="space-y-2">
-                  <div className="flex justify-between items-center text-[10px] font-bold">
-                    <span className="bg-primary/10 text-primary px-2.5 py-0.5 rounded-full capitalize">
-                      {p.category}
-                    </span>
-                    <span className="text-muted-foreground">{rxnsCount} Questions</span>
-                  </div>
-                  <h3 className="text-sm font-bold text-foreground mt-1">{p.name} Practice</h3>
-                  <p className="text-[11px] text-muted-foreground line-clamp-2">
-                    Covers rate-limiting enzymes, cofactors (NAD+/ATP), inhibitors, and diagnostic findings.
-                  </p>
-                </div>
-
-                <button
-                  onClick={() => handleStartQuiz(p.slug)}
-                  disabled={rxnsCount === 0}
-                  className="mt-4 w-full bg-primary hover:bg-primary-hover text-white font-bold text-xs py-2 px-4 rounded-lg flex items-center justify-center space-x-1 shadow-sm disabled:opacity-40"
-
-                >
-                  <Play className="h-3.5 w-3.5 fill-white mr-1" />
-                  <span>Start Practice</span>
-                </button>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* History & Statistics Column */}
-      <div className="space-y-6">
-        <div>
-          <h2 className="text-lg font-bold text-foreground">Your Performance Log</h2>
-          <p className="text-xs text-muted-foreground">Historical records and diagnostic streaks</p>
-        </div>
-
-        {/* User stats widget */}
-        {progress && (
-          <div className="bg-gradient-to-tr from-sky-500/10 to-accent/5 border border-border p-4 rounded-2xl space-y-4">
-            <div className="flex items-center justify-between text-xs">
-              <span className="text-muted-foreground font-semibold flex items-center">
-                <TrendingUp className="h-4 w-4 mr-1 text-accent" /> Accuracy Index
-              </span>
-              <span className="font-extrabold text-foreground">
-                {progress.quizScores.length > 0
-                  ? `${Math.round(
-                      (progress.quizScores.reduce((acc: any, curr: any) => acc + curr.score, 0) /
-                        progress.quizScores.reduce((acc: any, curr: any) => acc + curr.total, 0)) *
-                        100
-                    )}%`
-                  : "0%"}
-              </span>
-            </div>
-
-            <div className="h-px bg-border" />
-
-            <div className="space-y-2.5">
-              <span className="text-[10px] font-black uppercase text-muted-foreground block">Session History</span>
-              {progress.quizScores.length === 0 ? (
-                <p className="text-[11px] text-muted-foreground/60 italic py-2">No historical quiz submissions logged.</p>
-              ) : (
-                <div className="space-y-2 max-h-[220px] overflow-y-auto pr-1">
-                  {progress.quizScores.slice().reverse().map((qs: any, idx: any) => (
-                    <div 
-                      key={idx} 
-                      className="bg-card border border-border p-2.5 rounded-lg flex justify-between items-center text-[10px]"
+                <div className="space-y-4">
+                  <div>
+                    <label className="text-xs font-bold text-muted-foreground uppercase block mb-2">Quiz Mode</label>
+                    <select 
+                      value={config.mode}
+                      onChange={(e) => setConfig({...config, mode: e.target.value as any})}
+                      className="w-full bg-background border border-border rounded-xl p-3 text-sm focus:ring-2 focus:ring-primary outline-none"
                     >
-                      <div>
-                        <span className="font-bold text-foreground capitalize">{qs.quizId}</span>
-                        <span className="text-muted-foreground block text-[8px] mt-0.5 flex items-center">
-                          <Calendar className="h-3 w-3 mr-1" />
-                          {new Date(qs.timestamp).toLocaleDateString()}
-                        </span>
-                      </div>
-                      <span className="font-extrabold bg-muted text-foreground py-0.5 px-2 rounded">
-                        {qs.score} / {qs.total}
-                      </span>
+                      <option value="Practice">Practice Mode (Detailed Explanations)</option>
+                      <option value="Exam">Exam Mode (Strict)</option>
+                      <option value="TopicWise">Topic Wise</option>
+                      <option value="Mixed">Mixed Topics</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="text-xs font-bold text-muted-foreground uppercase block mb-2">Number of Questions</label>
+                    <div className="flex gap-2">
+                      {[10, 20, 30, 50].map(num => (
+                        <button
+                          key={num}
+                          onClick={() => setConfig({...config, questionCount: num})}
+                          className={`flex-1 py-2 rounded-lg text-sm font-bold border transition-colors ${config.questionCount === num ? 'bg-primary text-primary-foreground border-primary' : 'bg-background border-border text-muted-foreground hover:border-primary/50'}`}
+                        >
+                          {num}
+                        </button>
+                      ))}
                     </div>
-                  ))}
+                  </div>
+
+                  <div>
+                    <label className="text-xs font-bold text-muted-foreground uppercase block mb-2">Difficulty</label>
+                    <div className="grid grid-cols-2 gap-2">
+                      {["Mixed", "Easy", "Medium", "Hard"].map(diff => (
+                        <button
+                          key={diff}
+                          onClick={() => setConfig({...config, difficulty: diff as any})}
+                          className={`py-2 rounded-lg text-sm font-bold border transition-colors ${config.difficulty === diff ? 'bg-primary text-primary-foreground border-primary' : 'bg-background border-border text-muted-foreground hover:border-primary/50'}`}
+                        >
+                          {diff}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-              )}
+              </div>
+
+              {/* Topics Selection */}
+              <div className="bg-card border border-border p-6 rounded-3xl shadow-sm space-y-6 flex flex-col">
+                <h2 className="text-lg font-bold flex items-center gap-2 border-b border-border pb-3">
+                  <Layers className="w-5 h-5 text-sky-500" /> Topics
+                </h2>
+                
+                <div className="flex-1 overflow-y-auto max-h-[300px] space-y-2 pr-2 custom-scrollbar">
+                  {config.mode === "Mixed" ? (
+                    <div className="p-4 bg-primary/5 border border-primary/20 rounded-xl text-center text-sm text-primary">
+                      All topics will be randomly mixed.
+                    </div>
+                  ) : (
+                    ALL_TOPICS.map(topic => (
+                      <button
+                        key={topic}
+                        onClick={() => toggleTopic(topic)}
+                        className={`w-full text-left p-3 rounded-xl border flex items-center gap-3 transition-colors ${config.topics.includes(topic) ? 'bg-sky-500/10 border-sky-500 text-foreground' : 'bg-background border-border text-muted-foreground hover:border-sky-500/50'}`}
+                      >
+                        <div className={`w-4 h-4 rounded shadow-inner flex items-center justify-center ${config.topics.includes(topic) ? 'bg-sky-500' : 'bg-muted'}`}>
+                          {config.topics.includes(topic) && <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>}
+                        </div>
+                        <span className="capitalize">{topic.replace("-", " ")}</span>
+                      </button>
+                    ))
+                  )}
+                </div>
+
+                <Button 
+                  onClick={handleStartQuiz} 
+                  className="w-full h-14 text-lg font-black mt-auto shadow-lg shadow-primary/20 flex items-center justify-center gap-2"
+                >
+                  <Play className="w-5 h-5 fill-current" /> Start Quiz
+                </Button>
+              </div>
             </div>
           </div>
         )}
 
-        {!progress && (
-          <div className="bg-card border border-border p-5 rounded-2xl text-center text-xs text-muted-foreground">
-            <History className="h-6 w-6 mx-auto text-muted-foreground/60 mb-2" />
-            <p>Log in to track your scores and unlock achievements.</p>
-          </div>
+        {quizState === "playing" && questions.length > 0 && (
+          <QuizEngine 
+            questions={questions} 
+            config={config} 
+            userId={user ? user.uid : "guest"} 
+            onComplete={handleQuizComplete} 
+          />
         )}
-      </div>
-    </div>
-  );
-}
 
-export default function Quiz() {
-  return (
-    <div className="flex flex-col min-h-screen">
-      <Header />
-      
-      <main className="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
-        
-        {/* Title */}
-        <section className="text-left space-y-1">
-          <h1 className="text-2xl sm:text-3xl font-black text-foreground">Interactive Practice Arena</h1>
-          <p className="text-xs text-muted-foreground">
-            GPAT-oriented, concept-enhancing biochemistry questions. Get instant feedback and explanations.
-          </p>
-        </section>
-
-        {/* Load Content wrapped in Suspense for Next.js 15 searchParams compatibility */}
-        <Suspense fallback={
-          <div className="flex justify-center py-20">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
-          </div>
-        }>
-          <QuizContent />
-        </Suspense>
-
+        {quizState === "results" && attemptData && (
+          <QuizResults 
+            attempt={attemptData} 
+            onRetry={() => {
+              setQuizState("lobby");
+              setAttemptData(null);
+            }} 
+          />
+        )}
       </main>
     </div>
   );

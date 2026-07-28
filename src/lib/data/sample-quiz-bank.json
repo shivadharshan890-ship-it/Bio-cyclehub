@@ -1,0 +1,125 @@
+[
+  {
+    "topic": "glycolysis",
+    "category": "Carbohydrate Metabolism",
+    "difficulty": "Easy",
+    "type": "MCQ",
+    "question": "Which of the following is the net ATP yield from one molecule of glucose during aerobic glycolysis?",
+    "options": ["2 ATP", "4 ATP", "32 ATP", "36 ATP"],
+    "answer": "2 ATP",
+    "explanation": "During glycolysis, 4 ATP are produced via substrate-level phosphorylation, but 2 ATP are consumed in the preparatory phase (by hexokinase and PFK-1), resulting in a net yield of 2 ATP.",
+    "tags": ["aerobic", "energy_yield"],
+    "memoryTrick": "Gross 4, Net 2. You invest 2 to make 4.",
+    "clinicalImportance": "Tumor cells rely heavily on glycolysis even in aerobic conditions (Warburg effect) to quickly generate ATP."
+  },
+  {
+    "topic": "glycolysis",
+    "category": "Carbohydrate Metabolism",
+    "difficulty": "Hard",
+    "type": "MCQ",
+    "question": "Which enzyme catalyzes the committed, rate-limiting step of glycolysis?",
+    "options": ["Hexokinase", "Phosphofructokinase-1 (PFK-1)", "Pyruvate kinase", "Aldolase"],
+    "answer": "Phosphofructokinase-1 (PFK-1)",
+    "explanation": "PFK-1 catalyzes the conversion of Fructose 6-phosphate to Fructose 1,6-bisphosphate. This is the first irreversible step unique to glycolysis (hexokinase produces G6P, which can enter the PPP or glycogenesis).",
+    "tags": ["enzyme", "rate_limiting"],
+    "clinicalImportance": "Tarui disease (GSD Type VII) is caused by a deficiency in muscle PFK-1, leading to exercise intolerance."
+  },
+  {
+    "topic": "krebs-cycle",
+    "category": "Carbohydrate Metabolism",
+    "difficulty": "Medium",
+    "type": "TrueFalse",
+    "question": "The Krebs cycle directly utilizes oxygen as a substrate.",
+    "options": ["True", "False"],
+    "answer": "False",
+    "explanation": "The Krebs cycle itself does not directly consume oxygen. Oxygen is used exclusively at the end of the Electron Transport Chain by Cytochrome c oxidase (Complex IV). However, the Krebs cycle will halt without oxygen because NAD+ and FAD cannot be regenerated.",
+    "tags": ["oxygen", "aerobic_respiration"]
+  },
+  {
+    "topic": "electron-transport-chain",
+    "category": "Energy Metabolism",
+    "difficulty": "Medium",
+    "type": "Match",
+    "question": "Match the ETC complex to its primary inhibitor.",
+    "options": [
+      "Complex I - Rotenone", 
+      "Complex III - Antimycin A", 
+      "Complex IV - Cyanide", 
+      "ATP Synthase - Oligomycin"
+    ],
+    "answer": [
+      "Complex I - Rotenone", 
+      "Complex III - Antimycin A", 
+      "Complex IV - Cyanide", 
+      "ATP Synthase - Oligomycin"
+    ],
+    "explanation": "Rotenone inhibits Complex I. Antimycin A inhibits Complex III. Cyanide and CO inhibit Complex IV. Oligomycin blocks the proton channel of ATP synthase.",
+    "memoryTrick": "1 Rotten (Rotenone), 3 Ants (Antimycin), 4 Cyans (Cyanide)."
+  },
+  {
+    "topic": "gluconeogenesis",
+    "category": "Carbohydrate Metabolism",
+    "difficulty": "Easy",
+    "type": "MCQ",
+    "question": "Gluconeogenesis occurs primarily in which organ?",
+    "options": ["Muscle", "Liver", "Brain", "Adipose tissue"],
+    "answer": "Liver",
+    "explanation": "The liver is the primary site of gluconeogenesis (~90%), with the kidney cortex contributing the rest during prolonged fasting.",
+    "clinicalImportance": "In severe liver failure, patients are at high risk for fatal hypoglycemia because they cannot perform gluconeogenesis."
+  },
+  {
+    "topic": "beta-oxidation",
+    "category": "Lipid Metabolism",
+    "difficulty": "Hard",
+    "type": "FillBlank",
+    "question": "Fatty acids must be conjugated to _______ to be transported across the inner mitochondrial membrane.",
+    "options": [],
+    "answer": ["carnitine", "Carnitine", "L-carnitine"],
+    "explanation": "Long-chain fatty acids (LCFAs) cannot cross the inner mitochondrial membrane alone. They use the Carnitine shuttle (CPT1 and CPT2) to enter the mitochondria for beta-oxidation.",
+    "clinicalImportance": "Primary carnitine deficiency presents with hypoketotic hypoglycemia, muscle weakness, and cardiomyopathy."
+  },
+  {
+    "topic": "urea-cycle",
+    "category": "Protein Metabolism",
+    "difficulty": "Medium",
+    "type": "Clinical",
+    "question": "A neonate presents with lethargy, vomiting, and hyperventilation. Labs show severely elevated ammonia and very low BUN. A defect in which cycle is most likely?",
+    "options": ["Cori cycle", "Urea cycle", "Krebs cycle", "Methionine cycle"],
+    "answer": "Urea cycle",
+    "explanation": "The Urea cycle is responsible for detoxifying ammonia into urea. Defects in any of its enzymes (e.g., OTC deficiency) lead to hyperammonemia, neurologic symptoms, and low Blood Urea Nitrogen (BUN).",
+    "clinicalImportance": "Prompt treatment with ammonia scavengers (sodium benzoate) and protein restriction is required to prevent permanent brain damage."
+  },
+  {
+    "topic": "cholesterol-biosynthesis",
+    "category": "Lipid Metabolism",
+    "difficulty": "Medium",
+    "type": "MCQ",
+    "question": "Statins are a widely prescribed class of drugs that lower cholesterol by competitively inhibiting which enzyme?",
+    "options": ["Squalene synthase", "HMG-CoA reductase", "Thiolase", "HMG-CoA synthase"],
+    "answer": "HMG-CoA reductase",
+    "explanation": "Statins competitively inhibit HMG-CoA reductase, the rate-limiting enzyme in cholesterol biosynthesis that converts HMG-CoA to mevalonate.",
+    "tags": ["pharmacology", "enzyme_inhibition"]
+  },
+  {
+    "topic": "pentose-phosphate-pathway",
+    "category": "Carbohydrate Metabolism",
+    "difficulty": "Easy",
+    "type": "TrueFalse",
+    "question": "The primary purpose of the oxidative phase of the Pentose Phosphate Pathway is to generate ATP.",
+    "options": ["True", "False"],
+    "answer": "False",
+    "explanation": "The PPP generates NADPH (for reductive synthesis and antioxidant defense) and Ribose-5-phosphate (for nucleotide synthesis). It does NOT produce ATP.",
+    "memoryTrick": "PPP = Produces Powerful Power (NADPH), not ATP."
+  },
+  {
+    "topic": "purine-metabolism",
+    "category": "Nucleotide Metabolism",
+    "difficulty": "Hard",
+    "type": "Clinical",
+    "question": "A 5-year-old boy presents with self-mutilating behavior (biting lips/fingers), intellectual disability, and orange sand-like crystals in his diaper. He likely has a deficiency in which enzyme?",
+    "options": ["Adenosine deaminase (ADA)", "Hypoxanthine-guanine phosphoribosyltransferase (HGPRT)", "Xanthine oxidase", "Orotate phosphoribosyltransferase"],
+    "answer": "Hypoxanthine-guanine phosphoribosyltransferase (HGPRT)",
+    "explanation": "The patient has Lesch-Nyhan syndrome, an X-linked recessive disorder caused by HGPRT deficiency. This prevents the salvage of purines, leading to massive overproduction of uric acid.",
+    "memoryTrick": "HGPRT = He's Got Purine Recovery Trouble (causes self-mutilation)."
+  }
+]

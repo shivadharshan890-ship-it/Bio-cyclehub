@@ -1,0 +1,807 @@
+[
+  {
+    "id": "fc1",
+    "pathwayName": "Glycolysis",
+    "front": "What is the rate-limiting enzyme of Glycolysis?",
+    "back": "Phosphofructokinase-1 (PFK-1)",
+    "category": "Carbohydrate"
+  },
+  {
+    "id": "fc2",
+    "pathwayName": "Glycolysis",
+    "front": "What is the net ATP yield of Glycolysis per glucose molecule?",
+    "back": "2 ATP (4 produced, 2 consumed)",
+    "category": "Carbohydrate"
+  },
+  {
+    "id": "fc3",
+    "pathwayName": "Glycolysis",
+    "front": "Which enzyme in glycolysis is inhibited by Fluoride?",
+    "back": "Enolase",
+    "category": "Carbohydrate"
+  },
+  {
+    "id": "fc4",
+    "pathwayName": "Krebs Cycle",
+    "front": "What is the rate-limiting step of the Krebs Cycle?",
+    "back": "Isocitrate Dehydrogenase",
+    "category": "Carbohydrate"
+  },
+  {
+    "id": "fc5",
+    "pathwayName": "Krebs Cycle",
+    "front": "Which Krebs cycle enzyme requires 5 cofactors (Tender Loving Care For No-one)?",
+    "back": "Alpha-Ketoglutarate Dehydrogenase (Requires B1, Lipoic Acid, B5, B2, B3)",
+    "category": "Carbohydrate"
+  },
+  {
+    "id": "fc6",
+    "pathwayName": "Electron Transport Chain",
+    "front": "Which complex in the ETC does NOT pump protons?",
+    "back": "Complex II (Succinate Dehydrogenase)",
+    "category": "Carbohydrate"
+  },
+  {
+    "id": "fc7",
+    "pathwayName": "Electron Transport Chain",
+    "front": "What drug is known to inhibit Complex IV (Cytochrome c Oxidase)?",
+    "back": "Cyanide, Carbon Monoxide, Azide",
+    "category": "Carbohydrate"
+  },
+  {
+    "id": "fc8",
+    "pathwayName": "Beta-Oxidation",
+    "front": "What is the rate-limiting enzyme for Beta-Oxidation?",
+    "back": "Carnitine Palmitoyltransferase I (CPT-1)",
+    "category": "Lipid"
+  },
+  {
+    "id": "fc9",
+    "pathwayName": "Beta-Oxidation",
+    "front": "What molecule strongly inhibits CPT-1, preventing simultaneous synthesis and breakdown of lipids?",
+    "back": "Malonyl-CoA",
+    "category": "Lipid"
+  },
+  {
+    "id": "fc10",
+    "pathwayName": "Steroid Synthesis",
+    "front": "What is the rate-limiting enzyme in Steroid Hormone Synthesis?",
+    "back": "Cholesterol Desmolase (CYP11A1)",
+    "category": "Lipid"
+  },
+  {
+    "id": "fc11",
+    "pathwayName": "Drug Metabolism",
+    "front": "What is the primary function of Phase I drug metabolism?",
+    "back": "Oxidation, Reduction, or Hydrolysis to introduce a polar functional group (often via CYP450).",
+    "category": "Drug"
+  },
+  {
+    "id": "fc12",
+    "pathwayName": "Drug Metabolism",
+    "front": "What enzyme catalyzes Glucuronidation in Phase II metabolism?",
+    "back": "UDP-glucuronosyltransferase (UGT)",
+    "category": "Drug"
+  },
+  {
+    "id": "fc13",
+    "pathwayName": "Transcription",
+    "front": "What enzyme is responsible for synthesizing mRNA?",
+    "back": "RNA Polymerase II",
+    "category": "Molecular"
+  },
+  {
+    "id": "fc14",
+    "pathwayName": "Translation",
+    "front": "Which site on the ribosome does the incoming aminoacyl-tRNA bind?",
+    "back": "The A (Aminoacyl) site",
+    "category": "Molecular"
+  },
+  {
+    "id": "fc15",
+    "pathwayName": "Eicosanoid Synthesis",
+    "front": "What enzyme is inhibited by NSAIDs (like Ibuprofen and Aspirin)?",
+    "back": "Cyclooxygenase (COX-1 / COX-2)",
+    "category": "Lipid"
+  },
+  {
+    "id": "fc16",
+    "pathwayName": "Glycolysis",
+    "front": "What is the product of the enzyme Aldolase in glycolysis?",
+    "back": "Glyceraldehyde 3-phosphate (G3P) and Dihydroxyacetone phosphate (DHAP)",
+    "category": "Carbohydrate"
+  },
+  {
+    "id": "fc17",
+    "pathwayName": "Glycolysis",
+    "front": "Which enzyme catalyzes the reversible conversion of DHAP to G3P?",
+    "back": "Triose phosphate isomerase",
+    "category": "Carbohydrate"
+  },
+  {
+    "id": "fc18",
+    "pathwayName": "Gluconeogenesis",
+    "front": "Which enzyme converts Pyruvate to Oxaloacetate?",
+    "back": "Pyruvate Carboxylase (Requires Biotin, ATP, CO2)",
+    "category": "Carbohydrate"
+  },
+  {
+    "id": "fc19",
+    "pathwayName": "Gluconeogenesis",
+    "front": "What is the rate-limiting enzyme of Gluconeogenesis?",
+    "back": "Fructose-1,6-bisphosphatase",
+    "category": "Carbohydrate"
+  },
+  {
+    "id": "fc20",
+    "pathwayName": "Gluconeogenesis",
+    "front": "Where is Glucose-6-phosphatase located in the cell?",
+    "back": "Endoplasmic Reticulum (ER) lumen (mainly in liver)",
+    "category": "Carbohydrate"
+  },
+  {
+    "id": "fc21",
+    "pathwayName": "Pentose Phosphate Pathway",
+    "front": "What are the two primary products of the oxidative phase of the PPP?",
+    "back": "NADPH and Ribose-5-phosphate",
+    "category": "Carbohydrate"
+  },
+  {
+    "id": "fc22",
+    "pathwayName": "Pentose Phosphate Pathway",
+    "front": "What is the rate-limiting enzyme of the Pentose Phosphate Pathway?",
+    "back": "Glucose-6-phosphate dehydrogenase (G6PD)",
+    "category": "Carbohydrate"
+  },
+  {
+    "id": "fc23",
+    "pathwayName": "Glycogenesis",
+    "front": "What is the rate-limiting enzyme of Glycogenesis?",
+    "back": "Glycogen Synthase",
+    "category": "Carbohydrate"
+  },
+  {
+    "id": "fc24",
+    "pathwayName": "Glycogenolysis",
+    "front": "Which enzyme produces free glucose directly during glycogen breakdown?",
+    "back": "Debranching enzyme (alpha-1,6-glucosidase activity)",
+    "category": "Carbohydrate"
+  },
+  {
+    "id": "fc25",
+    "pathwayName": "Krebs Cycle",
+    "front": "Which TCA cycle enzyme is embedded in the inner mitochondrial membrane?",
+    "back": "Succinate Dehydrogenase (Complex II)",
+    "category": "Energy"
+  },
+  {
+    "id": "fc26",
+    "pathwayName": "Krebs Cycle",
+    "front": "What are the coenzymes required by the Pyruvate Dehydrogenase complex?",
+    "back": "Tender Loving Care For Nancy: TPP (B1), Lipoic acid, CoA (B5), FAD (B2), NAD+ (B3)",
+    "category": "Energy"
+  },
+  {
+    "id": "fc27",
+    "pathwayName": "Electron Transport Chain",
+    "front": "Which complex in the ETC does NOT pump protons?",
+    "back": "Complex II (Succinate Dehydrogenase)",
+    "category": "Energy"
+  },
+  {
+    "id": "fc28",
+    "pathwayName": "Electron Transport Chain",
+    "front": "What acts as the final electron acceptor in the ETC?",
+    "back": "Oxygen (O2), which is reduced to water",
+    "category": "Energy"
+  },
+  {
+    "id": "fc29",
+    "pathwayName": "Electron Transport Chain",
+    "front": "What does Oligomycin inhibit?",
+    "back": "ATP Synthase (Complex V), specifically the F0 proton channel",
+    "category": "Energy"
+  },
+  {
+    "id": "fc30",
+    "pathwayName": "Beta Oxidation",
+    "front": "What shuttle transports long-chain fatty acids into the mitochondria?",
+    "back": "Carnitine Shuttle",
+    "category": "Lipid"
+  },
+  {
+    "id": "fc31",
+    "pathwayName": "Beta Oxidation",
+    "front": "What is the rate-limiting enzyme for the transport of fatty acids into the mitochondria?",
+    "back": "Carnitine palmitoyltransferase I (CPT-I)",
+    "category": "Lipid"
+  },
+  {
+    "id": "fc32",
+    "pathwayName": "Fatty Acid Synthesis",
+    "front": "What is the rate-limiting enzyme of Fatty Acid Synthesis?",
+    "back": "Acetyl-CoA Carboxylase (Requires Biotin, ATP, CO2)",
+    "category": "Lipid"
+  },
+  {
+    "id": "fc33",
+    "pathwayName": "Fatty Acid Synthesis",
+    "front": "Where does Fatty Acid Synthesis occur?",
+    "back": "Cytosol",
+    "category": "Lipid"
+  },
+  {
+    "id": "fc34",
+    "pathwayName": "Ketogenesis",
+    "front": "What is the rate-limiting enzyme of Ketogenesis?",
+    "back": "HMG-CoA Synthase",
+    "category": "Lipid"
+  },
+  {
+    "id": "fc35",
+    "pathwayName": "Cholesterol Biosynthesis",
+    "front": "What is the rate-limiting enzyme of Cholesterol Synthesis?",
+    "back": "HMG-CoA Reductase",
+    "category": "Lipid"
+  },
+  {
+    "id": "fc36",
+    "pathwayName": "Cholesterol Biosynthesis",
+    "front": "Statins work by inhibiting which enzyme?",
+    "back": "HMG-CoA Reductase",
+    "category": "Lipid"
+  },
+  {
+    "id": "fc37",
+    "pathwayName": "Urea Cycle",
+    "front": "What is the rate-limiting enzyme of the Urea Cycle?",
+    "back": "Carbamoyl Phosphate Synthetase I (CPS I)",
+    "category": "Protein"
+  },
+  {
+    "id": "fc38",
+    "pathwayName": "Urea Cycle",
+    "front": "What is the obligate allosteric activator for CPS I?",
+    "back": "N-acetylglutamate (NAG)",
+    "category": "Protein"
+  },
+  {
+    "id": "fc39",
+    "pathwayName": "Urea Cycle",
+    "front": "Which two cellular compartments does the Urea Cycle use?",
+    "back": "Mitochondria (first 2 steps) and Cytosol (remaining steps)",
+    "category": "Protein"
+  },
+  {
+    "id": "fc40",
+    "pathwayName": "Amino Acid Metabolism",
+    "front": "Which amino acid is the primary transport form of ammonia from muscle to liver?",
+    "back": "Alanine (via the Cahill/Alanine cycle)",
+    "category": "Protein"
+  },
+  {
+    "id": "fc41",
+    "pathwayName": "Purine Metabolism",
+    "front": "What is the rate-limiting enzyme of de novo purine synthesis?",
+    "back": "Glutamine-PRPP amidotransferase",
+    "category": "Nucleotide"
+  },
+  {
+    "id": "fc42",
+    "pathwayName": "Purine Metabolism",
+    "front": "Lesch-Nyhan syndrome is caused by a deficiency in which enzyme?",
+    "back": "HGPRT (Hypoxanthine-guanine phosphoribosyltransferase)",
+    "category": "Nucleotide"
+  },
+  {
+    "id": "fc43",
+    "pathwayName": "Pyrimidine Metabolism",
+    "front": "What is the rate-limiting enzyme of de novo pyrimidine synthesis?",
+    "back": "Carbamoyl Phosphate Synthetase II (CPS II) [in cytosol]",
+    "category": "Nucleotide"
+  },
+  {
+    "id": "fc44",
+    "pathwayName": "DNA Replication",
+    "front": "Which enzyme unwinds the DNA double helix?",
+    "back": "Helicase",
+    "category": "Genetics"
+  },
+  {
+    "id": "fc45",
+    "pathwayName": "DNA Replication",
+    "front": "Which enzyme relieves supercoiling tension ahead of the replication fork?",
+    "back": "Topoisomerase (e.g., DNA Gyrase in bacteria)",
+    "category": "Genetics"
+  },
+  {
+    "id": "fc46",
+    "pathwayName": "Transcription",
+    "front": "Which eukaryotic RNA polymerase synthesizes mRNA?",
+    "back": "RNA Polymerase II",
+    "category": "Genetics"
+  },
+  {
+    "id": "fc47",
+    "pathwayName": "Translation",
+    "front": "Which ribosomal site binds the incoming aminoacyl-tRNA?",
+    "back": "A site (Aminoacyl site)",
+    "category": "Genetics"
+  },
+  {
+    "id": "fc48",
+    "pathwayName": "Heme Metabolism",
+    "front": "What is the rate-limiting enzyme of Heme synthesis?",
+    "back": "Aminolevulinic acid synthase (ALAS)",
+    "category": "Specialized"
+  },
+  {
+    "id": "fc49",
+    "pathwayName": "Heme Metabolism",
+    "front": "Lead poisoning inhibits which two enzymes of heme synthesis?",
+    "back": "ALA dehydratase and Ferrochelatase",
+    "category": "Specialized"
+  },
+  {
+    "id": "fc50",
+    "pathwayName": "Cytochrome P450",
+    "front": "Which cytochrome P450 enzyme is strongly inhibited by grapefruit juice?",
+    "back": "CYP3A4",
+    "category": "Specialized"
+  },
+  {
+    "id": "fc51",
+    "pathwayName": "Glycolysis",
+    "front": "What does hexokinase do?",
+    "back": "Phosphorylates glucose to G6P to trap it in the cell.",
+    "category": "Carbohydrate"
+  },
+  {
+    "id": "fc52",
+    "pathwayName": "Glycolysis",
+    "front": "What is the net ATP of anaerobic glycolysis?",
+    "back": "2 ATP per glucose molecule.",
+    "category": "Carbohydrate"
+  },
+  {
+    "id": "fc53",
+    "pathwayName": "Glycolysis",
+    "front": "What is the Cori Cycle?",
+    "back": "Shuttles lactate from muscle to liver for gluconeogenesis.",
+    "category": "Carbohydrate"
+  },
+  {
+    "id": "fc54",
+    "pathwayName": "Gluconeogenesis",
+    "front": "What enzyme bypasses PFK-1?",
+    "back": "Fructose-1,6-bisphosphatase.",
+    "category": "Carbohydrate"
+  },
+  {
+    "id": "fc55",
+    "pathwayName": "Gluconeogenesis",
+    "front": "What enzyme bypasses Hexokinase?",
+    "back": "Glucose-6-phosphatase.",
+    "category": "Carbohydrate"
+  },
+  {
+    "id": "fc56",
+    "pathwayName": "Gluconeogenesis",
+    "front": "Which organ is the primary site of gluconeogenesis?",
+    "back": "Liver (and kidney cortex during starvation).",
+    "category": "Carbohydrate"
+  },
+  {
+    "id": "fc57",
+    "pathwayName": "Glycogenolysis",
+    "front": "What is the product of Glycogen Phosphorylase?",
+    "back": "Glucose-1-phosphate.",
+    "category": "Carbohydrate"
+  },
+  {
+    "id": "fc58",
+    "pathwayName": "Glycogenolysis",
+    "front": "What hormone stimulates glycogenolysis in muscle?",
+    "back": "Epinephrine.",
+    "category": "Carbohydrate"
+  },
+  {
+    "id": "fc59",
+    "pathwayName": "Glycogenolysis",
+    "front": "What hormone stimulates glycogenolysis in liver?",
+    "back": "Glucagon (and Epinephrine).",
+    "category": "Carbohydrate"
+  },
+  {
+    "id": "fc60",
+    "pathwayName": "Glycogenesis",
+    "front": "What is the activated form of glucose used for glycogen synthesis?",
+    "back": "UDP-Glucose.",
+    "category": "Carbohydrate"
+  },
+  {
+    "id": "fc61",
+    "pathwayName": "Pentose Phosphate Pathway",
+    "front": "What is the main purpose of the oxidative phase of PPP?",
+    "back": "Generate NADPH and Ribose-5-Phosphate.",
+    "category": "Carbohydrate"
+  },
+  {
+    "id": "fc62",
+    "pathwayName": "Pentose Phosphate Pathway",
+    "front": "G6PD deficiency causes what clinical sign?",
+    "back": "Hemolytic anemia (Heinz bodies, bite cells).",
+    "category": "Carbohydrate"
+  },
+  {
+    "id": "fc63",
+    "pathwayName": "Galactose Metabolism",
+    "front": "Classic galactosemia is a deficiency of what enzyme?",
+    "back": "Galactose-1-phosphate uridyltransferase (GALT).",
+    "category": "Carbohydrate"
+  },
+  {
+    "id": "fc64",
+    "pathwayName": "Fructose Metabolism",
+    "front": "Essential fructosuria is a deficiency of what?",
+    "back": "Fructokinase (benign).",
+    "category": "Carbohydrate"
+  },
+  {
+    "id": "fc65",
+    "pathwayName": "Fructose Metabolism",
+    "front": "Hereditary fructose intolerance is a deficiency of what?",
+    "back": "Aldolase B (severe hypoglycemia, jaundice).",
+    "category": "Carbohydrate"
+  },
+  {
+    "id": "fc66",
+    "pathwayName": "Beta Oxidation",
+    "front": "Where does beta oxidation occur?",
+    "back": "Mitochondrial matrix.",
+    "category": "Lipid"
+  },
+  {
+    "id": "fc67",
+    "pathwayName": "Beta Oxidation",
+    "front": "What shuttle is required for LCFA transport into mitochondria?",
+    "back": "Carnitine shuttle.",
+    "category": "Lipid"
+  },
+  {
+    "id": "fc68",
+    "pathwayName": "Beta Oxidation",
+    "front": "What is the product of odd-chain fatty acid oxidation?",
+    "back": "Propionyl-CoA (converted to Succinyl-CoA).",
+    "category": "Lipid"
+  },
+  {
+    "id": "fc69",
+    "pathwayName": "Fatty Acid Synthesis",
+    "front": "Where does FA synthesis occur?",
+    "back": "Cytosol.",
+    "category": "Lipid"
+  },
+  {
+    "id": "fc70",
+    "pathwayName": "Fatty Acid Synthesis",
+    "front": "What is the rate-limiting enzyme of FA synthesis?",
+    "back": "Acetyl-CoA Carboxylase (ACC).",
+    "category": "Lipid"
+  },
+  {
+    "id": "fc71",
+    "pathwayName": "Fatty Acid Synthesis",
+    "front": "What molecule transports acetyl-CoA from mitochondria to cytosol?",
+    "back": "Citrate (Citrate shuttle).",
+    "category": "Lipid"
+  },
+  {
+    "id": "fc72",
+    "pathwayName": "Ketogenesis",
+    "front": "Where are ketone bodies synthesized?",
+    "back": "Liver mitochondria.",
+    "category": "Lipid"
+  },
+  {
+    "id": "fc73",
+    "pathwayName": "Ketogenesis",
+    "front": "Can the liver utilize ketone bodies for energy?",
+    "back": "No, it lacks thiophorase.",
+    "category": "Lipid"
+  },
+  {
+    "id": "fc74",
+    "pathwayName": "Cholesterol Synthesis",
+    "front": "What is the rate-limiting enzyme of cholesterol synthesis?",
+    "back": "HMG-CoA Reductase.",
+    "category": "Lipid"
+  },
+  {
+    "id": "fc75",
+    "pathwayName": "Cholesterol Synthesis",
+    "front": "What drugs inhibit HMG-CoA reductase?",
+    "back": "Statins.",
+    "category": "Lipid"
+  },
+  {
+    "id": "fc76",
+    "pathwayName": "Lipoproteins",
+    "front": "Which lipoprotein transports dietary triglycerides?",
+    "back": "Chylomicrons.",
+    "category": "Lipid"
+  },
+  {
+    "id": "fc77",
+    "pathwayName": "Lipoproteins",
+    "front": "Which lipoprotein transports endogenous triglycerides?",
+    "back": "VLDL.",
+    "category": "Lipid"
+  },
+  {
+    "id": "fc78",
+    "pathwayName": "Lipoproteins",
+    "front": "Which lipoprotein performs reverse cholesterol transport?",
+    "back": "HDL.",
+    "category": "Lipid"
+  },
+  {
+    "id": "fc79",
+    "pathwayName": "Lipid Storage",
+    "front": "Tay-Sachs disease is a deficiency of?",
+    "back": "Hexosaminidase A (accumulates GM2 ganglioside).",
+    "category": "Lipid"
+  },
+  {
+    "id": "fc80",
+    "pathwayName": "Lipid Storage",
+    "front": "Gaucher disease is a deficiency of?",
+    "back": "Glucocerebrosidase (accumulates glucocerebroside).",
+    "category": "Lipid"
+  },
+  {
+    "id": "fc81",
+    "pathwayName": "Urea Cycle",
+    "front": "Where does the Urea Cycle take place?",
+    "back": "Liver (mitochondria and cytosol).",
+    "category": "Protein"
+  },
+  {
+    "id": "fc82",
+    "pathwayName": "Urea Cycle",
+    "front": "What is the rate-limiting enzyme of the Urea Cycle?",
+    "back": "CPS I.",
+    "category": "Protein"
+  },
+  {
+    "id": "fc83",
+    "pathwayName": "Urea Cycle",
+    "front": "What is the allosteric activator of CPS I?",
+    "back": "N-acetylglutamate (NAG).",
+    "category": "Protein"
+  },
+  {
+    "id": "fc84",
+    "pathwayName": "Urea Cycle",
+    "front": "What is the most common urea cycle disorder?",
+    "back": "Ornithine Transcarbamylase (OTC) deficiency (X-linked).",
+    "category": "Protein"
+  },
+  {
+    "id": "fc85",
+    "pathwayName": "Amino Acids",
+    "front": "What are the purely ketogenic amino acids?",
+    "back": "Leucine and Lysine.",
+    "category": "Protein"
+  },
+  {
+    "id": "fc86",
+    "pathwayName": "Amino Acids",
+    "front": "PKU (Phenylketonuria) is a deficiency of?",
+    "back": "Phenylalanine hydroxylase (or BH4 cofactor).",
+    "category": "Protein"
+  },
+  {
+    "id": "fc87",
+    "pathwayName": "Amino Acids",
+    "front": "Alkaptonuria presents with what classic sign?",
+    "back": "Dark urine when exposed to air (homogentisic acid oxidase deficiency).",
+    "category": "Protein"
+  },
+  {
+    "id": "fc88",
+    "pathwayName": "Amino Acids",
+    "front": "Maple Syrup Urine Disease involves branched-chain AAs. Name them.",
+    "back": "Isoleucine, Leucine, Valine (I Love Vermont).",
+    "category": "Protein"
+  },
+  {
+    "id": "fc89",
+    "pathwayName": "Amino Acids",
+    "front": "What amino acid is the precursor to Serotonin?",
+    "back": "Tryptophan.",
+    "category": "Protein"
+  },
+  {
+    "id": "fc90",
+    "pathwayName": "Amino Acids",
+    "front": "What amino acid is the precursor to Nitric Oxide (NO)?",
+    "back": "Arginine.",
+    "category": "Protein"
+  },
+  {
+    "id": "fc91",
+    "pathwayName": "Amino Acids",
+    "front": "What amino acid is the precursor to GABA?",
+    "back": "Glutamate.",
+    "category": "Protein"
+  },
+  {
+    "id": "fc92",
+    "pathwayName": "Amino Acids",
+    "front": "What amino acid is the precursor to Histamine?",
+    "back": "Histidine.",
+    "category": "Protein"
+  },
+  {
+    "id": "fc93",
+    "pathwayName": "Amino Acids",
+    "front": "What amino acid is the precursor to Heme?",
+    "back": "Glycine.",
+    "category": "Protein"
+  },
+  {
+    "id": "fc94",
+    "pathwayName": "Krebs Cycle",
+    "front": "What enzyme produces FADH2 in the TCA cycle?",
+    "back": "Succinate dehydrogenase.",
+    "category": "Energy"
+  },
+  {
+    "id": "fc95",
+    "pathwayName": "Krebs Cycle",
+    "front": "What enzyme produces GTP in the TCA cycle?",
+    "back": "Succinyl-CoA synthetase.",
+    "category": "Energy"
+  },
+  {
+    "id": "fc96",
+    "pathwayName": "Krebs Cycle",
+    "front": "What TCA enzyme is inhibited by high ATP/NADH?",
+    "back": "Isocitrate dehydrogenase.",
+    "category": "Energy"
+  },
+  {
+    "id": "fc97",
+    "pathwayName": "ETC",
+    "front": "What does Cyanide inhibit?",
+    "back": "Complex IV (Cytochrome c oxidase).",
+    "category": "Energy"
+  },
+  {
+    "id": "fc98",
+    "pathwayName": "ETC",
+    "front": "What does Carbon Monoxide (CO) inhibit?",
+    "back": "Complex IV.",
+    "category": "Energy"
+  },
+  {
+    "id": "fc99",
+    "pathwayName": "ETC",
+    "front": "What does Antimycin A inhibit?",
+    "back": "Complex III.",
+    "category": "Energy"
+  },
+  {
+    "id": "fc100",
+    "pathwayName": "ETC",
+    "front": "What does Rotenone inhibit?",
+    "back": "Complex I.",
+    "category": "Energy"
+  },
+  {
+    "id": "fc101",
+    "pathwayName": "ETC",
+    "front": "What is an uncoupling agent?",
+    "back": "Increases membrane permeability to protons (e.g., DNP, Thermogenin, Aspirin overdose).",
+    "category": "Energy"
+  },
+  {
+    "id": "fc102",
+    "pathwayName": "Purine Metabolism",
+    "front": "What is the rate-limiting enzyme of de novo purine synthesis?",
+    "back": "Glutamine-PRPP amidotransferase.",
+    "category": "Nucleotide"
+  },
+  {
+    "id": "fc103",
+    "pathwayName": "Purine Metabolism",
+    "front": "Lesch-Nyhan syndrome is a deficiency in?",
+    "back": "HGPRT.",
+    "category": "Nucleotide"
+  },
+  {
+    "id": "fc104",
+    "pathwayName": "Purine Metabolism",
+    "front": "What drug inhibits Xanthine Oxidase to treat gout?",
+    "back": "Allopurinol.",
+    "category": "Nucleotide"
+  },
+  {
+    "id": "fc105",
+    "pathwayName": "Pyrimidine Metabolism",
+    "front": "What is the rate-limiting enzyme of pyrimidine synthesis?",
+    "back": "CPS II.",
+    "category": "Nucleotide"
+  },
+  {
+    "id": "fc106",
+    "pathwayName": "Pyrimidine Metabolism",
+    "front": "Orotic aciduria is a deficiency of?",
+    "back": "UMP Synthase.",
+    "category": "Nucleotide"
+  },
+  {
+    "id": "fc107",
+    "pathwayName": "Pyrimidine Metabolism",
+    "front": "What drug inhibits Thymidylate Synthase?",
+    "back": "5-Fluorouracil (5-FU).",
+    "category": "Nucleotide"
+  },
+  {
+    "id": "fc108",
+    "pathwayName": "Pyrimidine Metabolism",
+    "front": "What drug inhibits Dihydrofolate Reductase (DHFR) in humans?",
+    "back": "Methotrexate.",
+    "category": "Nucleotide"
+  },
+  {
+    "id": "fc109",
+    "pathwayName": "DNA Replication",
+    "front": "What does Helicase do?",
+    "back": "Unwinds DNA at the replication fork.",
+    "category": "Genetics"
+  },
+  {
+    "id": "fc110",
+    "pathwayName": "DNA Replication",
+    "front": "What does Primase do?",
+    "back": "Synthesizes an RNA primer.",
+    "category": "Genetics"
+  },
+  {
+    "id": "fc111",
+    "pathwayName": "DNA Replication",
+    "front": "What does DNA Ligase do?",
+    "back": "Joins Okazaki fragments.",
+    "category": "Genetics"
+  },
+  {
+    "id": "fc112",
+    "pathwayName": "Transcription",
+    "front": "What is the TATA box?",
+    "back": "A promoter DNA sequence crucial in forming the transcription initiation complex.",
+    "category": "Genetics"
+  },
+  {
+    "id": "fc113",
+    "pathwayName": "Transcription",
+    "front": "What does RNA Polymerase II synthesize?",
+    "back": "mRNA.",
+    "category": "Genetics"
+  },
+  {
+    "id": "fc114",
+    "pathwayName": "Translation",
+    "front": "What is the start codon?",
+    "back": "AUG (codes for Methionine).",
+    "category": "Genetics"
+  },
+  {
+    "id": "fc115",
+    "pathwayName": "Translation",
+    "front": "What are the three stop codons?",
+    "back": "UAA, UAG, UGA.",
+    "category": "Genetics"
+  }
+]

@@ -48,9 +48,9 @@ export default function HelpCenter() {
   const filteredFaqs = faqs.filter(faq => {
     const matchesCategory = activeCategory === "All" || faq.category === activeCategory;
     const matchesSearch = !searchQuery.trim() || 
-      faq.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      faq.answer.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      faq.keywords.some(k => k.toLowerCase().includes(searchQuery.toLowerCase()));
+      faq.question?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      faq.answer?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      faq.keywords?.some(k => k?.toLowerCase().includes(searchQuery.toLowerCase()));
     return matchesCategory && matchesSearch;
   });
 

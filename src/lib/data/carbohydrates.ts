@@ -4,6 +4,7 @@ export const carbohydratePathways: any[] = [
   {
     slug: "glycolysis",
     name: "Glycolysis",
+    mindMapUrl: "/mind-map/glycolysis-mindmap.jpeg",
     category: "Carbohydrate",
     overview: {
       definition: "The metabolic pathway that converts glucose into pyruvate, generating free energy.",

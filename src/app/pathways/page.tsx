@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import { dbService, Pathway } from "@/lib/db";
+import { pathwayEnergy } from "@/lib/pathwayData";
 import Header from "@/components/Header";
 import { 
   Search, 
@@ -38,10 +39,10 @@ export default function PathwaysList() {
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase();
       result = result.filter(p => 
-        p.name.toLowerCase().includes(q) ||
-        p.overview.definition.toLowerCase().includes(q) ||
-        p.location.organ.toLowerCase().includes(q) ||
-        p.rateLimitingStep.enzyme.toLowerCase().includes(q)
+        p.title?.toLowerCase().includes(q) ||
+        p.description?.toLowerCase().includes(q) ||
+        p.cellularLocation?.toLowerCase().includes(q) ||
+        p.rateLimitingStep?.enzyme?.toLowerCase().includes(q)
       );
     }
 
@@ -100,8 +101,6 @@ export default function PathwaysList() {
         {filteredPathways.length > 0 ? (
           <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredPathways.map((p) => {
-              const energyDiff = p.energyBalance.atpProduced - p.energyBalance.atpUsed;
-              
               return (
                 <div 
                   key={p.slug}
@@ -121,44 +120,119 @@ export default function PathwaysList() {
 
                     {/* Title */}
                     <h3 className="text-md font-bold text-foreground group-hover:text-primary transition-colors">
-                      {p.name}
+                      {p.title}
                     </h3>
 
                     {/* Definition */}
                     <p className="text-xs text-muted-foreground leading-relaxed line-clamp-3">
-                      {p.overview.definition}
+                      {p.description}
                     </p>
 
                     {/* Specifications List */}
-                    <div className="space-y-2 text-[10px] font-semibold text-muted-foreground border-t border-border pt-4">
-                      {/* Organ site */}
-                      <div className="flex justify-between items-center">
-                        <span className="flex items-center">
-                          <MapPin className="h-3.5 w-3.5 mr-1 text-sky-500" />
-                          Cellular Location
-                        </span>
-                        <span className="text-foreground max-w-[150px] truncate">{p.location.cellularLocation}</span>
-                      </div>
-                      
-                      {/* ATP yield */}
-                      <div className="flex justify-between items-center">
-                        <span className="flex items-center">
-                          <Sparkles className="h-3.5 w-3.5 mr-1 text-yellow-500 fill-yellow-500/10" />
-                          Net Energy Yield
-                        </span>
-                        <span className="text-foreground">{energyDiff} ATP equivalents</span>
-                      </div>
+                    <div className="pt-4 border-t border-border grid grid-cols-2 gap-x-2 gap-y-3">
+                      {(() => {
+                        const energyData = pathwayEnergy[p.slug];
+                        if (!energyData) return null;
+                        
+                        return (
+                          <>
+                            {/* Rate Limiting */}
+                            <div className="col-span-2">
+                              <span className="text-[9px] uppercase font-black text-muted-foreground block">Rate Limiting Enzyme</span>
+                              <span className="text-xs font-bold text-red-500 line-clamp-1">{energyData.rateLimitingEnzyme}</span>
+                            </div>
 
-                      {/* Rate Limiting step */}
-                      <div className="flex justify-between items-start">
-                        <span className="flex items-center">
-                          <Flame className="h-3.5 w-3.5 mr-1 text-red-500" />
-                          Rate Limiting
-                        </span>
-                        <span className="text-red-500 font-extrabold max-w-[150px] truncate text-right">
-                          {p.rateLimitingStep.enzyme}
-                        </span>
-                      </div>
+                            {/* Location */}
+                            <div className="col-span-2">
+                              <span className="text-[9px] uppercase font-black text-muted-foreground block">Location</span>
+                              <span className="text-xs font-medium text-foreground line-clamp-1">{energyData.location}</span>
+                            </div>
+
+                            {/* Final Product */}
+                            <div className="col-span-2">
+                              <span className="text-[9px] uppercase font-black text-muted-foreground block">Final Product</span>
+                              <span className="text-xs font-bold text-primary line-clamp-1">{energyData.endProduct}</span>
+                            </div>
+
+                            {/* ATP Metrics */}
+                            {(energyData.atpConsumed ?? 0) > 0 && (
+                              <div>
+                                <span className="text-[9px] uppercase font-black text-muted-foreground block">ATP Consumed</span>
+                                <span className="text-xs font-bold text-red-400">{energyData.atpConsumed}</span>
+                              </div>
+                            )}
+                            
+                            {(energyData.atpProduced ?? 0) > 0 && (
+                              <div>
+                                <span className="text-[9px] uppercase font-black text-muted-foreground block">ATP Produced</span>
+                                <span className="text-xs font-bold text-emerald-400">{energyData.atpProduced}</span>
+                              </div>
+                            )}
+
+                            <div className="col-span-2 bg-yellow-500/10 rounded px-2 py-1 border border-yellow-500/20">
+                              <span className="text-[9px] uppercase font-black text-yellow-600 dark:text-yellow-400 block">Net ATP</span>
+                              <span className="text-sm font-black text-yellow-500">{energyData.netATP ?? 0}</span>
+                            </div>
+
+                            {/* Other Metrics */}
+                            {(energyData.nadh ?? 0) > 0 && (
+                              <div>
+                                <span className="text-[9px] uppercase font-black text-muted-foreground block">NADH Produced</span>
+                                <span className="text-xs font-bold text-sky-400">+{energyData.nadh}</span>
+                              </div>
+                            )}
+                            
+                            {(energyData.nadhConsumed ?? 0) > 0 && (
+                              <div>
+                                <span className="text-[9px] uppercase font-black text-muted-foreground block">NADH Consumed</span>
+                                <span className="text-xs font-bold text-red-400">-{energyData.nadhConsumed}</span>
+                              </div>
+                            )}
+
+                            {(energyData.fadh2 ?? 0) > 0 && (
+                              <div>
+                                <span className="text-[9px] uppercase font-black text-muted-foreground block">FADH₂ Produced</span>
+                                <span className="text-xs font-bold text-sky-400">+{energyData.fadh2}</span>
+                              </div>
+                            )}
+
+                            {(energyData.fadh2Consumed ?? 0) > 0 && (
+                              <div>
+                                <span className="text-[9px] uppercase font-black text-muted-foreground block">FADH₂ Consumed</span>
+                                <span className="text-xs font-bold text-red-400">-{energyData.fadh2Consumed}</span>
+                              </div>
+                            )}
+
+                            {(energyData.gtp ?? 0) > 0 && (
+                              <div>
+                                <span className="text-[9px] uppercase font-black text-muted-foreground block">GTP Produced</span>
+                                <span className="text-xs font-bold text-emerald-400">+{energyData.gtp}</span>
+                              </div>
+                            )}
+
+                            {(energyData.gtpConsumed ?? 0) > 0 && (
+                              <div>
+                                <span className="text-[9px] uppercase font-black text-muted-foreground block">GTP Consumed</span>
+                                <span className="text-xs font-bold text-red-400">-{energyData.gtpConsumed}</span>
+                              </div>
+                            )}
+
+                            {(energyData.nadph ?? 0) > 0 && (
+                              <div>
+                                <span className="text-[9px] uppercase font-black text-muted-foreground block">NADPH Produced</span>
+                                <span className="text-xs font-bold text-purple-400">+{energyData.nadph}</span>
+                              </div>
+                            )}
+
+                            {(energyData.nadphConsumed ?? 0) > 0 && (
+                              <div>
+                                <span className="text-[9px] uppercase font-black text-muted-foreground block">NADPH Consumed</span>
+                                <span className="text-xs font-bold text-red-400">-{energyData.nadphConsumed}</span>
+                              </div>
+                            )}
+                          </>
+                        );
+                      })()}
                     </div>
                   </div>
 

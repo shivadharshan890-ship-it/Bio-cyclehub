@@ -47,6 +47,7 @@ export default function QuizCard({ pathwaySlug, onQuizComplete }: QuizCardProps)
   const [currentIdx, setCurrentIdx] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [fillAnswer, setFillAnswer] = useState("");
+  const [sequenceAnswer, setSequenceAnswer] = useState<string[]>([]);
   const [isAnswered, setIsAnswered] = useState(false);
   const [score, setScore] = useState(0);
   const [reloadTrigger, setReloadTrigger] = useState(0);
@@ -113,9 +114,9 @@ export default function QuizCard({ pathwaySlug, onQuizComplete }: QuizCardProps)
     // Shuffle options for MCQ questions
     const preparedQuestions = selectedQuestions.map(q => {
       const qClone = JSON.parse(JSON.stringify(q)) as QuizQuestion;
-      if (qClone.type === "mcq" && qClone.options) {
+      if ((qClone.type === "mcq" || qClone.type === "clinical") && qClone.options) {
         const originalOptions = [...qClone.options];
-        const correctIndex = parseInt(qClone.correctAnswer, 10);
+        const correctIndex = parseInt(qClone.correctAnswer as string, 10);
         const correctOptionText = originalOptions[correctIndex];
 
         const shuffledOptions = shuffleArray(originalOptions);
@@ -133,6 +134,7 @@ export default function QuizCard({ pathwaySlug, onQuizComplete }: QuizCardProps)
     setCurrentIdx(0);
     setSelectedAnswer(null);
     setFillAnswer("");
+    setSequenceAnswer([]);
     setIsAnswered(false);
     setScore(0);
     setQuizFinished(false);
@@ -185,7 +187,7 @@ export default function QuizCard({ pathwaySlug, onQuizComplete }: QuizCardProps)
     if (isAnswered || !fillAnswer.trim()) return;
     setIsAnswered(true);
 
-    const isCorrect = fillAnswer.trim().toLowerCase() === currentQuestion.correctAnswer.toLowerCase();
+    const isCorrect = fillAnswer.trim().toLowerCase() === (currentQuestion.correctAnswer as string).toLowerCase();
     if (isCorrect) {
       setScore(prev => prev + 1);
     }
@@ -196,6 +198,7 @@ export default function QuizCard({ pathwaySlug, onQuizComplete }: QuizCardProps)
       setCurrentIdx(prev => prev + 1);
       setSelectedAnswer(null);
       setFillAnswer("");
+      setSequenceAnswer([]);
       setIsAnswered(false);
     } else {
       finishQuiz();
@@ -359,10 +362,10 @@ export default function QuizCard({ pathwaySlug, onQuizComplete }: QuizCardProps)
 
         {/* --- ANSWER FORM / OPTIONS LIST --- */}
         <div className="space-y-3">
-          {/* MCQ / Boolean type */}
-          {(currentQuestion.type === "mcq" || currentQuestion.type === "boolean") && (
+          {/* MCQ / Boolean / Clinical / Clinical-Case type */}
+          {(currentQuestion.type === "mcq" || currentQuestion.type === "boolean" || currentQuestion.type === "clinical" || currentQuestion.type === "clinical-case") && (
             <div className="space-y-2">
-              {currentQuestion.type === "mcq" && currentQuestion.options?.map((option, idx) => {
+              {(currentQuestion.type === "mcq" || currentQuestion.type === "clinical" || currentQuestion.type === "clinical-case") && currentQuestion.options?.map((option, idx) => {
                 const optStr = idx.toString();
                 const isSelected = selectedAnswer === optStr;
                 const isCorrect = optStr === currentQuestion.correctAnswer;
@@ -448,6 +451,61 @@ export default function QuizCard({ pathwaySlug, onQuizComplete }: QuizCardProps)
               )}
             </form>
           )}
+
+          {/* Sequence type */}
+          {currentQuestion.type === "sequence" && currentQuestion.options && (
+            <div className="space-y-3">
+              <p className="text-xs text-muted-foreground italic mb-2">Click items in the correct order:</p>
+              
+              {/* Selected Items */}
+              <div className="min-h-[60px] p-3 border-2 border-dashed border-border rounded-xl flex flex-wrap gap-2 mb-4 bg-muted/20">
+                {sequenceAnswer.map((item, idx) => (
+                  <button
+                    key={idx}
+                    disabled={isAnswered}
+                    onClick={() => {
+                      if (isAnswered) return;
+                      setSequenceAnswer(prev => prev.filter((_, i) => i !== idx));
+                    }}
+                    className="bg-primary/10 border border-primary text-primary px-3 py-1.5 rounded-lg text-xs font-bold flex items-center hover:bg-primary/20 transition-all"
+                  >
+                    <span className="mr-2 bg-primary/20 w-5 h-5 flex items-center justify-center rounded-full text-[10px]">{idx + 1}</span>
+                    {item}
+                    {!isAnswered && <XCircle className="w-3 h-3 ml-2 opacity-50" />}
+                  </button>
+                ))}
+                {sequenceAnswer.length === 0 && <span className="text-muted-foreground text-xs my-auto">Select items from below...</span>}
+              </div>
+
+              {/* Available Options */}
+              <div className="flex flex-wrap gap-2">
+                {currentQuestion.options.map((option, idx) => {
+                  const isSelected = sequenceAnswer.includes(option);
+                  if (isSelected) return null;
+                  return (
+                    <button
+                      key={idx}
+                      disabled={isAnswered}
+                      onClick={() => {
+                        if (isAnswered) return;
+                        const newSeq = [...sequenceAnswer, option];
+                        setSequenceAnswer(newSeq);
+                        // Auto-submit if all options are selected
+                        if (newSeq.length === currentQuestion.options!.length) {
+                          setIsAnswered(true);
+                          const isCorrect = JSON.stringify(newSeq) === JSON.stringify(currentQuestion.correctAnswer);
+                          if (isCorrect) setScore(prev => prev + 1);
+                        }
+                      }}
+                      className="bg-card border border-border px-3 py-2 rounded-lg text-sm hover:bg-muted transition-all"
+                    >
+                      {option}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          )}
         </div>
 
         {/* --- EXPLANATION FEEDBACK OVERLAY --- */}
@@ -460,7 +518,10 @@ export default function QuizCard({ pathwaySlug, onQuizComplete }: QuizCardProps)
             >
               <div className="flex items-center space-x-2 mb-1.5">
                 {/* Icons */}
-                {selectedAnswer === currentQuestion.correctAnswer || (currentQuestion.type === "fill-blank" && fillAnswer.trim().toLowerCase() === currentQuestion.correctAnswer.toLowerCase()) ? (
+                {
+                  (selectedAnswer === currentQuestion.correctAnswer) || 
+                  (currentQuestion.type === "fill-blank" && fillAnswer.trim().toLowerCase() === (currentQuestion.correctAnswer as string).toLowerCase()) ||
+                  (currentQuestion.type === "sequence" && JSON.stringify(sequenceAnswer) === JSON.stringify(currentQuestion.correctAnswer)) ? (
                   <span className="text-xs font-bold text-emerald-600 flex items-center">
                     <CheckCircle2 className="h-4 w-4 mr-1 text-emerald-500" />
                     Correct Answer
@@ -473,11 +534,21 @@ export default function QuizCard({ pathwaySlug, onQuizComplete }: QuizCardProps)
                 )}
               </div>
               
-              {/* Correct answer text for fill-in-blank or if they got it wrong */}
+              {/* Correct answer text for fill-in-blank or sequence if they got it wrong */}
               {currentQuestion.type === "fill-blank" && (
                 <p className="text-xs font-bold mb-2">
                   Correct Answer: <span className="text-emerald-600 underline">{currentQuestion.correctAnswer}</span>
                 </p>
+              )}
+              {currentQuestion.type === "sequence" && (
+                <div className="mb-3">
+                  <p className="text-xs font-bold mb-1">Correct Sequence:</p>
+                  <div className="flex flex-wrap gap-1">
+                    {(currentQuestion.correctAnswer as string[]).map((ans, i) => (
+                      <span key={i} className="text-[10px] bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 px-2 py-0.5 rounded border border-emerald-500/20">{ans}</span>
+                    ))}
+                  </div>
+                </div>
               )}
 
               <p className="text-xs text-muted-foreground leading-relaxed">

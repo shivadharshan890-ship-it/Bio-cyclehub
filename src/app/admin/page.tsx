@@ -136,27 +136,17 @@ export default function AdminPanel() {
     const slug = newPathwayName.toLowerCase().replace(/\s+/g, "-");
     const newPathway: Pathway = {
       slug,
-      name: newPathwayName,
+      title: newPathwayName,
       category: newPathwayCategory,
-      overview: {
-        definition: newPathwayDef || `${newPathwayName} is a metabolic cycle.`,
-        function: "Details not published",
-        importance: "Core pharmaceutical concept"
-      },
-      location: {
-        organ: newPathwayOrgan || "All tissues",
-        cellType: "All cell types",
-        cellularLocation: "Cytoplasm"
-      },
-      inputs: ["Substrate A"],
-      outputs: ["Product B"],
-      energyBalance: { atpUsed: 0, atpProduced: 2, nadh: 0, fadh2: 0, gtp: 0, summary: "Net ATP yield: 2 ATP" },
+      description: newPathwayDef || `${newPathwayName} is a metabolic cycle.`,
+      clinicalImportance: "Core pharmaceutical concept",
+      cellularLocation: newPathwayOrgan || "All tissues",
       rateLimitingStep: { name: "Step 1", enzyme: "Enzyme A", description: "First reaction", regulation: "Inhibited by ATP", clinicalImportance: "Syndrome A" },
       regulationSummary: { activators: ["ADP"], inhibitors: ["ATP"], hormonalControl: "Regulated by energy ratio" },
       clinicalSignificance: { diseases: [], drugTargets: [], labFindings: [] },
       reactions: [
-        { step: 1, title: "Initial Reaction", enzyme: "Enzyme 1", substrate: "Glucose", product: "G6P", type: "regulatory", description: "Phosphorylation", x: 500, y: 150 },
-        { step: 2, title: "Synthesis", enzyme: "Enzyme 2", substrate: "G6P", product: "Product X", type: "reversible", description: "Isomerization", x: 500, y: 450 }
+        { step: 1, title: "Initial Reaction", enzyme: "Enzyme 1", substrate: "Glucose", product: "G6P", type: "irreversible", description: "Phosphorylation" },
+        { step: 2, title: "Synthesis", enzyme: "Enzyme 2", substrate: "G6P", product: "Product X", type: "reversible", description: "Isomerization" }
       ],
       summaryCard: `${newPathwayName} cycle details.`
     };
@@ -370,7 +360,7 @@ export default function AdminPanel() {
                     className="w-full p-2.5 rounded-lg border border-border bg-card focus:outline-none capitalize font-bold"
                   >
                     {pathways.map(p => (
-                      <option key={p.slug} value={p.slug}>{p.name}</option>
+                      <option key={p.slug} value={p.slug}>{p.title}</option>
                     ))}
                   </select>
                 </div>
@@ -472,7 +462,7 @@ export default function AdminPanel() {
                 {pathways.map(p => (
                   <div key={p.slug} className="flex justify-between items-center p-3 hover:bg-muted/30">
                     <div>
-                      <span className="font-bold text-foreground">{p.name}</span>
+                      <span className="font-bold text-foreground">{p.title}</span>
                       <span className="text-[9px] bg-primary/10 text-primary py-0.5 px-2.5 rounded-full ml-2 uppercase font-semibold">{p.category}</span>
                     </div>
                     {/* Only allow deleting custom pathways (preserve Glycolysis, Krebs, Urea Cycle core datasets) */}
