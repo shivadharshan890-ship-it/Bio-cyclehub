@@ -315,6 +315,7 @@ const INITIAL_NOTES: StudyNote[] = [
     "title": "Pentose Phosphate Pathway (HMP Shunt)",
     "category": "Carbohydrate",
     "readingTime": "4 min read",
+    "mindMapUrl": "/mind-map/ppp-mindmap.png",
     "content": "# Pentose Phosphate Pathway\n\nAlso known as the Hexose Monophosphate (HMP) Shunt. It occurs entirely in the **Cytosol** and produces NO ATP.\n\n## 1. Main Purposes\n1. Generate **NADPH** for reductive biosynthesis (fatty acids, cholesterol) and maintaining glutathione in RBCs.\n2. Generate **Ribose-5-phosphate** for nucleotide (DNA/RNA) synthesis.\n\n## 2. Oxidative Phase (Irreversible)\n- **Rate Limiting Enzyme:** Glucose-6-Phosphate Dehydrogenase (G6PD).\n- Produces 2 NADPH and Ribulose-5-phosphate from G6P.\n- Strongly inhibited by high levels of NADPH.\n\n## 3. Non-Oxidative Phase (Reversible)\n- Uses enzymes like **Transketolase** (requires **Thiamine/B1**).\n- Can convert ribulose back into glycolytic intermediates (Fructose-6-P and GAP) depending on cellular needs.\n\n> [!WARNING]\n> **G6PD Deficiency:** An X-linked recessive disorder. RBCs cannot produce NADPH, leaving them vulnerable to oxidative stress (fava beans, antimalarial drugs, sulfa drugs). Leads to episodic hemolytic anemia. Blood smears show **Heinz bodies** and **Bite cells**."
 },
 {
@@ -376,6 +377,7 @@ const setStoredData = (key: string, value: any) => {
 };
 
 export const dbService = {
+
   getPathways: (): Pathway[] => {
     return INITIAL_PATHWAYS;
   },

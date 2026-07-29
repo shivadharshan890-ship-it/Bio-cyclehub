@@ -447,7 +447,9 @@ export default function Home() {
                     </div>
                     <div className="bg-muted/40 p-2 rounded-lg">
                       <span className="block text-[9px] font-black uppercase text-muted-foreground/80">ATP Yield</span>
-                      <span className="text-foreground block">{pathwayEnergy[p.slug]?.netATP ?? 0} Net</span>
+                      <span className="text-foreground block" suppressHydrationWarning>
+                        {pathwayEnergy[p.slug]?.netATP ?? 0} Net
+                      </span>
                     </div>
                   </div>
                 </div>

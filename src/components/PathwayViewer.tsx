@@ -7,6 +7,7 @@ import { pathwayEnergy } from "@/lib/pathwayData";
 import { 
   Play, Pause, RotateCcw, ShieldAlert, CheckCircle, MapPin, Eye, EyeOff, Network
 } from "lucide-react";
+import { motion } from "framer-motion";
 import {
   ReactFlow,
   Controls,
@@ -301,25 +302,59 @@ interface PathwayViewerProps {
 }
 
 export default function PathwayViewer({ pathway }: PathwayViewerProps) {
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
   const [currentStep, setCurrentStep] = useState(0); 
-  const [showStructures, setShowStructures] = useState(false); 
+  const [showStructures, setShowStructures] = useState(true); 
   const [viewMode, setViewMode] = useState<'flow' | 'mindmap'>('flow');
 
-  const isCycle = pathway.slug.includes('cycle');
+  const isCycle = false;
   const isPathwayVerified = useMemo(() => validatePathway(pathway), [pathway]);
 
   // Layout state
   const [nodes, setNodes, onNodesChange] = useNodesState<Node>([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState<Edge>([]);
 
+  const layoutKeyRef = React.useRef('');
+
   // Setup/Update Layout whenever step or pathway changes
   useEffect(() => {
     if (!pathway.reactions || pathway.reactions.length === 0) return;
+    
+    const layoutKey = `${pathway.slug}-${isCycle}-${showStructures}`;
     const { layoutedNodes, layoutedEdges } = getLayoutedElements(pathway.reactions, isCycle, currentStep, showStructures);
-    setNodes(layoutedNodes);
+    
+    setNodes((currentNodes) => {
+      if (layoutKeyRef.current === layoutKey && currentNodes.length === layoutedNodes.length) {
+        return currentNodes.map((n, i) => ({
+          ...n,
+          data: layoutedNodes[i].data
+        }));
+      }
+      layoutKeyRef.current = layoutKey;
+      return layoutedNodes;
+    });
     setEdges(layoutedEdges);
   }, [pathway, isCycle, currentStep, showStructures, setNodes, setEdges]);
+
+  const mindMapNodes = useMemo<Node[]>(() => {
+    if (!pathway.mindMapUrl) return [];
+    return [{
+      id: 'mindmap-node',
+      position: { x: 0, y: 0 },
+      data: { 
+        label: (
+          <img 
+            src={pathway.mindMapUrl} 
+            alt={`${pathway.title} Mind Map`} 
+            className="w-[80vw] md:w-[800px] lg:w-[1000px] h-auto rounded-2xl shadow-2xl border-4 border-slate-700 pointer-events-none" 
+            draggable={false} 
+          />
+        ) 
+      },
+      type: 'default',
+      style: { background: 'transparent', border: 'none', padding: 0, width: 'auto', display: 'flex', justifyContent: 'center' }
+    }];
+  }, [pathway.mindMapUrl, pathway.title]);
 
   // Animation Loop
   useEffect(() => {
@@ -349,7 +384,11 @@ export default function PathwayViewer({ pathway }: PathwayViewerProps) {
     <div className="relative w-full h-[65vh] md:h-[750px] bg-[#020617] rounded-3xl border border-slate-800 shadow-2xl overflow-hidden font-sans flex text-slate-100">
       
       {/* UI Overlay */}
-      <div className="absolute z-10 bottom-8 left-4 sm:bottom-auto sm:top-6 sm:left-6 flex space-x-3 bg-slate-900/90 backdrop-blur-xl p-2 rounded-2xl border border-slate-700 shadow-2xl">
+      <motion.div 
+        drag
+        dragMomentum={false}
+        className="absolute z-50 bottom-8 left-4 sm:bottom-auto sm:top-6 sm:left-6 flex space-x-3 bg-slate-900/90 backdrop-blur-xl p-2 rounded-2xl border border-slate-700 shadow-2xl cursor-grab active:cursor-grabbing"
+      >
         <button
           onClick={togglePlay}
           className="flex items-center space-x-2 bg-gradient-to-r from-primary to-blue-600 hover:from-blue-500 hover:to-blue-400 text-white px-5 py-2.5 rounded-xl text-xs font-black uppercase tracking-wider transition-all shadow-lg shadow-primary/30"
@@ -385,29 +424,38 @@ export default function PathwayViewer({ pathway }: PathwayViewerProps) {
         </button>
         
         {isPathwayVerified && (
-          <div className="flex items-center space-x-2 bg-green-500/10 border border-green-500/30 text-green-400 px-4 py-2.5 rounded-xl text-xs font-black uppercase tracking-wider shadow-[0_0_15px_rgba(34,197,94,0.3)]">
+          <div className="flex items-center space-x-2 bg-green-500/10 border border-green-500/30 text-green-400 px-4 py-2.5 rounded-xl text-xs font-black uppercase tracking-wider shadow-[0_0_15px_rgba(34,197,94,0.3)] pointer-events-none">
             <CheckCircle className="h-4 w-4" />
             <span className="hidden sm:inline">Verified Graph</span>
           </div>
         )}
-      </div>
+      </motion.div>
 
       {/* Canvas */}
       {viewMode === 'mindmap' ? (
-        <div className="w-full h-full flex items-center justify-center bg-[#020617] overflow-auto p-4 pt-24 sm:pt-4">
-          {pathway.mindMapUrl ? (
-            <img 
-              src={pathway.mindMapUrl} 
-              alt={`${pathway.title} Mind Map`} 
-              className="max-w-full max-h-full object-contain rounded-xl border border-slate-800 shadow-2xl" 
-            />
-          ) : (
+        pathway.mindMapUrl ? (
+          <ReactFlow
+            nodes={mindMapNodes}
+            edges={[]}
+            fitView
+            fitViewOptions={{ padding: 0.1, maxZoom: 1.5 }}
+            minZoom={0.1}
+            maxZoom={4}
+            className="bg-[#020617]"
+            nodesDraggable={true}
+            panOnDrag={true}
+          >
+            <Background variant={BackgroundVariant.Dots} gap={30} size={2} color="#1e293b" />
+            <Controls className="bg-slate-800 border-slate-700 fill-white" />
+          </ReactFlow>
+        ) : (
+          <div className="w-full h-full flex items-center justify-center bg-[#020617]">
             <div className="text-slate-400 text-lg flex flex-col items-center">
               <Network className="h-16 w-16 mb-4 opacity-20" />
               <p className="font-semibold tracking-wide">Mind map not available</p>
             </div>
-          )}
-        </div>
+          </div>
+        )
       ) : (
         <ReactFlow
           nodes={nodes}

@@ -214,8 +214,9 @@ export const bpharmCarboPathways: Pathway[] = [
     summaryCard: "Glycolysis is the fundamental 10-step cytosolic pathway converting glucose to pyruvate, netting 2 ATP and 2 NADH. PFK-1 is the rate-limiting step."
   },
   {
-    slug: "tca-cycle",
+    slug: "krebs-cycle",
     title: "Krebs Cycle (TCA Cycle)",
+    mindMapUrl: "/mind-map/krebs-cycle-mindmap.jpeg",
     category: "Carbohydrate",
     description: "A series of chemical reactions used by all aerobic organisms to release stored energy through the oxidation of acetyl-CoA.",
     clinicalImportance: "The central hub of metabolism, connecting carbohydrate, fat, and protein breakdown.",
