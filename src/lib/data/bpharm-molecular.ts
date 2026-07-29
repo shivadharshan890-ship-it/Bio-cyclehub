@@ -348,8 +348,9 @@ export const bpharmMolecularModule: Pathway[] = [
   },
   {
     slug: "heme-degradation",
-    title: "Heme Degradation",
+    title: "Heme Degradation (Bilirubin Metabolism)",
     category: "Molecular",
+    mindMapUrl: "/mind-map/heme-degradation-mindmap.png",
     description: "The breakdown of senescent RBCs, converting toxic heme into bilirubin for excretion.",
     clinicalImportance: "Understanding this pathway is mandatory to diagnose the different types of Jaundice (Pre-hepatic, Hepatic, Post-hepatic).",
     cellularLocation: "Macrophages (Spleen) -> Blood -> Liver -> Intestines.",
