@@ -218,7 +218,7 @@ export default function Home() {
           <div className="flex flex-wrap justify-center gap-4 pt-2">
             <Button asChild size="lg" className="rounded-xl font-bold shadow-lg shadow-primary/20">
               <Link href="/pathways" className="flex items-center space-x-1">
-                <span>Explore 27+ Pathways</span>
+                <span>Explore 20+ Pathways</span>
                 <ArrowRight className="h-4 w-4 ml-2" />
               </Link>
             </Button>
@@ -316,7 +316,7 @@ export default function Home() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 bg-card border border-border p-6 rounded-3xl shadow-sm text-center">
           <div>
-            <span className="block text-2xl sm:text-3xl font-black text-primary">27+</span>
+            <span className="block text-2xl sm:text-3xl font-black text-primary">20+</span>
             <span className="text-[10px] sm:text-xs text-muted-foreground font-semibold uppercase tracking-wider mt-1 block">Pathways Mapped</span>
           </div>
           <div className="border-l border-border">
