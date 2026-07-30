@@ -28,6 +28,27 @@ import dagre from 'dagre';
 // 1. HELPERS & STYLES
 // -------------------------------------------------------------
 
+const getPubChemName = (name: string) => {
+  if (!name) return "";
+  // Split by '+' and take the first part
+  let clean = name.split('+')[0].trim();
+  // Remove leading stoichiometric numbers and spaces (e.g., "2 Pyruvate" -> "Pyruvate")
+  clean = clean.replace(/^[0-9]+\s+/, '');
+  
+  // Remove anything in parentheses (e.g. "Phosphoenolpyruvate (PEP)" -> "Phosphoenolpyruvate")
+  clean = clean.replace(/\s*\([^)]*\)/g, '').trim();
+  
+  // Replace terminal -P with -Phosphate (e.g. "Glucose-1-P" -> "Glucose-1-Phosphate")
+  clean = clean.replace(/-P$/, '-Phosphate');
+  
+  // Some edge cases for common biochemistry terms that PubChem might not like directly
+  const lower = clean.toLowerCase();
+  if (lower.includes('limit dextrin') || lower.includes('dna') || lower.includes('rna') || lower.includes('primer') || lower.includes('amino acids') || lower.includes('glycogen')) {
+    return '';
+  }
+  return clean;
+};
+
 const getCarbonCount = (molecule: string) => {
   const mol = molecule.toLowerCase();
   if (mol.includes('glucose') || mol.includes('fructose') || mol.includes('citrate') || mol.includes('isocitrate')) return '6C';
@@ -94,14 +115,17 @@ function BiochemicalNodeComponent({ data }: { data: any }) {
           className="px-6 py-3 rounded-xl border-2 text-center shadow-lg transition-all flex flex-col items-center"
           style={{ backgroundColor: subStyle.bg, borderColor: subStyle.border, boxShadow: isActive ? `0 0 15px ${subStyle.border}80` : '' }}
         >
-          {showStructures && (
-            <div className="w-24 h-24 mb-2 bg-white rounded-md overflow-hidden flex items-center justify-center p-1 opacity-90 dark:invert transition-transform duration-300 hover:scale-[2.5] active:scale-[2.5] hover:z-50 hover:shadow-2xl cursor-pointer origin-center">
+          {showStructures && getPubChemName(rxn.substrate) && (
+            <div className="w-24 h-24 mb-2 bg-white rounded-md overflow-hidden flex items-center justify-center p-1 opacity-90 dark:invert transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] hover:scale-[3] active:scale-[3] hover:z-50 hover:shadow-[0_0_30px_rgba(255,255,255,0.6)] cursor-pointer origin-center">
               <img 
-                src={`https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/${encodeURIComponent(rxn.substrate)}/PNG`} 
+                src={`https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/${encodeURIComponent(getPubChemName(rxn.substrate))}/PNG`} 
                 alt={rxn.substrate} 
                 className="max-w-full max-h-full object-contain pointer-events-none"
                 draggable={false}
-                onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                onError={(e) => { 
+                  e.currentTarget.style.display = 'none'; 
+                  if (e.currentTarget.parentElement) e.currentTarget.parentElement.style.display = 'none';
+                }}
               />
             </div>
           )}
@@ -164,14 +188,17 @@ function BiochemicalNodeComponent({ data }: { data: any }) {
             className={`px-6 py-3 rounded-xl border-[3px] text-center ${finalSubStyle.shadow} transition-all flex flex-col items-center`}
             style={{ backgroundColor: finalSubStyle.bg, borderColor: finalSubStyle.border }}
           >
-            {showStructures && (
-              <div className="w-24 h-24 mb-2 bg-white rounded-md overflow-hidden flex items-center justify-center p-1 opacity-90 dark:invert transition-transform duration-300 hover:scale-[2.5] active:scale-[2.5] hover:z-50 hover:shadow-2xl cursor-pointer origin-center">
+            {showStructures && getPubChemName(rxn.product) && (
+              <div className="w-24 h-24 mb-2 bg-white rounded-md overflow-hidden flex items-center justify-center p-1 opacity-90 dark:invert transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] hover:scale-[3] active:scale-[3] hover:z-50 hover:shadow-[0_0_30px_rgba(255,255,255,0.6)] cursor-pointer origin-center">
                 <img 
-                  src={`https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/${encodeURIComponent(rxn.product)}/PNG`} 
+                  src={`https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/${encodeURIComponent(getPubChemName(rxn.product))}/PNG`} 
                   alt={rxn.product} 
                   className="max-w-full max-h-full object-contain pointer-events-none"
                   draggable={false}
-                  onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                  onError={(e) => { 
+                    e.currentTarget.style.display = 'none'; 
+                    if (e.currentTarget.parentElement) e.currentTarget.parentElement.style.display = 'none';
+                  }}
                 />
               </div>
             )}
@@ -387,46 +414,47 @@ export default function PathwayViewer({ pathway }: PathwayViewerProps) {
       <motion.div 
         drag
         dragMomentum={false}
-        className="absolute z-50 bottom-8 left-4 sm:bottom-auto sm:top-6 sm:left-6 flex space-x-3 bg-slate-900/90 backdrop-blur-xl p-2 rounded-2xl border border-slate-700 shadow-2xl cursor-grab active:cursor-grabbing"
+        className="absolute z-50 bottom-8 left-4 sm:bottom-auto sm:top-6 sm:left-6 flex flex-col space-y-3 bg-slate-900/90 backdrop-blur-xl p-3 rounded-2xl border border-slate-700 shadow-2xl cursor-grab active:cursor-grabbing"
       >
         <button
           onClick={togglePlay}
-          className="flex items-center space-x-2 bg-gradient-to-r from-primary to-blue-600 hover:from-blue-500 hover:to-blue-400 text-white px-5 py-2.5 rounded-xl text-xs font-black uppercase tracking-wider transition-all shadow-lg shadow-primary/30"
+          className="flex items-center space-x-2 bg-gradient-to-r from-primary to-blue-600 hover:from-blue-500 hover:to-blue-400 text-white px-5 py-2.5 rounded-xl text-xs font-black uppercase tracking-wider transition-all shadow-lg shadow-primary/30 w-full"
         >
-          {isPlaying ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
+          {isPlaying ? <Pause className="h-4 w-4 shrink-0" /> : <Play className="h-4 w-4 shrink-0" />}
           <span>{isPlaying ? "Pause Flow" : currentStep === 0 ? "Start Animation" : "Resume Flow"}</span>
         </button>
         
         <button
           onClick={resetAnimation}
-          className="flex items-center space-x-2 bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2.5 rounded-xl text-xs font-black uppercase transition-all"
+          className="flex items-center space-x-2 bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2.5 rounded-xl text-xs font-black uppercase transition-all w-full"
           title="Reset"
         >
-          <RotateCcw className="h-4 w-4" />
+          <RotateCcw className="h-4 w-4 shrink-0" />
+          <span>Reset Flow</span>
         </button>
 
         <button
           onClick={() => setViewMode(viewMode === 'flow' ? 'mindmap' : 'flow')}
-          className={`flex items-center space-x-2 px-4 py-2.5 rounded-xl text-xs font-black uppercase transition-all ${viewMode === 'mindmap' ? 'bg-purple-500/20 text-purple-400 border border-purple-500/50' : 'bg-slate-800 hover:bg-slate-700 text-slate-200'}`}
+          className={`flex items-center space-x-2 px-4 py-2.5 rounded-xl text-xs font-black uppercase transition-all w-full ${viewMode === 'mindmap' ? 'bg-purple-500/20 text-purple-400 border border-purple-500/50' : 'bg-slate-800 hover:bg-slate-700 text-slate-200'}`}
           title="Toggle Mindmap View"
         >
-          <Network className="h-4 w-4" />
-          <span className="hidden sm:inline">Mindmap</span>
+          <Network className="h-4 w-4 shrink-0" />
+          <span>Mindmap</span>
         </button>
 
         <button
           onClick={() => setShowStructures(!showStructures)}
-          className={`flex items-center space-x-2 px-4 py-2.5 rounded-xl text-xs font-black uppercase transition-all ${showStructures ? 'bg-amber-500/20 text-amber-400 border border-amber-500/50' : 'bg-slate-800 hover:bg-slate-700 text-slate-200'}`}
+          className={`flex items-center space-x-2 px-4 py-2.5 rounded-xl text-xs font-black uppercase transition-all w-full ${showStructures ? 'bg-amber-500/20 text-amber-400 border border-amber-500/50' : 'bg-slate-800 hover:bg-slate-700 text-slate-200'}`}
           title="Toggle 2D Chemical Structures"
         >
-          {showStructures ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-          <span className="hidden sm:inline">{showStructures ? "Hide Structures" : "Show Structures"}</span>
+          {showStructures ? <EyeOff className="h-4 w-4 shrink-0" /> : <Eye className="h-4 w-4 shrink-0" />}
+          <span>{showStructures ? "Hide Structures" : "Show Structures"}</span>
         </button>
         
         {isPathwayVerified && (
-          <div className="flex items-center space-x-2 bg-green-500/10 border border-green-500/30 text-green-400 px-4 py-2.5 rounded-xl text-xs font-black uppercase tracking-wider shadow-[0_0_15px_rgba(34,197,94,0.3)] pointer-events-none">
-            <CheckCircle className="h-4 w-4" />
-            <span className="hidden sm:inline">Verified Graph</span>
+          <div className="flex items-center space-x-2 bg-green-500/10 border border-green-500/30 text-green-400 px-4 py-2.5 rounded-xl text-xs font-black uppercase tracking-wider shadow-[0_0_15px_rgba(34,197,94,0.3)] pointer-events-none w-full">
+            <CheckCircle className="h-4 w-4 shrink-0" />
+            <span>Verified Graph</span>
           </div>
         )}
       </motion.div>

@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/lib/theme-context";
 import { AuthProvider } from "@/lib/auth-context";
+import ChatAssistant from "@/components/ChatAssistant";
 
 export const metadata: Metadata = {
   title: "BioCycle Hub | Master B.Pharmacy Biochemistry Pathways",
@@ -26,6 +27,7 @@ export default function RootLayout({
         <ThemeProvider>
           <AuthProvider>
             {children}
+            <ChatAssistant />
           </AuthProvider>
         </ThemeProvider>
       </body>
