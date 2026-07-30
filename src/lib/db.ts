@@ -207,6 +207,7 @@ export interface StudyNote {
   readingTime: string;
   content: string; // Markdown text
   bookmarked?: boolean;
+  mindMapUrl?: string;
 }
 
 export interface FAQItem {
