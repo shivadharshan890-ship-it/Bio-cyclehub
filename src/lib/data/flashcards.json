@@ -803,5 +803,1685 @@
     "front": "What are the three stop codons?",
     "back": "UAA, UAG, UGA.",
     "category": "Genetics"
+  },
+  {
+    "pathwayName": "Glycolysis",
+    "front": "What is the rate-limiting enzyme of glycolysis, and what reaction does it catalyze?",
+    "back": "Phosphofructokinase-1 (PFK-1). It catalyzes the irreversible conversion of Fructose-6-phosphate to Fructose-1,6-bisphosphate using one molecule of ATP.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392696683_116"
+  },
+  {
+    "pathwayName": "Glycolysis",
+    "front": "Compare Hexokinase and Glucokinase in terms of Km (affinity for glucose) and tissue distribution.",
+    "back": "Hexokinase has a low Km (high affinity) and is found in most peripheral tissues. Glucokinase has a high Km (low affinity, active only at high glucose concentrations) and is found in hepatocytes and pancreatic beta-cells.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392696683_117"
+  },
+  {
+    "pathwayName": "Glycolysis",
+    "front": "What is the net yield of ATP and NADH from one molecule of glucose undergoing aerobic glycolysis?",
+    "back": "2 net ATP (4 produced, 2 consumed in the preparatory phase) and 2 NADH.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392696683_118"
+  },
+  {
+    "pathwayName": "Glycolysis",
+    "front": "How does arsenate (AsO4^3-) toxicity affect the ATP yield of glycolysis?",
+    "back": "Arsenate acts as a substrate analog to inorganic phosphate and competes for Glyceraldehyde 3-phosphate dehydrogenase (GAPDH). This bypasses the 1,3-BPG synthesis step, preventing substrate-level phosphorylation and reducing the net ATP yield to zero.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392696683_119"
+  },
+  {
+    "pathwayName": "Glycolysis",
+    "front": "What is the most potent allosteric activator of Phosphofructokinase-1 (PFK-1), and how do insulin and glucagon affect its concentration?",
+    "back": "Fructose-2,6-bisphosphate (F-2,6-BP). Insulin increases its concentration by activating PFK-2 (via dephosphorylation of the bifunctional enzyme), which stimulates glycolysis. Glucagon decreases its concentration, inhibiting glycolysis.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392696683_120"
+  },
+  {
+    "pathwayName": "Glycolysis",
+    "front": "How is Pyruvate Kinase regulated by phosphorylation, and which pancreatic hormone promotes its inactive state?",
+    "back": "Pyruvate Kinase is inactivated by phosphorylation catalyzed by Protein Kinase A. Glucagon promotes this inactive state to conserve glucose for the brain during fasting.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392696683_121"
+  },
+  {
+    "pathwayName": "Glycolysis",
+    "front": "Under anaerobic conditions, how is the NAD+ required for Glyceraldehyde-3-phosphate dehydrogenase regenerated?",
+    "back": "Lactate Dehydrogenase (LDH) reduces pyruvate to lactate, coupled with the oxidation of NADH back to NAD+.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392696683_122"
+  },
+  {
+    "pathwayName": "Glycolysis",
+    "front": "Which glycolytic intermediate is diverted in red blood cells to produce a compound that decreases hemoglobin's affinity for oxygen?",
+    "back": "1,3-Bisphosphoglycerate (1,3-BPG) is converted to 2,3-Bisphosphoglycerate (2,3-BPG) by the enzyme Bisphosphoglycerate mutase (the Rappaport-Luebering shunt).",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392696683_123"
+  },
+  {
+    "pathwayName": "Glycolysis",
+    "front": "Which clinical laboratory preservative inhibits the glycolytic enzyme Enolase, and what is its mechanism?",
+    "back": "Sodium Fluoride (found in gray-top blood collection tubes). Fluoride ions complex with magnesium and phosphate, inhibiting the magnesium-dependent enzyme Enolase to prevent in vitro glucose breakdown.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392696683_124"
+  },
+  {
+    "pathwayName": "Glycolysis",
+    "front": "Why does Pyruvate Kinase deficiency lead to hemolytic anemia in red blood cells?",
+    "back": "RBCs lack mitochondria and rely solely on glycolysis for ATP. Deficiency in Pyruvate Kinase impairs ATP production, causing failure of active transport Na+/K+ ATPase pumps, leading to cell swelling, rigidity, and splenic hemolysis.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392696683_125"
+  },
+  {
+    "pathwayName": "Glycolysis",
+    "front": "Identify the three irreversible steps of glycolysis and the enzymes that catalyze them.",
+    "back": "1. Glucose to Glucose-6-phosphate (Hexokinase/Glucokinase)\n2. Fructose-6-phosphate to Fructose-1,6-bisphosphate (PFK-1)\n3. Phosphoenolpyruvate (PEP) to Pyruvate (Pyruvate Kinase)",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392696683_126"
+  },
+  {
+    "pathwayName": "Glycolysis",
+    "front": "Which two enzymes of glycolysis catalyze substrate-level phosphorylation reactions?",
+    "back": "Phosphoglycerate kinase (converting 1,3-BPG to 3-phosphoglycerate) and Pyruvate kinase (converting PEP to pyruvate).",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392696683_127"
+  },
+  {
+    "pathwayName": "Glycolysis",
+    "front": "A heterozygous mutation in which glycolytic enzyme is associated with Maturity-Onset Diabetes of the Young Type 2 (MODY2)?",
+    "back": "Glucokinase. Because it serves as the 'glucose sensor' in pancreatic beta-cells, a mutation shifts the threshold for glucose-stimulated insulin release to a higher blood glucose level.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392696683_128"
+  },
+  {
+    "pathwayName": "Glycolysis",
+    "front": "What feed-forward activation mechanism ensures that Pyruvate Kinase activity matches the flow of intermediates through glycolysis?",
+    "back": "Fructose-1,6-bisphosphate (the product of the rate-limiting PFK-1 step) allosterically activates Pyruvate Kinase.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392696683_129"
+  },
+  {
+    "pathwayName": "Glycolysis",
+    "front": "Which step of glycolysis requires inorganic phosphate (Pi) and produces NADH?",
+    "back": "The oxidation and phosphorylation of Glyceraldehyde-3-phosphate to 1,3-Bisphosphoglycerate, catalyzed by Glyceraldehyde-3-phosphate dehydrogenase (GAPDH).",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392696683_130"
+  },
+  {
+    "pathwayName": "Krebs Cycle",
+    "front": "What is the rate-limiting enzyme of the Krebs Cycle, and what reaction does it catalyze?",
+    "back": "Isocitrate dehydrogenase. It catalyzes the oxidative decarboxylation of isocitrate to alpha-ketoglutarate, producing CO2 and NADH.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392712616_131"
+  },
+  {
+    "pathwayName": "Krebs Cycle",
+    "front": "How is the rate-limiting enzyme of the Krebs Cycle (isocitrate dehydrogenase) allosterically regulated?",
+    "back": "It is allosterically activated by ADP and calcium ions (Ca2+), and allosterically inhibited by ATP and NADH.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392712616_132"
+  },
+  {
+    "pathwayName": "Krebs Cycle",
+    "front": "Which enzyme of the Krebs Cycle is uniquely bound to the inner mitochondrial membrane and also functions as Complex II of the Electron Transport Chain?",
+    "back": "Succinate dehydrogenase (succinate-coenzyme Q reductase).",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392712616_133"
+  },
+  {
+    "pathwayName": "Krebs Cycle",
+    "front": "Which enzyme of the Krebs Cycle catalyzes the only reaction that directly produces a high-energy phosphate bond (GTP or ATP) via substrate-level phosphorylation?",
+    "back": "Succinyl-CoA synthetase (also known as succinyl thiokinase), which converts succinyl-CoA to succinate.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392712616_134"
+  },
+  {
+    "pathwayName": "Krebs Cycle",
+    "front": "What are the primary negative feedback regulators of citrate synthase, the first enzyme of the Krebs cycle?",
+    "back": "Succinyl-CoA, NADH, ATP, and its own product, citrate.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392712616_135"
+  },
+  {
+    "pathwayName": "Krebs Cycle",
+    "front": "What five cofactors are required by the alpha-ketoglutarate dehydrogenase complex?",
+    "back": "Thiamine pyrophosphate (TPP/Vitamin B1), FAD (Vitamin B2), NAD+ (Vitamin B3), Coenzyme A (Vitamin B5), and Lipoate (Lipoic acid).",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392712616_136"
+  },
+  {
+    "pathwayName": "Krebs Cycle",
+    "front": "Why does severe thiamine (B1) deficiency selectively impair the Krebs cycle, and what clinical conditions can result?",
+    "back": "Thiamine is a required cofactor (TPP) for alpha-ketoglutarate dehydrogenase. Deficiency impairs ATP production, leading to Wernicke-Korsakoff syndrome and Beriberi, which heavily affect the brain and heart.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392712616_137"
+  },
+  {
+    "pathwayName": "Krebs Cycle",
+    "front": "What is the biochemical mechanism of arsenic poisoning regarding the Krebs cycle?",
+    "back": "Arsenite binds to the sulfhydryl groups of lipoic acid, inhibiting the alpha-ketoglutarate dehydrogenase complex (and pyruvate dehydrogenase), halting the cycle.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392712616_138"
+  },
+  {
+    "pathwayName": "Krebs Cycle",
+    "front": "What is the mechanism of toxicity of fluoroacetate (a rodenticide) on the Krebs cycle?",
+    "back": "Fluoroacetate is converted to fluorocitrate, which acts as a suicide inhibitor of aconitase, preventing the isomerization of citrate to isocitrate.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392712616_139"
+  },
+  {
+    "pathwayName": "Krebs Cycle",
+    "front": "What is the total yield of high-energy molecules (NADH, FADH2, and GTP/ATP) produced from one single turn of the Krebs cycle per acetyl-CoA?",
+    "back": "3 NADH, 1 FADH2, and 1 GTP (equivalent to 1 ATP).",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392712616_140"
+  },
+  {
+    "pathwayName": "Krebs Cycle",
+    "front": "Counting only the Krebs cycle and subsequent oxidative phosphorylation, how many ATP equivalents are generated per molecule of glucose (representing 2 Acetyl-CoA)?",
+    "back": "Approximately 20 ATP (2 turns of the cycle yield 6 NADH = 15 ATP; 2 FADH2 = 3 ATP; 2 GTP = 2 ATP).",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392712616_141"
+  },
+  {
+    "pathwayName": "Krebs Cycle",
+    "front": "What competitive inhibitor of succinate dehydrogenase is commonly used in biochemical research to block the Krebs cycle?",
+    "back": "Malonate, which is a structural analog of succinate.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392712616_142"
+  },
+  {
+    "pathwayName": "Krebs Cycle",
+    "front": "What is the major anaplerotic (replenishing) reaction of the Krebs cycle, and what cofactor does its enzyme require?",
+    "back": "The conversion of pyruvate to oxaloacetate by pyruvate carboxylase, which requires biotin (Vitamin B7), ATP, and CO2, and is activated by acetyl-CoA.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392712616_143"
+  },
+  {
+    "pathwayName": "Krebs Cycle",
+    "front": "What rare metabolic disorder is caused by a mutation in the Krebs cycle enzyme that hydrates fumarate to L-malate, and what are its symptoms?",
+    "back": "Fumarase (fumarate hydratase) deficiency, leading to severe encephalopathy, developmental delay, seizures, and fumaric aciduria.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392712616_144"
+  },
+  {
+    "pathwayName": "Krebs Cycle",
+    "front": "What does it mean that the Krebs cycle is 'amphibolic', and can you provide an example of a cycle intermediate used in heme synthesis?",
+    "back": "Amphibolic means it functions in both catabolism (energy production) and anabolism (biosynthetic pathways). Succinyl-CoA is a key intermediate exported for heme synthesis.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392712616_145"
+  },
+  {
+    "pathwayName": "Electron Transport Chain",
+    "front": "Which complex of the electron transport chain is inhibited by rotenone, amobarbital (Amytal), and piericidin A?",
+    "back": "Complex I (NADH-coenzyme Q oxidoreductase). This inhibition prevents the transfer of electrons from NADH to coenzyme Q.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392726122_146"
+  },
+  {
+    "pathwayName": "Electron Transport Chain",
+    "front": "What compound inhibits Complex III (Coenzyme Q-cytochrome c oxidoreductase) by blocking the transfer of electrons from cytochrome b to cytochrome c1?",
+    "back": "Antimycin A.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392726122_147"
+  },
+  {
+    "pathwayName": "Electron Transport Chain",
+    "front": "Which three highly toxic substances inhibit Complex IV (Cytochrome c oxidase) by binding to the ferric (Fe3+) or ferrous (Fe2+) state of iron in heme a3?",
+    "back": "Cyanide (CN-), Carbon Monoxide (CO), and Sodium Azide (NaN3).",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392726122_148"
+  },
+  {
+    "pathwayName": "Electron Transport Chain",
+    "front": "Which drug/toxin directly inhibits the F0 proton channel subunit of ATP synthase (Complex V), preventing the influx of protons back into the mitochondrial matrix?",
+    "back": "Oligomycin.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392726122_149"
+  },
+  {
+    "pathwayName": "Electron Transport Chain",
+    "front": "What is the mechanism of action of chemical uncouplers like 2,4-dinitrophenol (DNP) and aspirin (at toxic doses) on oxidative phosphorylation?",
+    "back": "They increase the proton permeability of the inner mitochondrial membrane, destroying the proton-motive force. Electron transport continues rapidly without ATP synthesis, dissipating energy as heat.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392726122_150"
+  },
+  {
+    "pathwayName": "Electron Transport Chain",
+    "front": "What is the physiological uncoupling protein (UCP-1) found in brown adipose tissue that generates heat instead of ATP, particularly in newborns?",
+    "back": "Thermogenin.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392726122_151"
+  },
+  {
+    "pathwayName": "Electron Transport Chain",
+    "front": "How does the administration of amyl nitrite/sodium nitrite act as an antidote for cyanide poisoning?",
+    "back": "Nitrites oxidize hemoglobin (Fe2+) to methemoglobin (Fe3+). Methemoglobin has a high affinity for cyanide, pulling it away from cytochrome c oxidase (Complex IV).",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392726122_152"
+  },
+  {
+    "pathwayName": "Electron Transport Chain",
+    "front": "Which shuttle mechanism transfers reducing equivalents from cytosolic NADH into the mitochondria yielding 1.5 ATP per NADH, and is highly active in skeletal muscle and brain?",
+    "back": "Glycerol 3-phosphate shuttle (delivers electrons to FAD in the inner mitochondrial membrane, bypassing Complex I).",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392726122_153"
+  },
+  {
+    "pathwayName": "Electron Transport Chain",
+    "front": "Which major NADH shuttle mechanism is found in the heart, liver, and kidneys, yielding approximately 2.5 ATP per cytosolic NADH?",
+    "back": "Malate-aspartate shuttle.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392726122_154"
+  },
+  {
+    "pathwayName": "Electron Transport Chain",
+    "front": "What mitochondrial DNA mutation disorder is characterized by degeneration of retinal ganglion cells leading to acute or subacute loss of central vision, often caused by mutations in Complex I subunits?",
+    "back": "Leber Hereditary Optic Neuropathy (LHON).",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392726122_155"
+  },
+  {
+    "pathwayName": "Electron Transport Chain",
+    "front": "What is the only mobile lipid-soluble non-protein component of the electron transport chain that transfers electrons from Complexes I and II to Complex III?",
+    "back": "Coenzyme Q (Ubiquinone).",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392726122_156"
+  },
+  {
+    "pathwayName": "Electron Transport Chain",
+    "front": "Which enzyme of the electron transport chain (Complex II) also participates directly in the Citric Acid (TCA) Cycle?",
+    "back": "Succinate dehydrogenase (converts succinate to fumarate while reducing FAD to FADH2).",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392726122_157"
+  },
+  {
+    "pathwayName": "Electron Transport Chain",
+    "front": "How many protons (H+) are pumped across the inner mitochondrial membrane into the intermembrane space per pair of electrons transferred from NADH?",
+    "back": "10 protons (4 from Complex I, 4 from Complex III, and 2 from Complex IV).",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392726122_158"
+  },
+  {
+    "pathwayName": "Electron Transport Chain",
+    "front": "Which two complexes of the electron transport chain are the primary sites of premature electron leakage to oxygen, leading to the generation of reactive oxygen species (ROS) like superoxide?",
+    "back": "Complex I and Complex III.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392726122_159"
+  },
+  {
+    "pathwayName": "Electron Transport Chain",
+    "front": "Which plant toxin inhibits Adenine Nucleotide Translocase (ANT), stopping the export of ATP from the matrix to the intermembrane space and halting oxidative phosphorylation?",
+    "back": "Atractyloside (or Bongkrekic acid).",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392726122_160"
+  },
+  {
+    "pathwayName": "Gluconeogenesis",
+    "front": "What is the rate-limiting enzyme of gluconeogenesis, and what reaction does it catalyze?",
+    "back": "Fructose-1,6-bisphosphatase-1 (FBPase-1). It catalyzes the irreversible dephosphorylation of fructose-1,6-bisphosphate to fructose-6-phosphate, bypassing the glycolytic phosphofructokinase-1 (PFK-1) step.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392746701_161"
+  },
+  {
+    "pathwayName": "Gluconeogenesis",
+    "front": "Which obligate allosteric activator and which vitamin cofactor are required by pyruvate carboxylase to convert pyruvate to oxaloacetate?",
+    "back": "Acetyl-CoA is the obligate allosteric activator; Biotin (Vitamin B7) is the essential prosthetic group/cofactor.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392746701_162"
+  },
+  {
+    "pathwayName": "Gluconeogenesis",
+    "front": "In which cellular compartment does the initial step of gluconeogenesis occur, and how does the product exit this compartment?",
+    "back": "It occurs in the mitochondrial matrix (pyruvate to oxaloacetate). Because oxaloacetate (OAA) cannot cross the inner mitochondrial membrane, it is reduced to malate (or transaminated to aspartate), shuttled into the cytosol, and reoxidized back to OAA.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392746701_163"
+  },
+  {
+    "pathwayName": "Gluconeogenesis",
+    "front": "What reaction does Phosphoenolpyruvate carboxykinase (PEPCK) catalyze, and what high-energy phosphate source does it utilize?",
+    "back": "PEPCK converts cytosolic oxaloacetate to phosphoenolpyruvate (PEP) by decarboxylation and phosphorylation. It utilizes GTP as its energy source and releases CO2.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392746701_164"
+  },
+  {
+    "pathwayName": "Gluconeogenesis",
+    "front": "Where is glucose-6-phosphatase localized within the cell, and why is skeletal muscle unable to perform gluconeogenesis to maintain systemic blood glucose?",
+    "back": "Glucose-6-phosphatase is bound to the luminal membrane of the endoplasmic reticulum (ER). Skeletal muscle lacks this enzyme, meaning it cannot dephosphorylate glucose-6-phosphate to release free glucose into the systemic circulation.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392746701_165"
+  },
+  {
+    "pathwayName": "Gluconeogenesis",
+    "front": "What is the total energetic cost (in ATP/GTP equivalents) required to synthesize one molecule of glucose from two molecules of pyruvate?",
+    "back": "6 high-energy phosphate bonds are consumed: 4 ATP (2 for pyruvate carboxylase, 2 for phosphoglycerate kinase) and 2 GTP (for PEPCK).",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392746701_166"
+  },
+  {
+    "pathwayName": "Gluconeogenesis",
+    "front": "How does glucagon affect the level of fructose-2,6-bisphosphate (F-2,6-BP) and regulate gluconeogenesis?",
+    "back": "Glucagon increases cAMP, activating Protein Kinase A (PKA). PKA phosphorylates the bifunctional PFK-2/FBPase-2 enzyme, activating FBPase-2 to degrade F-2,6-BP. Decreased F-2,6-BP levels relieve the inhibition on FBPase-1, activating gluconeogenesis.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392746701_167"
+  },
+  {
+    "pathwayName": "Gluconeogenesis",
+    "front": "What is the primary mechanism by which the first-line type 2 diabetes drug, Metformin, reduces hepatic glucose output?",
+    "back": "Metformin transiently inhibits complex I of the mitochondrial respiratory chain, which increases the cellular AMP:ATP ratio. This activates AMPK and inhibits adenylate cyclase (reducing cAMP/PKA signaling), resulting in the downstream transcriptional and allosteric inhibition of key gluconeogenic enzymes.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392746701_168"
+  },
+  {
+    "pathwayName": "Gluconeogenesis",
+    "front": "How does glycerol derived from triacylglycerol breakdown enter the gluconeogenic pathway?",
+    "back": "Glycerol is phosphorylated by glycerol kinase to glycerol-3-phosphate, which is then oxidized by glycerol-3-phosphate dehydrogenase to dihydroxyacetone phosphate (DHAP), a direct intermediate of glycolysis and gluconeogenesis.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392746701_169"
+  },
+  {
+    "pathwayName": "Gluconeogenesis",
+    "front": "Why does acute, heavy ethanol consumption cause hypoglycemia in a fasting or depleted individual?",
+    "back": "Ethanol metabolism by alcohol and aldehyde dehydrogenases generates high amounts of cytosolic NADH. This high NADH/NAD+ ratio shifts reversible reactions in the wrong direction, reducing pyruvate to lactate and oxaloacetate to malate, thereby depleting crucial gluconeogenic substrates.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392746701_170"
+  },
+  {
+    "pathwayName": "Gluconeogenesis",
+    "front": "What is the genetic/enzymatic deficiency in Von Gierke disease (GSD Type Ia), and what are its key clinical presentations regarding gluconeogenesis?",
+    "back": "It is a deficiency of glucose-6-phosphatase. It presents with severe fasting hypoglycemia, hepatomegaly (due to glycogen accumulation), lactic acidosis, hyperuricemia, and hyperlipidemia because the liver cannot release free glucose.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392746701_171"
+  },
+  {
+    "pathwayName": "Gluconeogenesis",
+    "front": "Describe the physiological process and tissue cooperation of the Cori Cycle.",
+    "back": "Lactate produced by anaerobic glycolysis in red blood cells or exercising skeletal muscle is released into the bloodstream and taken up by the liver. The liver converts lactate back to glucose via gluconeogenesis (at the cost of 6 ATP equivalents) and releases it back into the circulation.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392746701_172"
+  },
+  {
+    "pathwayName": "Gluconeogenesis",
+    "front": "Which amino acid is the primary gluconeogenic precursor released from skeletal muscle during prolonged fasting, and how is it converted to pyruvate?",
+    "back": "Alanine. In the liver, alanine is transaminated by alanine aminotransferase (ALT) to form pyruvate, requiring pyridoxal phosphate (Vitamin B6) as a cofactor.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392746701_173"
+  },
+  {
+    "pathwayName": "Gluconeogenesis",
+    "front": "How does excess Acetyl-CoA derived from beta-oxidation reciprocally regulate pyruvate dehydrogenase (PDH) and pyruvate carboxylase (PC)?",
+    "back": "Acetyl-CoA allosterically inhibits PDH (stopping the conversion of pyruvate to acetyl-CoA) and strongly activates Pyruvate Carboxylase (PC), driving pyruvate toward oxaloacetate to initiate gluconeogenesis.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392746701_174"
+  },
+  {
+    "pathwayName": "Gluconeogenesis",
+    "front": "Why does biotinidase deficiency lead to metabolic acidosis and impaired gluconeogenesis?",
+    "back": "Biotinidase is required to harvest and recycle free biotin (Vitamin B7). Biotin deficiency impairs all carboxylase enzymes, including Pyruvate Carboxylase, resulting in accumulated pyruvate converting to lactate (lactic acidosis) and a failure to initiate gluconeogenesis.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392746701_175"
+  },
+  {
+    "pathwayName": "Pentose Phosphate Pathway",
+    "front": "What is the rate-limiting and committed step of the pentose phosphate pathway, and what enzyme catalyzes it?",
+    "back": "The oxidation of glucose-6-phosphate to 6-phosphoglucono-δ-lactone, catalyzed by glucose-6-phosphate dehydrogenase (G6PD).",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392765269_176"
+  },
+  {
+    "pathwayName": "Pentose Phosphate Pathway",
+    "front": "How is glucose-6-phosphate dehydrogenase (G6PD) regulated by the NADPH/NADP+ ratio?",
+    "back": "High levels of NADPH competitively inhibit G6PD, whereas high levels of NADP+ (allosteric stimulator) upregulate the enzyme.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392765269_177"
+  },
+  {
+    "pathwayName": "Pentose Phosphate Pathway",
+    "front": "Why are red blood cells uniquely susceptible to oxidative stress in G6PD deficiency compared to other tissues?",
+    "back": "Red blood cells lack mitochondria and nuclei, making the pentose phosphate pathway their only source of NADPH required to maintain reduced glutathione.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392765269_178"
+  },
+  {
+    "pathwayName": "Pentose Phosphate Pathway",
+    "front": "What are the three main products of the irreversible, oxidative phase of the pentose phosphate pathway?",
+    "back": "NADPH (2 molecules per glucose-6-phosphate), ribulose 5-phosphate, and carbon dioxide (CO2).",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392765269_179"
+  },
+  {
+    "pathwayName": "Pentose Phosphate Pathway",
+    "front": "Which clinical marker is measured to diagnose thiamine (vitamin B1) deficiency, and which pentose phosphate pathway enzyme is involved?",
+    "back": "Erythrocyte transketolase activity; an increase in activity after adding thiamine pyrophosphate (TPP) confirms thiamine deficiency (Wernicke-Korsakoff syndrome).",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392765269_180"
+  },
+  {
+    "pathwayName": "Pentose Phosphate Pathway",
+    "front": "What two glycolytic intermediates are produced by the non-oxidative phase of the pentose phosphate pathway when ribose 5-phosphate is not needed for nucleotide synthesis?",
+    "back": "Fructose 6-phosphate and glyceraldehyde 3-phosphate.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392765269_181"
+  },
+  {
+    "pathwayName": "Pentose Phosphate Pathway",
+    "front": "What is the function of glutathione peroxidase, and what cofactor does it require from the pentose phosphate pathway to detoxify hydrogen peroxide?",
+    "back": "It reduces hydrogen peroxide to water using reduced glutathione (GSH). The GSH must be regenerated by glutathione reductase using NADPH (supplied by the PPP).",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392765269_182"
+  },
+  {
+    "pathwayName": "Pentose Phosphate Pathway",
+    "front": "Which enzyme in the non-oxidative phase of the pentose phosphate pathway transfers a 3-carbon unit, and does it require a cofactor?",
+    "back": "Transaldolase; it does not require a cofactor (unlike transketolase, which requires thiamine pyrophosphate).",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392765269_183"
+  },
+  {
+    "pathwayName": "Pentose Phosphate Pathway",
+    "front": "What are 'Heinz bodies' and 'bite cells' as seen on a peripheral blood smear in a patient with G6PD deficiency?",
+    "back": "Heinz bodies are insoluble aggregates of denatured hemoglobin caused by oxidative damage. Bite cells (degmacytes) are RBCs that have had these Heinz bodies removed by splenic macrophages.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392765269_184"
+  },
+  {
+    "pathwayName": "Pentose Phosphate Pathway",
+    "front": "Name three pharmacological triggers (drug classes/agents) that can precipitate a hemolytic crisis in a patient with G6PD deficiency.",
+    "back": "Sulfonamides (e.g., sulfamethoxazole), antimalarials (e.g., primaquine), and nitrofurantoin (or dapsone).",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392765269_185"
+  },
+  {
+    "pathwayName": "Pentose Phosphate Pathway",
+    "front": "What is the net ATP yield or consumption of the pentose phosphate pathway?",
+    "back": "Zero. The pathway does not consume or produce ATP directly.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392765269_186"
+  },
+  {
+    "pathwayName": "Pentose Phosphate Pathway",
+    "front": "Which metabolite of the pentose phosphate pathway is the direct precursor for the synthesis of phosphoribosyl pyrophosphate (PRPP) used in nucleotide synthesis?",
+    "back": "Ribose 5-phosphate.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392765269_187"
+  },
+  {
+    "pathwayName": "Pentose Phosphate Pathway",
+    "front": "In which cellular compartment does the pentose phosphate pathway occur, and in which tissues is it most active?",
+    "back": "It occurs entirely in the cytosol. It is highly active in tissues requiring high NADPH for lipid synthesis (e.g., liver, lactating mammary glands, adrenal cortex) or oxidative defense (RBCs).",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392765269_188"
+  },
+  {
+    "pathwayName": "Pentose Phosphate Pathway",
+    "front": "Which enzyme in the oxidative phase of the pentose phosphate pathway converts 6-phosphogluconate to ribulose 5-phosphate, producing the second molecule of NADPH?",
+    "back": "6-phosphogluconate dehydrogenase.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392765269_189"
+  },
+  {
+    "pathwayName": "Pentose Phosphate Pathway",
+    "front": "How does insulin regulate the transcription of glucose-6-phosphate dehydrogenase (G6PD)?",
+    "back": "Insulin upregulates the transcription of the G6PD gene, enhancing the pathway's activity during the well-fed state to provide NADPH for lipogenesis.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392765269_190"
+  },
+  {
+    "pathwayName": "Glycogenesis",
+    "front": "What is the rate-limiting enzyme of glycogenesis, and what specific reaction does it catalyze?",
+    "back": "Glycogen synthase. It catalyzes the transfer of glucose from UDP-glucose to the non-reducing end of a glycogen primer, forming an alpha-1,4-glycosidic bond.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392778875_191"
+  },
+  {
+    "pathwayName": "Glycogenesis",
+    "front": "Which nucleotide-sugar derivative acts as the immediate glucose donor for glycogen synthesis, and how is it synthesized?",
+    "back": "UDP-glucose. It is synthesized from Glucose 1-phosphate and UTP by the enzyme UDP-glucose pyrophosphorylase.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392778875_192"
+  },
+  {
+    "pathwayName": "Glycogenesis",
+    "front": "What protein serves as the obligate primer for glycogen synthesis, autoglycosylating its own tyrosine residue to initiate the chain?",
+    "back": "Glycogenin.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392778875_193"
+  },
+  {
+    "pathwayName": "Glycogenesis",
+    "front": "Which enzyme is responsible for creating alpha-1,6-glycosidic branch points during glycogenesis?",
+    "back": "Branching enzyme (also known as amylo-(1,4->1,6)-transglucosidase).",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392778875_194"
+  },
+  {
+    "pathwayName": "Glycogenesis",
+    "front": "How does insulin hormonally activate glycogen synthase in hepatocytes and myocytes?",
+    "back": "Insulin triggers a signaling cascade that activates Protein Phosphatase 1 (PP1) and inactivates Glycogen Synthase Kinase-3 (GSK3). This leads to the dephosphorylation of glycogen synthase, converting it to its active 'a' form.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392778875_195"
+  },
+  {
+    "pathwayName": "Glycogenesis",
+    "front": "What is the mechanism by which glucagon and epinephrine inhibit glycogenesis?",
+    "back": "They bind to Gs-coupled receptors, increasing cAMP and activating Protein Kinase A (PKA). PKA phosphorylates (and inactivates) glycogen synthase into its inactive 'b' form, while also phosphorylating and activating inhibitor-1, which blocks PP1.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392778875_196"
+  },
+  {
+    "pathwayName": "Glycogenesis",
+    "front": "Which key physiological metabolite acts as an allosteric activator of the inactive, phosphorylated form of glycogen synthase (glycogen synthase b)?",
+    "back": "Glucose 6-phosphate (G6P).",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392778875_197"
+  },
+  {
+    "pathwayName": "Glycogenesis",
+    "front": "What enzyme catalyzes the reversible isomerization of Glucose 6-phosphate to Glucose 1-phosphate at the start of glycogenesis?",
+    "back": "Phosphoglucomutase.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392778875_198"
+  },
+  {
+    "pathwayName": "Glycogenesis",
+    "front": "What is the net energetic cost, in high-energy phosphate bonds, to store one molecule of free blood glucose as glycogen?",
+    "back": "2 ATP equivalents (1 ATP used by hexokinase/glucokinase to phosphorylate glucose to G6P, and 1 UTP equivalent consumed when UDP-glucose is formed from G1P and UTP).",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392778875_199"
+  },
+  {
+    "pathwayName": "Glycogenesis",
+    "front": "Which Glycogen Storage Disease (GSD Type IV) is caused by a genetic deficiency in the branching enzyme, and what is its classic clinical presentation?",
+    "back": "Andersen disease. It presents in infancy with hepatosplenomegaly, hypotonia, cirrhosis, and accumulation of abnormal glycogen with long, unbranched outer chains (amylopectin-like structures), which trigger an immune response.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392778875_200"
+  },
+  {
+    "pathwayName": "Glycogenesis",
+    "front": "In which cellular compartment does glycogenesis take place?",
+    "back": "The cytosol.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392778875_201"
+  },
+  {
+    "pathwayName": "Glycogenesis",
+    "front": "How do the kinetic properties of glucokinase (liver) and hexokinase (muscle) dictate glycogen synthesis in their respective tissues?",
+    "back": "Glucokinase has a high Km for glucose, meaning the liver only synthesizes glycogen when blood glucose levels are high (postprandial). Hexokinase has a low Km, allowing muscle to capture glucose and synthesize glycogen even at low blood glucose levels.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392778875_202"
+  },
+  {
+    "pathwayName": "Glycogenesis",
+    "front": "What thermodynamic reaction drives the synthesis of UDP-glucose forward, making it an irreversible step in glycogenesis?",
+    "back": "The rapid hydrolysis of the byproduct inorganic pyrophosphate (PPi) to two molecules of orthophosphate (2 Pi) by the enzyme pyrophosphatase.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392778875_203"
+  },
+  {
+    "pathwayName": "Glycogenesis",
+    "front": "What is the specific target and effect of active GSK-3 (Glycogen Synthase Kinase-3) in the regulation of glycogenesis?",
+    "back": "GSK-3 phosphorylates glycogen synthase, converting it from its active 'a' form to its inactive 'b' form, thereby inhibiting glycogenesis.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392778875_204"
+  },
+  {
+    "pathwayName": "Glycogenesis",
+    "front": "What is the structural composition of glycogen in terms of linkage types, and how often do the branch points occur?",
+    "back": "Glycogen consists of glucose molecules linked linearly by alpha-1,4-glycosidic bonds, with branches formed by alpha-1,6-glycosidic bonds approximately every 8 to 12 glucose residues.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392778875_205"
+  },
+  {
+    "pathwayName": "Glycogenolysis",
+    "front": "What is the rate-limiting enzyme of glycogenolysis, and what cofactor does it require for its catalytic activity?",
+    "back": "Glycogen phosphorylase; it requires pyridoxal phosphate (PLP / Vitamin B6) as an essential cofactor.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392795348_206"
+  },
+  {
+    "pathwayName": "Glycogenolysis",
+    "front": "What is the primary phosphorylated carbohydrate product released by the phosphorolysis of glycogen?",
+    "back": "Glucose 1-phosphate (G1P).",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392795348_207"
+  },
+  {
+    "pathwayName": "Glycogenolysis",
+    "front": "What are the two distinct catalytic activities possessed by the bifunctional glycogen debranching enzyme?",
+    "back": "1. Oligo-α(1→4)-α(1→4)-glucantransferase activity (transferase)\n2. α-1,6-glucosidase activity (glucosidase).",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392795348_208"
+  },
+  {
+    "pathwayName": "Glycogenolysis",
+    "front": "Which specific reaction step in glycogenolysis directly produces free, unphosphorylated glucose?",
+    "back": "The hydrolysis of the α-1,6 glycosidic branch point by the α-1,6-glucosidase activity of the debranching enzyme.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392795348_209"
+  },
+  {
+    "pathwayName": "Glycogenolysis",
+    "front": "Which enzyme catalyzes the reversible conversion of glucose 1-phosphate to glucose 6-phosphate?",
+    "back": "Phosphoglucomutase.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392795348_210"
+  },
+  {
+    "pathwayName": "Glycogenolysis",
+    "front": "Why is skeletal muscle unable to release glucose into the bloodstream from glycogenolysis?",
+    "back": "Skeletal muscle lacks the enzyme glucose-6-phosphatase; glucose 6-phosphate is instead funneled directly into glycolysis for ATP production.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392795348_211"
+  },
+  {
+    "pathwayName": "Glycogenolysis",
+    "front": "In which organelle is the enzyme glucose-6-phosphatase localized?",
+    "back": "The endoplasmic reticulum (ER) membrane, with its active site facing the ER lumen.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392795348_212"
+  },
+  {
+    "pathwayName": "Glycogenolysis",
+    "front": "Describe the signaling cascade by which epinephrine or glucagon activates glycogen phosphorylase in hepatocytes.",
+    "back": "Hormone binds Gs-coupled receptor -> GPCR activates Adenylyl Cyclase -> cAMP increases -> Protein Kinase A (PKA) is activated -> PKA phosphorylates and activates Phosphorylase Kinase -> Phosphorylase Kinase phosphorylates inactive glycogen phosphorylase b into active glycogen phosphorylase a.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392795348_213"
+  },
+  {
+    "pathwayName": "Glycogenolysis",
+    "front": "Which two intracellular molecules act as allosteric activators of glycogen phosphorylase b in contracting skeletal muscle without requiring phosphorylation?",
+    "back": "AMP (signifies low energy state) and Calcium ions (Ca2+, which binds to the calmodulin subunit of phosphorylase kinase).",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392795348_214"
+  },
+  {
+    "pathwayName": "Glycogenolysis",
+    "front": "How does insulin turn off glycogenolysis?",
+    "back": "Insulin activates protein phosphatase 1 (PP1), which dephosphorylates (and thus inactivates) both phosphorylase kinase and glycogen phosphorylase a, converting them to their inactive states.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392795348_215"
+  },
+  {
+    "pathwayName": "Glycogenolysis",
+    "front": "A deficiency in Glucose-6-phosphatase causes which Glycogen Storage Disease (GSD), and what are its hallmark clinical features?",
+    "back": "Von Gierke Disease (GSD Type Ia); characterized by severe fasting hypoglycemia, lactic acidosis, hyperuricemia, hyperlipidemia, and hepatomegaly.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392795348_216"
+  },
+  {
+    "pathwayName": "Glycogenolysis",
+    "front": "Which lysosomal enzyme is deficient in Pompe Disease (GSD Type II), and what unique tissue is most severely affected?",
+    "back": "Lysosomal α-1,4-glucosidase (acid maltase); primarily affects cardiac and skeletal muscle, leading to hypertrophic cardiomyopathy and hypotonia.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392795348_217"
+  },
+  {
+    "pathwayName": "Glycogenolysis",
+    "front": "A deficiency in the glycogen debranching enzyme leads to Cori Disease (GSD Type III). What biochemical structure characteristically accumulates in this disease?",
+    "back": "Limit dextrin (glycogen molecules with short, outer branches that cannot be further degraded).",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392795348_218"
+  },
+  {
+    "pathwayName": "Glycogenolysis",
+    "front": "Which enzyme is deficient in McArdle Disease (GSD Type V), and what are the clinical presentation details during physical exertion?",
+    "back": "Skeletal muscle glycogen phosphorylase (myophosphorylase); presents with muscle cramping, exercise intolerance, a flat blood lactate curve during exercise, and myoglobinuria (rhabdomyolysis).",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392795348_219"
+  },
+  {
+    "pathwayName": "Glycogenolysis",
+    "front": "What defines a 'limit dextrin' during the breakdown of glycogen?",
+    "back": "The branched glycogen structure containing 4 glucose residues remaining on an outer branch before a branch point, which is the limit of where glycogen phosphorylase can cleave.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392795348_220"
+  },
+  {
+    "pathwayName": "Fructose Metabolism",
+    "front": "Which GLUT transporter is primarily responsible for the facilitated diffusion of dietary fructose across the luminal membrane of enterocytes?",
+    "back": "GLUT5",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392809910_221"
+  },
+  {
+    "pathwayName": "Fructose Metabolism",
+    "front": "What enzyme catalyzes the primary phosphorylation of fructose in the liver, and what is its specific product?",
+    "back": "Fructokinase (also known as ketohexokinase); its product is Fructose 1-phosphate (F1P).",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392809910_222"
+  },
+  {
+    "pathwayName": "Fructose Metabolism",
+    "front": "A genetic deficiency in hepatic fructokinase (ketohexokinase) leads to which benign clinical condition?",
+    "back": "Essential Fructosuria. It is clinically benign and asymptomatic because fructose is not trapped inside cells and is slowly metabolized by hexokinase or excreted in urine.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392809910_223"
+  },
+  {
+    "pathwayName": "Fructose Metabolism",
+    "front": "Which rate-limiting enzyme of hepatic fructose metabolism cleaves Fructose 1-phosphate, and what are its two direct products?",
+    "back": "Aldolase B; it cleaves Fructose 1-phosphate into Dihydroxyacetone phosphate (DHAP) and Glyceraldehyde.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392809910_224"
+  },
+  {
+    "pathwayName": "Fructose Metabolism",
+    "front": "A genetic deficiency in Aldolase B causes which severe metabolic disorder, and what toxic intermediate accumulates in hepatocytes?",
+    "back": "Hereditary Fructose Intolerance (HFI); Fructose 1-phosphate (F1P) accumulates inside hepatocytes.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392809910_225"
+  },
+  {
+    "pathwayName": "Fructose Metabolism",
+    "front": "Why does the intracellular accumulation of Fructose 1-phosphate in Hereditary Fructose Intolerance cause severe hypoglycemia and hepatic/renal failure?",
+    "back": "F1P sequesters intracellular inorganic phosphate (Pi), which depletes ATP pools and inhibits glycogenolysis (via glycogen phosphorylase) and gluconeogenesis.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392809910_226"
+  },
+  {
+    "pathwayName": "Fructose Metabolism",
+    "front": "Which enzyme converts glyceraldehyde (produced by Aldolase B cleavage) into a glycolytic intermediate, and what is the product?",
+    "back": "Triokinase; it uses ATP to phosphorylate glyceraldehyde into Glyceraldehyde 3-phosphate (G3P).",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392809910_227"
+  },
+  {
+    "pathwayName": "Fructose Metabolism",
+    "front": "In extrahepatic tissues (e.g., muscle, adipose), which enzyme can directly phosphorylate fructose when intracellular fructose levels are high, and what is the product?",
+    "back": "Hexokinase; it converts fructose directly into Fructose 6-phosphate (which can directly enter glycolysis).",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392809910_228"
+  },
+  {
+    "pathwayName": "Fructose Metabolism",
+    "front": "Why is the rate of hepatic fructose metabolism significantly faster than that of glucose?",
+    "back": "Fructose metabolism bypasses Phosphofructokinase-1 (PFK-1), the major rate-limiting, tightly regulated step of glycolysis.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392809910_229"
+  },
+  {
+    "pathwayName": "Fructose Metabolism",
+    "front": "How does a chronic high-fructose diet biochemically promote hepatic lipogenesis, hypertriglyceridemia, and hepatic steatosis (fatty liver)?",
+    "back": "By bypassing the regulated PFK-1 step, fructose rapidly floods the liver with pyruvate and acetyl-CoA, providing unregulated substrates for fatty acid and glycerol 3-phosphate synthesis.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392809910_230"
+  },
+  {
+    "pathwayName": "Fructose Metabolism",
+    "front": "In the polyol pathway, which enzyme reduces glucose to sorbitol, and which cofactor does it utilize?",
+    "back": "Aldose reductase; it utilizes NADPH as a cofactor.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392809910_231"
+  },
+  {
+    "pathwayName": "Fructose Metabolism",
+    "front": "Which enzyme converts sorbitol to fructose in the polyol pathway, and in which organ is this pathway highly active to provide an energy source for sperm?",
+    "back": "Sorbitol dehydrogenase (uses NAD+ as a cofactor); highly active in the seminal vesicles.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392809910_232"
+  },
+  {
+    "pathwayName": "Fructose Metabolism",
+    "front": "How does chronic hyperglycemia in diabetic patients lead to cataracts, neuropathy, and retinopathy via the polyol pathway?",
+    "back": "Tissues like the lens, retina, kidneys, and Schwann cells have low levels of sorbitol dehydrogenase. High glucose levels drive aldose reductase to produce sorbitol, which accumulates and causes osmotic swelling and cell damage.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392809910_233"
+  },
+  {
+    "pathwayName": "Fructose Metabolism",
+    "front": "What is the primary dietary treatment strategy for patients diagnosed with Hereditary Fructose Intolerance?",
+    "back": "Strict elimination of fructose, sucrose (which is cleaved into glucose and fructose), and sorbitol (which is oxidized to fructose) from the diet.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392809910_234"
+  },
+  {
+    "pathwayName": "Fructose Metabolism",
+    "front": "Why does a standard urine dipstick test for glucose return negative in a patient with Essential Fructosuria, despite high concentrations of reducing sugars in their urine?",
+    "back": "Urine dipsticks use the glucose oxidase enzyme, which is highly specific for glucose and does not react with fructose. A copper reduction test (e.g., Clinitest) is required to detect fructose.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392809910_235"
+  },
+  {
+    "pathwayName": "Galactose Metabolism",
+    "front": "What is the primary dietary source of galactose, and which enzyme hydrolyzes it in the small intestine?",
+    "back": "Lactose (from dairy products), which is hydrolyzed by the brush-border enzyme lactase (beta-galactosidase) into glucose and galactose.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392826474_236"
+  },
+  {
+    "pathwayName": "Galactose Metabolism",
+    "front": "Which enzyme traps galactose inside the cell, and what cofactor/cosubstrate does it require?",
+    "back": "Galactokinase (GALK), which phosphorylates galactose to galactose-1-phosphate using 1 ATP as a phosphate donor.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392826474_237"
+  },
+  {
+    "pathwayName": "Galactose Metabolism",
+    "front": "What is the deficient enzyme in Classic Galactosemia, and what toxic intermediates accumulate?",
+    "back": "Galactose-1-phosphate uridylyltransferase (GALT). Galactose-1-phosphate and galactitol accumulate in tissues, causing severe organ damage.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392826474_238"
+  },
+  {
+    "pathwayName": "Galactose Metabolism",
+    "front": "Why do patients with Classic Galactosemia (GALT deficiency) or Galactokinase (GALK) deficiency develop infantile cataracts?",
+    "back": "Accumulating galactose is reduced by aldose reductase to galactitol (a sugar alcohol). Galactitol is osmotically active, drawing water into the lens of the eye and causing swelling and protein precipitation.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392826474_239"
+  },
+  {
+    "pathwayName": "Galactose Metabolism",
+    "front": "Contrast the clinical severity and key symptoms of Galactokinase (GALK) deficiency versus Classic Galactosemia (GALT deficiency).",
+    "back": "GALK deficiency is relatively mild, presenting primarily with cataracts and galactosemia/galactosuria. Classic Galactosemia (GALT deficiency) is life-threatening, presenting with hepatomegaly, jaundice, failure to thrive, cataracts, intellectual disability, and renal dysfunction.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392826474_240"
+  },
+  {
+    "pathwayName": "Galactose Metabolism",
+    "front": "What chemical reaction is catalyzed by galactose-1-phosphate uridylyltransferase (GALT)?",
+    "back": "It catalyzes the exchange of UDP between UDP-glucose and galactose-1-phosphate, yielding glucose-1-phosphate and UDP-galactose.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392826474_241"
+  },
+  {
+    "pathwayName": "Galactose Metabolism",
+    "front": "Which enzyme interconverts UDP-galactose and UDP-glucose, allowing galactose carbon skeletons to enter glycolysis or glycogen synthesis?",
+    "back": "UDP-galactose 4-epimerase (GALE), which uses NAD+ as an essential cofactor to temporarily oxidize and reduce the C4 hydroxyl group.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392826474_242"
+  },
+  {
+    "pathwayName": "Galactose Metabolism",
+    "front": "Why are infants with Classic Galactosemia at a highly increased risk for life-threatening sepsis, and which specific pathogen is most commonly implicated?",
+    "back": "Accumulation of galactose-1-phosphate in white blood cells impairs bactericidal activity. Escherichia coli (E. coli) is the pathogen most commonly associated with neonatal sepsis in these patients.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392826474_243"
+  },
+  {
+    "pathwayName": "Galactose Metabolism",
+    "front": "How can a lactating mother synthesize lactose even if she consumes a completely galactose-free diet?",
+    "back": "UDP-galactose 4-epimerase (GALE) can operate in reverse to convert UDP-glucose (derived from dietary glucose) into UDP-galactose, which is then used by lactose synthase.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392826474_244"
+  },
+  {
+    "pathwayName": "Galactose Metabolism",
+    "front": "What is the net ATP yield when one molecule of galactose is metabolized to pyruvate via glycolysis?",
+    "back": "2 net ATP. Phosphorylation by galactokinase costs 1 ATP to generate galactose-1-P (eventually converted to glucose-6-P). Glycolysis starting from glucose-6-P yields 3 ATP, resulting in a net of 2 ATP.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392826474_245"
+  },
+  {
+    "pathwayName": "Galactose Metabolism",
+    "front": "What enzyme catalyzes the reduction of galactose to galactitol under elevated galactose conditions, and what cofactor is consumed?",
+    "back": "Aldose reductase; it consumes NADPH (oxidizing it to NADP+).",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392826474_246"
+  },
+  {
+    "pathwayName": "Galactose Metabolism",
+    "front": "Which enzyme isomerizes glucose-1-phosphate (derived from galactose) to glucose-6-phosphate so it can enter glycolysis?",
+    "back": "Phosphoglucomutase.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392826474_247"
+  },
+  {
+    "pathwayName": "Galactose Metabolism",
+    "front": "What diagnostic laboratory findings are characteristic of Classic Galactosemia in a newborn screening?",
+    "back": "Hyperbilirubinemia, elevated plasma galactose, presence of non-glucose reducing substances in the urine (positive Clinitest, negative glucose dipstick), and absent/low GALT activity in red blood cells.",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392826474_248"
+  },
+  {
+    "pathwayName": "Galactose Metabolism",
+    "front": "Which two proteins form the active progesterone-regulated lactose synthase complex in lactating mammary glands?",
+    "back": "Galactosyltransferase and alpha-lactalbumin. (Alpha-lactalbumin lowers the Km of galactosyltransferase for glucose, promoting lactose synthesis).",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392826474_249"
+  },
+  {
+    "pathwayName": "Galactose Metabolism",
+    "front": "What is the primary dietary management strategy for patients diagnosed with Classic Galactosemia?",
+    "back": "Strict lifelong exclusion of galactose and lactose from the diet (immediate cessation of breast milk or dairy-based formulas, replacing them with soy-based or elemental formulas).",
+    "category": "Carbohydrate",
+    "id": "fc_ai_1785392826474_250"
+  },
+  {
+    "pathwayName": "Fatty Acid Synthesis",
+    "front": "In which subcellular compartment does de novo fatty acid synthesis primarily occur, and how does this contrast with beta-oxidation?",
+    "back": "Fatty acid synthesis occurs in the cytosol, whereas beta-oxidation takes place within the mitochondrial matrix.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392855677_251"
+  },
+  {
+    "pathwayName": "Fatty Acid Synthesis",
+    "front": "Because acetyl-CoA cannot directly cross the inner mitochondrial membrane, what shuttle mechanism transports it to the cytosol for fatty acid synthesis?",
+    "back": "The citrate shuttle. Acetyl-CoA condenses with oxaloacetate to form citrate, which crosses the membrane and is subsequently cleaved back into acetyl-CoA and oxaloacetate by ATP-citrate lyase.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392855677_252"
+  },
+  {
+    "pathwayName": "Fatty Acid Synthesis",
+    "front": "What is the rate-limiting enzyme of fatty acid synthesis, and what reaction does it catalyze?",
+    "back": "Acetyl-CoA Carboxylase (ACC). It catalyzes the irreversible, ATP-dependent carboxylation of acetyl-CoA to form malonyl-CoA.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392855677_253"
+  },
+  {
+    "pathwayName": "Fatty Acid Synthesis",
+    "front": "What vitamin-derived prosthetic group is covalently bound to Acetyl-CoA Carboxylase (ACC) and serves as a carrier of activated carbon dioxide (CO2)?",
+    "back": "Biotin (Vitamin B7).",
+    "category": "Lipid",
+    "id": "fc_ai_1785392855677_254"
+  },
+  {
+    "pathwayName": "Fatty Acid Synthesis",
+    "front": "How do citrate and palmitoyl-CoA allosterically regulate Acetyl-CoA Carboxylase (ACC)?",
+    "back": "Citrate acts as an allosteric activator by promoting the polymerization of inactive ACC protomers into active polymers. Palmitoyl-CoA acts as an allosteric inhibitor by inducing depolymerization.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392855677_255"
+  },
+  {
+    "pathwayName": "Fatty Acid Synthesis",
+    "front": "How do insulin and glucagon/epinephrine differentially regulate Acetyl-CoA Carboxylase (ACC) via phosphorylation?",
+    "back": "Insulin stimulates a phosphatase that dephosphorylates and activates ACC. Glucagon and epinephrine activate AMPK and PKA pathways, which phosphorylate and inactivate ACC.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392855677_256"
+  },
+  {
+    "pathwayName": "Fatty Acid Synthesis",
+    "front": "What homodimeric multifunctional enzyme complex synthesizes palmitate from malonyl-CoA and acetyl-CoA, and what is its key carrier domain?",
+    "back": "Fatty Acid Synthase (FAS), which utilizes the Acyl Carrier Protein (ACP) domain to hold and guide the growing acyl chain.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392855677_257"
+  },
+  {
+    "pathwayName": "Fatty Acid Synthesis",
+    "front": "The Acyl Carrier Protein (ACP) domain of Fatty Acid Synthase contains which pantothenic acid-derived prosthetic group to bind acyl intermediates?",
+    "back": "4'-phosphopantetheine, which terminates in a reactive sulfhydryl (-SH) group analogous to Coenzyme A.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392855677_258"
+  },
+  {
+    "pathwayName": "Fatty Acid Synthesis",
+    "front": "What are the two primary metabolic sources of the NADPH required for the reduction steps in fatty acid synthesis?",
+    "back": "1. The Pentose Phosphate Pathway (HMP shunt) via glucose-6-phosphate dehydrogenase. 2. Malic enzyme, which converts malate to pyruvate in the cytosol.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392855677_259"
+  },
+  {
+    "pathwayName": "Fatty Acid Synthesis",
+    "front": "What is the net stoichiometric requirement of acetyl-CoA, ATP, and NADPH to synthesize one molecule of palmitate (16:0)?",
+    "back": "8 Acetyl-CoA, 7 ATP (used during malonyl-CoA synthesis), and 14 NADPH.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392855677_260"
+  },
+  {
+    "pathwayName": "Fatty Acid Synthesis",
+    "front": "During each cycle of fatty acid chain elongation by Fatty Acid Synthase, what is the correct sequence of the four chemical reactions?",
+    "back": "1. Condensation, 2. Reduction (ketone to alcohol), 3. Dehydration (alkene formation), 4. Reduction (alkene to alkane).",
+    "category": "Lipid",
+    "id": "fc_ai_1785392855677_261"
+  },
+  {
+    "pathwayName": "Fatty Acid Synthesis",
+    "front": "Where in the cell does the elongation of palmitate into longer-chain fatty acids (e.g., stearate, 18:0) primarily take place, and what is the donor of the two-carbon units?",
+    "back": "In the smooth endoplasmic reticulum (ER); malonyl-CoA serves as the donor of the two-carbon units.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392855677_262"
+  },
+  {
+    "pathwayName": "Fatty Acid Synthesis",
+    "front": "Why are linoleic acid (18:2 cis-9,12) and alpha-linolenic acid (18:3 cis-9,12,15) classified as essential fatty acids in humans?",
+    "back": "Humans lack the desaturase enzymes (specifically delta-12 and delta-15 desaturases) required to introduce double bonds beyond carbon 9 of the fatty acyl chain.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392855677_263"
+  },
+  {
+    "pathwayName": "Fatty Acid Synthesis",
+    "front": "How does fatty acid synthesis actively inhibit fatty acid oxidation (beta-oxidation) in the liver during the fed state?",
+    "back": "Malonyl-CoA (produced by ACC) allosterically inhibits Carnitine Palmitoyltransferase-1 (CPT-1), preventing the entry of fatty acids into the mitochondria for beta-oxidation.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392855677_264"
+  },
+  {
+    "pathwayName": "Fatty Acid Synthesis",
+    "front": "Why are Acetyl-CoA Carboxylase (ACC) inhibitors (such as firsocostat) being clinically investigated, and what is their therapeutic mechanism?",
+    "back": "They inhibit ACC1 and ACC2 to reduce hepatic de novo lipogenesis and stimulate fatty acid oxidation, aiming to treat Metabolic Dysfunction-Associated Steatohepatitis (MASH/NASH) and obesity.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392855677_265"
+  },
+  {
+    "pathwayName": "Cholesterol Biosynthesis",
+    "front": "What is the rate-limiting and committed step of cholesterol biosynthesis, and what enzyme and cofactor are involved?",
+    "back": "The reduction of HMG-CoA to mevalonate, catalyzed by HMG-CoA reductase, which utilizes 2 molecules of NADPH as the reducing cofactor.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392873482_266"
+  },
+  {
+    "pathwayName": "Cholesterol Biosynthesis",
+    "front": "In which cellular compartments does the synthesis of cholesterol occur?",
+    "back": "It occurs in the cytosol (early steps including HMG-CoA synthesis) and the endoplasmic reticulum (membrane-bound enzymes starting with HMG-CoA reductase).",
+    "category": "Lipid",
+    "id": "fc_ai_1785392873482_267"
+  },
+  {
+    "pathwayName": "Cholesterol Biosynthesis",
+    "front": "What is the starting carbon precursor for all 27 carbon atoms of cholesterol?",
+    "back": "Acetyl-CoA (derived from mitochondrial export via the citrate shuttle).",
+    "category": "Lipid",
+    "id": "fc_ai_1785392873482_268"
+  },
+  {
+    "pathwayName": "Cholesterol Biosynthesis",
+    "front": "What is the mechanism of action of statins (e.g., atorvastatin, simvastatin) on cholesterol synthesis?",
+    "back": "Statins are structural analogs of HMG-CoA that act as reversible, competitive inhibitors of HMG-CoA reductase.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392873482_269"
+  },
+  {
+    "pathwayName": "Cholesterol Biosynthesis",
+    "front": "How does the SREBP-2 pathway regulate HMG-CoA reductase transcription under low intracellular cholesterol conditions?",
+    "back": "Under low cholesterol, SCAP escorts SREBP-2 from the ER to the Golgi, where S1P and S2P proteases cleave SREBP-2. The active basic helix-loop-helix (bHLH) domain translocates to the nucleus to bind Sterol Regulatory Elements (SRE), upregulating transcription.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392873482_270"
+  },
+  {
+    "pathwayName": "Cholesterol Biosynthesis",
+    "front": "How does AMP-activated protein kinase (AMPK) affect HMG-CoA reductase activity, and what is the physiological rationale?",
+    "back": "AMPK phosphorylates HMG-CoA reductase, inactivating it. This conserves cellular ATP under low-energy states, as cholesterol synthesis is highly energy-expensive.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392873482_271"
+  },
+  {
+    "pathwayName": "Cholesterol Biosynthesis",
+    "front": "How do insulin and glucagon hormonally regulate HMG-CoA reductase activity?",
+    "back": "Insulin promotes dephosphorylation (activation) of HMG-CoA reductase via phosphoprotein phosphatase-1. Glucagon triggers phosphorylation (inactivation) via cAMP/PKA signaling.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392873482_272"
+  },
+  {
+    "pathwayName": "Cholesterol Biosynthesis",
+    "front": "What is the first 30-carbon intermediate in the pathway, and how is it formed from isoprenoid precursors?",
+    "back": "Squalene; it is formed by the head-to-head condensation of two 15-carbon farnesyl pyrophosphate (FPP) molecules, catalyzed by squalene synthase and requiring NADPH.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392873482_273"
+  },
+  {
+    "pathwayName": "Cholesterol Biosynthesis",
+    "front": "What is the first tetracyclic sterol intermediate formed in cholesterol synthesis, and what is its immediate precursor?",
+    "back": "Lanosterol; it is formed by the cyclization of squalene 2,3-epoxide, catalyzed by oxidosqualene:lanosterol cyclase.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392873482_274"
+  },
+  {
+    "pathwayName": "Cholesterol Biosynthesis",
+    "front": "What is the total energetic cost (in terms of Acetyl-CoA, ATP, and NADPH) to synthesize one molecule of cholesterol?",
+    "back": "The synthesis of 1 cholesterol molecule requires 18 Acetyl-CoA, 18 ATP, and 16 NADPH.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392873482_275"
+  },
+  {
+    "pathwayName": "Cholesterol Biosynthesis",
+    "front": "What genetic enzyme deficiency causes Smith-Lemli-Opitz Syndrome (SLOS), and what is the metabolic consequence?",
+    "back": "Deficiency of 7-dehydrocholesterol reductase (DHCR7), which prevents the final reduction step to cholesterol, leading to a accumulation of 7-dehydrocholesterol and a deficiency of cholesterol.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392873482_276"
+  },
+  {
+    "pathwayName": "Cholesterol Biosynthesis",
+    "front": "Why is farnesyl pyrophosphate (FPP) considered a key branch point intermediate in lipid metabolism?",
+    "back": "FPP is a precursor for cholesterol, but also branches off to synthesize Coenzyme Q10 (ubiquinone), dolichol (for glycoprotein synthesis), and provides farnesyl groups for protein prenylation (e.g., Ras activation).",
+    "category": "Lipid",
+    "id": "fc_ai_1785392873482_277"
+  },
+  {
+    "pathwayName": "Cholesterol Biosynthesis",
+    "front": "How does high intracellular sterol concentration accelerate the degradation of HMG-CoA reductase?",
+    "back": "Excess sterols promote the binding of HMG-CoA reductase to Insig proteins in the ER membrane, triggering its ubiquitination by gp78 and subsequent proteasomal degradation (ERAD pathway).",
+    "category": "Lipid",
+    "id": "fc_ai_1785392873482_278"
+  },
+  {
+    "pathwayName": "Cholesterol Biosynthesis",
+    "front": "What are the two parallel pathways that convert the 30-carbon lanosterol to the 27-carbon cholesterol?",
+    "back": "The Bloch pathway (where the C-24 double bond is reduced at the very last step) and the Kandutsch-Russell pathway (where the C-24 double bond is reduced early on).",
+    "category": "Lipid",
+    "id": "fc_ai_1785392873482_279"
+  },
+  {
+    "pathwayName": "Cholesterol Biosynthesis",
+    "front": "How do bile acids feedback-repress cholesterol synthesis via the Farnesoid X Receptor (FXR)?",
+    "back": "Bile acids activate FXR, which induces expression of Small Heterodimer Partner (SHP). SHP represses the transcription of liver receptor homolog-1 (LRH-1), ultimately downregulating CYP7A1 (bile acid synthesis) and reducing SREBP-2 activation.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392873482_280"
+  },
+  {
+    "pathwayName": "Ketogenesis",
+    "front": "What is the rate-limiting enzyme of ketogenesis, and in which organelle and organ does it primarily function?",
+    "back": "Mitochondrial HMG-CoA synthase; it functions primarily in the mitochondria of hepatocytes (liver).",
+    "category": "Lipid",
+    "id": "fc_ai_1785392890199_281"
+  },
+  {
+    "pathwayName": "Ketogenesis",
+    "front": "What is the primary acetyl-CoA source (precursor pathway) that fuels ketogenesis during fasting or starvation?",
+    "back": "Mitochondrial beta-oxidation of long-chain fatty acids.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392890199_282"
+  },
+  {
+    "pathwayName": "Ketogenesis",
+    "front": "Which organ is the primary producer of ketone bodies, and why is this organ unable to utilize them for energy?",
+    "back": "The liver; it lacks the enzyme succinyl-CoA:3-ketoacid CoA-transferase (thiophorase), which is required to activate acetoacetate into acetoacetyl-CoA.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392890199_283"
+  },
+  {
+    "pathwayName": "Ketogenesis",
+    "front": "Name the three ketone bodies produced during ketogenesis, and identify which one is a non-metabolizable volatile waste product.",
+    "back": "Acetoacetate, beta-hydroxybutyrate, and acetone. Acetone is non-metabolizable and is eliminated via exhalation (causing 'fruity' breath).",
+    "category": "Lipid",
+    "id": "fc_ai_1785392890199_284"
+  },
+  {
+    "pathwayName": "Ketogenesis",
+    "front": "How does an elevated NADH/NAD+ ratio (e.g., during active beta-oxidation or ethanol abuse) affect the ratio of ketone bodies produced?",
+    "back": "It shifts the equilibrium toward the production of beta-hydroxybutyrate over acetoacetate, as catalyzed by mitochondrial beta-hydroxybutyrate dehydrogenase.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392890199_285"
+  },
+  {
+    "pathwayName": "Ketogenesis",
+    "front": "What is the reaction catalyzed by HMG-CoA lyase, and what are its products?",
+    "back": "HMG-CoA lyase cleaves mitochondrial 3-hydroxy-3-methylglutaryl-CoA (HMG-CoA) to yield acetoacetate and acetyl-CoA.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392890199_286"
+  },
+  {
+    "pathwayName": "Ketogenesis",
+    "front": "Explain the molecular mechanism by which insulin deficiency in Diabetic Ketoacidosis (DKA) leads to a massive surge in ketogenesis.",
+    "back": "Insulin deficiency disinhibits hormone-sensitive lipase (HSL) in adipose tissue, flooding the liver with free fatty acids. It also reduces malonyl-CoA levels, disinhibiting CPT-1 and allowing rapid entry of fatty acids into mitochondria for beta-oxidation to generate acetyl-CoA.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392890199_287"
+  },
+  {
+    "pathwayName": "Ketogenesis",
+    "front": "Which enzyme catalyzes the initial condensation of two molecules of acetyl-CoA to form acetoacetyl-CoA in the ketogenesis pathway?",
+    "back": "Thiolase (acetoacetyl-CoA thiolase).",
+    "category": "Lipid",
+    "id": "fc_ai_1785392890199_288"
+  },
+  {
+    "pathwayName": "Ketogenesis",
+    "front": "How does malonyl-CoA indirectly regulate ketogenesis?",
+    "back": "Malonyl-CoA inhibits Carnitine Palmitoyltransferase-1 (CPT-1). During fasting (low malonyl-CoA), CPT-1 is active, allowing fatty acids to enter mitochondria for beta-oxidation, supplying the acetyl-CoA needed for ketogenesis.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392890199_289"
+  },
+  {
+    "pathwayName": "Ketogenesis",
+    "front": "How do the cellular localizations of HMG-CoA synthesis differ for ketogenesis versus cholesterol synthesis?",
+    "back": "HMG-CoA for ketogenesis is synthesized in the mitochondria by mitochondrial HMG-CoA synthase. HMG-CoA for cholesterol synthesis is synthesized in the cytosol by cytosolic HMG-CoA synthase.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392890199_290"
+  },
+  {
+    "pathwayName": "Ketogenesis",
+    "front": "What enzyme activates acetoacetate in extrahepatic tissues during ketolysis, and what co-substrate/donor is required?",
+    "back": "Succinyl-CoA:3-ketoacid CoA-transferase (thiophorase); it requires succinyl-CoA as the co-substrate (CoA donor) to form acetoacetyl-CoA and succinate.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392890199_291"
+  },
+  {
+    "pathwayName": "Ketogenesis",
+    "front": "How many molecules of acetyl-CoA are ultimately produced in extrahepatic tissue from the complete breakdown of one molecule of beta-hydroxybutyrate?",
+    "back": "Two molecules of acetyl-CoA (after oxidation to acetoacetate, activation to acetoacetyl-CoA, and cleavage by thiolase).",
+    "category": "Lipid",
+    "id": "fc_ai_1785392890199_292"
+  },
+  {
+    "pathwayName": "Ketogenesis",
+    "front": "How does glucagon signaling upregulate mitochondrial HMG-CoA synthase expression during fasting?",
+    "back": "Glucagon increases cAMP levels, activating PKA, which phosphorylates and activates transcription factors like CREB and PPAR-alpha to increase transcription of the mitochondrial HMG-CoA synthase gene.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392890199_293"
+  },
+  {
+    "pathwayName": "Ketogenesis",
+    "front": "Why is ketogenesis essential for the brain during prolonged starvation (e.g., >3 days)?",
+    "back": "Unlike long-chain fatty acids, ketone bodies can cross the blood-brain barrier. Utilizing ketone bodies reduces the brain's reliance on glucose, sparing muscle proteins from undergoing proteolysis for gluconeogenesis.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392890199_294"
+  },
+  {
+    "pathwayName": "Ketogenesis",
+    "front": "What is the biochemical reason behind hypoglycin A toxicity (Jamaican vomiting sickness) causing a complete block in ketogenesis?",
+    "back": "Hypoglycin A metabolites irreversibly inhibit medium-chain acyl-CoA dehydrogenase (MCAD) and deplete free carnitine/CoA, shutting down beta-oxidation and depriving the liver of acetyl-CoA.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392890199_295"
+  },
+  {
+    "pathwayName": "Eicosanoid Synthesis",
+    "front": "What is the rate-limiting enzyme in eicosanoid synthesis, and what reaction does it catalyze?",
+    "back": "Phospholipase A2 (PLA2). It hydrolyzes membrane phospholipids (primarily phosphatidylcholine or phosphatidylinositol) at the sn-2 position to release arachidonic acid.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392911269_296"
+  },
+  {
+    "pathwayName": "Eicosanoid Synthesis",
+    "front": "How do glucocorticoids (corticosteroids) pharmacologically inhibit the rate-limiting step of eicosanoid synthesis?",
+    "back": "Glucocorticoids induce the synthesis of annexin A1 (lipocortin), a protein that directly inhibits Phospholipase A2 (PLA2), preventing the liberation of arachidonic acid.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392911269_297"
+  },
+  {
+    "pathwayName": "Eicosanoid Synthesis",
+    "front": "By what biochemical mechanism does Aspirin (acetylsalicylic acid) uniquely inhibit COX-1 and COX-2 compared to other NSAIDs?",
+    "back": "Aspirin covalently and irreversibly acetylates a specific serine residue in the active site of COX-1 (Ser-529) and COX-2 (Ser-516), stericly hindering arachidonic acid binding.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392911269_298"
+  },
+  {
+    "pathwayName": "Eicosanoid Synthesis",
+    "front": "Contrast the expression and physiological roles of Cyclooxygenase-1 (COX-1) and Cyclooxygenase-2 (COX-2).",
+    "back": "COX-1 is constitutively expressed in most tissues (involved in gastric cytoprotection, renal blood flow, and platelet aggregation). COX-2 is inducible by cytokines and inflammatory mediators (involved in pain, fever, and inflammation).",
+    "category": "Lipid",
+    "id": "fc_ai_1785392911269_299"
+  },
+  {
+    "pathwayName": "Eicosanoid Synthesis",
+    "front": "Explain the biochemical basis for the increased cardiovascular risk associated with selective COX-2 inhibitors (e.g., celecoxib).",
+    "back": "Selective COX-2 inhibition reduces endothelial prostacyclin (PGI2, a vasodilator and platelet inhibitor) but does not inhibit platelet COX-1-derived thromboxane A2 (TXA2, a vasoconstrictor and platelet aggregator), leading to a pro-thrombotic state.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392911269_300"
+  },
+  {
+    "pathwayName": "Eicosanoid Synthesis",
+    "front": "Which enzyme converts arachidonic acid to 5-hydroperoxyeicosatetraenoic acid (5-HPETE) as the committed step of leukotriene synthesis, and what accessory protein does it require?",
+    "back": "5-Lipoxygenase (5-LOX). It requires 5-lipoxygenase-activating protein (FLAP) to localize to the nuclear membrane and bind arachidonic acid.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392911269_301"
+  },
+  {
+    "pathwayName": "Eicosanoid Synthesis",
+    "front": "What is the clinical indication and molecular target of the drug Zileuton?",
+    "back": "Zileuton is used for the prophylaxis and chronic treatment of asthma. It is a selective inhibitor of 5-Lipoxygenase (5-LOX), preventing the synthesis of all leukotrienes.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392911269_302"
+  },
+  {
+    "pathwayName": "Eicosanoid Synthesis",
+    "front": "What is the mechanism of action of Montelukast and Zafirlukast in the management of asthma?",
+    "back": "They are selective, competitive antagonists of the cysteinyl leukotriene receptor 1 (CysLT1), blocking the actions of LTC4, LTD4, and LTE4 (bronchoconstriction, airway edema, and mucus secretion).",
+    "category": "Lipid",
+    "id": "fc_ai_1785392911269_303"
+  },
+  {
+    "pathwayName": "Eicosanoid Synthesis",
+    "front": "Which leukotriene serves as a highly potent chemoattractant for neutrophils and plays a key role in chronic inflammatory states like psoriasis and inflammatory bowel disease?",
+    "back": "Leukotriene B4 (LTB4), which is synthesized from Leukotriene A4 (LTA4) via the enzyme LTA4 hydrolase.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392911269_304"
+  },
+  {
+    "pathwayName": "Eicosanoid Synthesis",
+    "front": "Explain the bifunctional enzymatic activities of Prostaglandin Endoperoxide Synthase (PGHS/COX).",
+    "back": "PGHS possesses two activities: 1) Cyclooxygenase activity, which cyclizes arachidonic acid and adds two molecules of O2 to form PGG2. 2) Peroxidase activity, which reduces PGG2 to PGH2 using two electrons from a donor (e.g., glutathione).",
+    "category": "Lipid",
+    "id": "fc_ai_1785392911269_305"
+  },
+  {
+    "pathwayName": "Eicosanoid Synthesis",
+    "front": "Which specific fatty acid is the primary precursor for the synthesis of the 2-series prostaglandins/thromboxanes and 4-series leukotrienes, and what is its chemical notation?",
+    "back": "Arachidonic acid (all-cis-5,8,11,14-eicosatetraenoic acid; 20:4 n-6).",
+    "category": "Lipid",
+    "id": "fc_ai_1785392911269_306"
+  },
+  {
+    "pathwayName": "Eicosanoid Synthesis",
+    "front": "What therapeutic prostaglandin analog is administered to maintain a patent ductus arteriosus in newborns awaiting surgery for congenital heart defects, and what is its target receptor type?",
+    "back": "Alprostadil (a synthetic Prostaglandin E1 [PGE1] analog). It binds to EP2 and EP4 GPCRs, activating Gs to increase cAMP, leading to ductus arteriosus smooth muscle relaxation.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392911269_307"
+  },
+  {
+    "pathwayName": "Eicosanoid Synthesis",
+    "front": "Which class of enzymes metabolizes arachidonic acid into Epoxyeicosatrienoic acids (EETs), and what are the major physiological properties of EETs?",
+    "back": "Cytochrome P450 (CYP) epoxygenases (mainly CYP2C and CYP2J). EETs promote vasodilation, are anti-inflammatory, and protect cardiac tissue from ischemic injury.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392911269_308"
+  },
+  {
+    "pathwayName": "Eicosanoid Synthesis",
+    "front": "How does low-dose aspirin therapy selectively deplete platelet Thromboxane A2 (TXA2) while sparing vascular Prostacyclin (PGI2) synthesis over time?",
+    "back": "Platelets lack nuclei and cannot synthesize new COX-1 enzymes after irreversible inhibition by aspirin. Endothelial cells have nuclei and can synthesize new COX-1 and COX-2 enzymes to restore PGI2 production.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392911269_309"
+  },
+  {
+    "pathwayName": "Eicosanoid Synthesis",
+    "front": "Which eicosanoid is synthesized by vascular endothelial cells to inhibit platelet aggregation and promote vasodilation, and which intracellular second messenger does it elevate?",
+    "back": "Prostacyclin (PGI2). It binds to the IP receptor (a Gs-coupled receptor), activating adenylyl cyclase to elevate intracellular cyclic AMP (cAMP).",
+    "category": "Lipid",
+    "id": "fc_ai_1785392911269_310"
+  },
+  {
+    "pathwayName": "Sphingolipid Synthesis",
+    "front": "What is the rate-limiting enzyme in de novo sphingolipid synthesis, and what are its two initial substrates?",
+    "back": "Serine palmitoyltransferase (SPT); its substrates are L-serine and palmitoyl-CoA.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392928449_311"
+  },
+  {
+    "pathwayName": "Sphingolipid Synthesis",
+    "front": "Which vitamin-derived cofactor is obligatorily required by serine palmitoyltransferase (SPT) to catalyze the first step of sphingolipid synthesis?",
+    "back": "Pyridoxal phosphate (PLP / Vitamin B6).",
+    "category": "Lipid",
+    "id": "fc_ai_1785392928449_312"
+  },
+  {
+    "pathwayName": "Sphingolipid Synthesis",
+    "front": "What is the immediate product formed from the condensation of palmitoyl-CoA and L-serine by serine palmitoyltransferase?",
+    "back": "3-ketosphinganine (3-dehydrosphinganine).",
+    "category": "Lipid",
+    "id": "fc_ai_1785392928449_313"
+  },
+  {
+    "pathwayName": "Sphingolipid Synthesis",
+    "front": "Which reducing equivalent is required by 3-ketosphinganine reductase to convert 3-ketosphinganine to sphinganine?",
+    "back": "NADPH.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392928449_314"
+  },
+  {
+    "pathwayName": "Sphingolipid Synthesis",
+    "front": "Which enzyme catalyzes the N-acylation of sphinganine to form dihydroceramide, and what is the acyl donor?",
+    "back": "Ceramide synthase (dihydroceramide synthase); the acyl donor is fatty acyl-CoA.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392928449_315"
+  },
+  {
+    "pathwayName": "Sphingolipid Synthesis",
+    "front": "Which mycotoxin, commonly found in contaminated corn, potently inhibits ceramide synthase, leading to toxic accumulation of sphinganine?",
+    "back": "Fumonisin B1.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392928449_316"
+  },
+  {
+    "pathwayName": "Sphingolipid Synthesis",
+    "front": "How is dihydroceramide converted to active ceramide, and what enzyme/cofactors are involved?",
+    "back": "Desaturation (introduction of a double bond at C4-C5) by dihydroceramide desaturase, requiring oxygen and NADPH.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392928449_317"
+  },
+  {
+    "pathwayName": "Sphingolipid Synthesis",
+    "front": "In the synthesis of sphingomyelin from ceramide, what molecule serves as the donor for the phosphocholine head group, and what is the byproduct?",
+    "back": "Phosphatidylcholine serves as the donor; diacylglycerol (DAG) is released as the byproduct.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392928449_318"
+  },
+  {
+    "pathwayName": "Sphingolipid Synthesis",
+    "front": "What activated sugar nucleotide donor is utilized by galactosylceramide synthase to produce major myelin-stabilizing galactosylceramides?",
+    "back": "UDP-galactose.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392928449_319"
+  },
+  {
+    "pathwayName": "Sphingolipid Synthesis",
+    "front": "What enzyme initiates the biosynthesis of complex neutral glycosphingolipids and gangliosides by attaching a glucose molecule to ceramide?",
+    "back": "Glucosylceramide synthase (using UDP-glucose).",
+    "category": "Lipid",
+    "id": "fc_ai_1785392928449_320"
+  },
+  {
+    "pathwayName": "Sphingolipid Synthesis",
+    "front": "Which fungal metabolite is a potent, highly specific inhibitor of serine palmitoyltransferase (SPT) used as a tool in lipid research?",
+    "back": "Myriocin.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392928449_321"
+  },
+  {
+    "pathwayName": "Sphingolipid Synthesis",
+    "front": "What acidic, nine-carbon sugar must be added to a glucosylceramide-derived oligosaccharide chain to classify the resulting sphingolipid as a ganglioside?",
+    "back": "N-acetylneuraminic acid (NANA / sialic acid), donated by CMP-NANA.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392928449_322"
+  },
+  {
+    "pathwayName": "Sphingolipid Synthesis",
+    "front": "Where in the cell does de novo ceramide synthesis begin, and where must ceramide be transported for conversion into sphingomyelin?",
+    "back": "De novo synthesis begins in the endoplasmic reticulum (ER); ceramide is then transported (via the CERT protein) to the Golgi apparatus for sphingomyelin synthesis.",
+    "category": "Lipid",
+    "id": "fc_ai_1785392928449_323"
+  },
+  {
+    "pathwayName": "Sphingolipid Synthesis",
+    "front": "In addition to structural membrane functions, what critical cell-signaling pathways are activated by free intracellular ceramide accumulation?",
+    "back": "Apoptosis, senescence, and cell cycle arrest (acting as a key pro-apoptotic second messenger).",
+    "category": "Lipid",
+    "id": "fc_ai_1785392928449_324"
+  },
+  {
+    "pathwayName": "Sphingolipid Synthesis",
+    "front": "What activated sulfate donor is required by cerebroside sulfotransferase to convert galactosylceramide into sulfatide?",
+    "back": "3'-Phosphoadenosine-5'-phosphosulfate (PAPS).",
+    "category": "Lipid",
+    "id": "fc_ai_1785392928449_325"
+  },
+  {
+    "pathwayName": "DNA Replication",
+    "front": "Which enzyme is responsible for unwinding the double helix at the replication fork, and which genetic disease is caused by a mutation in a RecQ helicase family member?",
+    "back": "Helicase (unwinds DNA using ATP hydrolysis). Mutations in RecQ helicases lead to Bloom syndrome (BLM mutation) or Werner syndrome (WRN mutation), which are characterized by genomic instability, premature aging, and predisposition to cancer.",
+    "category": "Genetics",
+    "id": "fc_ai_1785392950352_326"
+  },
+  {
+    "pathwayName": "DNA Replication",
+    "front": "Why is RNA primase required for DNA replication, and what is its unique enzymatic activity?",
+    "back": "DNA polymerases cannot initiate synthesis de novo and require a free 3'-OH group to attach nucleotides. RNA primase is an RNA polymerase that can synthesize a short RNA primer (~10 nucleotides) complementary to the DNA template without requiring a pre-existing 3'-OH.",
+    "category": "Genetics",
+    "id": "fc_ai_1785392950352_327"
+  },
+  {
+    "pathwayName": "DNA Replication",
+    "front": "What are the primary differences in the exonuclease activities of prokaryotic DNA Polymerase III and DNA Polymerase I?",
+    "back": "DNA Polymerase III has only 3' to 5' exonuclease activity (used for proofreading). DNA Polymerase I has both 3' to 5' exonuclease activity (proofreading) and 5' to 3' exonuclease activity (used to remove RNA primers and replace them with DNA).",
+    "category": "Genetics",
+    "id": "fc_ai_1785392950352_328"
+  },
+  {
+    "pathwayName": "DNA Replication",
+    "front": "What is the mechanism of action of fluoroquinolone antibiotics (e.g., ciprofloxacin) during bacterial DNA replication?",
+    "back": "Fluoroquinolones inhibit bacterial Type II topoisomerases (DNA gyrase and Topoisomerase IV). This prevents the relaxation of supercoils ahead of the replication fork and blocks the resealing of DNA strands, leading to double-stranded DNA breaks and bacterial cell death.",
+    "category": "Genetics",
+    "id": "fc_ai_1785392950352_329"
+  },
+  {
+    "pathwayName": "DNA Replication",
+    "front": "Which eukaryotic anti-neoplastic drugs target Topoisomerase I, and which target Topoisomerase II?",
+    "back": "Topoisomerase I is inhibited by irinotecan and topotecan (camptothecin analogs). Topoisomerase II is inhibited by etoposide and teniposide, as well as anthracyclines (e.g., doxorubicin).",
+    "category": "Genetics",
+    "id": "fc_ai_1785392950352_330"
+  },
+  {
+    "pathwayName": "DNA Replication",
+    "front": "What is the function of Single-Strand DNA-Binding Proteins (SSBs) in prokaryotes (or Replication Protein A [RPA] in eukaryotes) during DNA replication?",
+    "back": "They bind to single-stranded DNA (ssDNA) exposed by helicase. This prevents the DNA strands from reannealing (forming double-stranded structures) and protects the fragile ssDNA from nucleolytic degradation.",
+    "category": "Genetics",
+    "id": "fc_ai_1785392950352_331"
+  },
+  {
+    "pathwayName": "DNA Replication",
+    "front": "What reaction does DNA ligase catalyze, and what energy source does it utilize in eukaryotes versus prokaryotes?",
+    "back": "DNA ligase catalyzes the formation of a phosphodiester bond between the 3'-OH of one DNA fragment and the 5'-phosphate of an adjacent fragment (sealing nicks). Eukaryotic DNA ligase uses ATP as an energy source, whereas prokaryotic DNA ligases typically use NAD+.",
+    "category": "Genetics",
+    "id": "fc_ai_1785392950352_332"
+  },
+  {
+    "pathwayName": "DNA Replication",
+    "front": "What is the composition and function of telomerase, and why is it a key target in cancer therapeutics?",
+    "back": "Telomerase is a ribonucleoprotein containing an RNA template (TERC) and a reverse transcriptase catalytic subunit (TERT). It extends telomeres at chromosome ends. Overactive in >85% of cancer cells, it grants them replicative immortality; inhibiting it triggers cellular senescence.",
+    "category": "Genetics",
+    "id": "fc_ai_1785392950352_333"
+  },
+  {
+    "pathwayName": "DNA Replication",
+    "front": "What is the thermodynamic and enzymatic mechanism of the \"proofreading\" function during DNA replication?",
+    "back": "High fidelity is maintained by the 3' to 5' exonuclease activity of replicative DNA polymerases. If an incorrect nucleotide is incorporated, the mismatched 3'-OH terminus misaligns in the polymerase active site, shifting the DNA to the exonuclease active site for hydrolytic removal.",
+    "category": "Genetics",
+    "id": "fc_ai_1785392950352_334"
+  },
+  {
+    "pathwayName": "DNA Replication",
+    "front": "How does the antiviral drug Acyclovir selectively inhibit viral DNA replication in Herpes Simplex Virus (HSV) infections?",
+    "back": "Acyclovir is a guanosine analog that must be monophosphorylated by viral thymidine kinase (ensuring selectivity for infected cells). Host kinases convert it to acyclovir triphosphate, which acts as a competitive inhibitor and obligate chain terminator of HSV DNA polymerase.",
+    "category": "Genetics",
+    "id": "fc_ai_1785392950352_335"
+  },
+  {
+    "pathwayName": "DNA Replication",
+    "front": "What is the mechanism of action of Zidovudine (AZT) in HIV therapy, and what causes its prominent clinical side effects like myopathy?",
+    "back": "AZT (zidovudine) is a thymidine analog that inhibits HIV reverse transcriptase by causing chain termination. Its clinical toxicity (e.g., myopathy, anemia) is caused by off-target cross-reactivity and inhibition of host mitochondrial DNA Polymerase Gamma.",
+    "category": "Genetics",
+    "id": "fc_ai_1785392950352_336"
+  },
+  {
+    "pathwayName": "DNA Replication",
+    "front": "What are the distinct, specialized roles of eukaryotic DNA Polymerase alpha, delta, and epsilon?",
+    "back": "DNA Polymerase alpha associates with primase to initiate replication. DNA Polymerase epsilon synthesizes the leading strand continuously. DNA Polymerase delta synthesizes the lagging strand (Okazaki fragments) discontinuously.",
+    "category": "Genetics",
+    "id": "fc_ai_1785392950352_337"
+  },
+  {
+    "pathwayName": "DNA Replication",
+    "front": "How is DNA replication restricted to occurring exactly once per cell cycle in eukaryotic cells?",
+    "back": "Via replication licensing. During late M/early G1, the Prereplication Complex (Pre-RC), containing MCM helicase, is assembled on DNA. At S-phase onset, cyclin-dependent kinases (CDKs) activate replication but simultaneously phosphorylate and inactivate Pre-RC proteins, preventing re-licensing.",
+    "category": "Genetics",
+    "id": "fc_ai_1785392950352_338"
+  },
+  {
+    "pathwayName": "DNA Replication",
+    "front": "What is the role of PCNA (Proliferating Cell Nuclear Antigen) in eukaryotic DNA replication, and what is its clinical utility in pathology?",
+    "back": "PCNA is a homotrimeric sliding clamp that enhances the processivity of DNA polymerases delta and epsilon by preventing them from dissociating from the template strand. Clinically, PCNA immunohistochemistry is used as a diagnostic marker for cell proliferation in tumor biopsies.",
+    "category": "Genetics",
+    "id": "fc_ai_1785392950352_339"
+  },
+  {
+    "pathwayName": "DNA Replication",
+    "front": "What enzyme catalyzes the rate-limiting step in producing the deoxyribonucleotides (dNTPs) required for DNA replication, and what drug inhibits it?",
+    "back": "Ribonucleotide Reductase (RNR), which reduces ribonucleoside diphosphates (NDPs) to deoxyribonucleoside diphosphates (dNDPs). It is pharmacologically inhibited by Hydroxyurea, which is used to treat sickle cell disease, polycythemia vera, and certain cancers.",
+    "category": "Genetics",
+    "id": "fc_ai_1785392950352_340"
+  },
+  {
+    "pathwayName": "Translation",
+    "front": "What enzyme catalyzes the attachment of an amino acid to its cognate tRNA, and what high-energy molecule drives this reaction?",
+    "back": "Aminoacyl-tRNA synthetase; it drives the reaction using ATP (hydrolyzed to AMP + PPi, equivalent to 2 high-energy phosphate bonds).",
+    "category": "Genetics",
+    "id": "fc_ai_1785392971562_341"
+  },
+  {
+    "pathwayName": "Translation",
+    "front": "What is the role of the eukaryotic translation initiation factor eIF2, and how is it regulated during cellular stress?",
+    "back": "eIF2 binds GTP and the initiator Met-tRNA to the 40S ribosomal subunit. Under cellular stress (such as viral infection or amino acid deprivation), kinases phosphorylate eIF2, inactivating it and globally halting translation initiation.",
+    "category": "Genetics",
+    "id": "fc_ai_1785392971562_342"
+  },
+  {
+    "pathwayName": "Translation",
+    "front": "How do the initiation amino acids differ between prokaryotic and eukaryotic translation?",
+    "back": "Prokaryotes use N-formylmethionine (fMet), which can act as a chemotactic factor for human neutrophils. Eukaryotes use unmodified methionine (Met).",
+    "category": "Genetics",
+    "id": "fc_ai_1785392971562_343"
+  },
+  {
+    "pathwayName": "Translation",
+    "front": "What is the prokaryotic sequence on mRNA that aligns the ribosome with the start codon, and what ribosomal component does it pair with?",
+    "back": "The Shine-Dalgarno sequence; it base-pairs with the complementary 16S rRNA sequence of the 30S ribosomal subunit.",
+    "category": "Genetics",
+    "id": "fc_ai_1785392971562_344"
+  },
+  {
+    "pathwayName": "Translation",
+    "front": "What ribosome-associated enzymatic activity catalyzes peptide bond formation, and what molecule carries out this catalysis?",
+    "back": "Peptidyl transferase; it is a ribozyme (RNA-based enzyme) located in the large ribosomal subunit (23S rRNA in prokaryotes, 28S rRNA in eukaryotes).",
+    "category": "Genetics",
+    "id": "fc_ai_1785392971562_345"
+  },
+  {
+    "pathwayName": "Translation",
+    "front": "Calculate the total number of high-energy phosphate bonds required to synthesize a peptide of 'N' amino acids, starting from free amino acids.",
+    "back": "4N high-energy bonds. Breakdown per amino acid: 2 ATP equivalents for tRNA charging (ATP -> AMP + PPi), 1 GTP for aminoacyl-tRNA binding to the A-site (via EF-Tu/eEF1A), and 1 GTP for translocation (via EF-G/eEF2).",
+    "category": "Genetics",
+    "id": "fc_ai_1785392971562_346"
+  },
+  {
+    "pathwayName": "Translation",
+    "front": "What is the mechanism of action of Aminoglycoside antibiotics (e.g., gentamicin, neomycin) in bacterial translation?",
+    "back": "They bind irreversibly to the 30S ribosomal subunit, causing conformational changes that lead to misreading of mRNA and the synthesis of nonfunctional or toxic proteins.",
+    "category": "Genetics",
+    "id": "fc_ai_1785392971562_347"
+  },
+  {
+    "pathwayName": "Translation",
+    "front": "How do Tetracyclines selectively inhibit bacterial translation?",
+    "back": "They reversibly bind to the 30S ribosomal subunit and physically block the access of incoming aminoacyl-tRNAs to the ribosomal A-site, preventing translation elongation.",
+    "category": "Genetics",
+    "id": "fc_ai_1785392971562_348"
+  },
+  {
+    "pathwayName": "Translation",
+    "front": "What is the molecular mechanism of Macrolide antibiotics (e.g., erythromycin, azithromycin) and Clindamycin?",
+    "back": "They bind to the 50S ribosomal subunit (specifically the 23S rRNA) and inhibit translocation by blocking the polypeptide exit tunnel, causing premature dissociation of peptidyl-tRNA.",
+    "category": "Genetics",
+    "id": "fc_ai_1785392971562_349"
+  },
+  {
+    "pathwayName": "Translation",
+    "front": "Which translation elongation factor is targeted by Diptheria toxin and Pseudomonas Exotoxin A, and by what mechanism?",
+    "back": "Eukaryotic Elongation Factor 2 (eEF-2). Both toxins catalyze the ADP-ribosylation of a post-translationally modified histidine residue (diphthamide) on eEF-2, irreversibly halting translation translocation.",
+    "category": "Genetics",
+    "id": "fc_ai_1785392971562_350"
+  },
+  {
+    "pathwayName": "Translation",
+    "front": "What is the mechanism of action of Chloramphenicol, and why is its clinical use highly restricted?",
+    "back": "It inhibits peptidyl transferase activity of the bacterial 50S subunit. Its use is limited due to severe toxicities like bone marrow suppression (aplastic anemia) and Gray Baby Syndrome, caused by the cross-inhibition of mitochondrial 55S ribosomes.",
+    "category": "Genetics",
+    "id": "fc_ai_1785392971562_351"
+  },
+  {
+    "pathwayName": "Translation",
+    "front": "What is the mechanism of action of Linezolid (an oxazolidinone class antibiotic)?",
+    "back": "It binds to the 50S subunit (specifically the 23S rRNA) and prevents the formation of the functional 70S initiation complex, thereby inhibiting the initiation phase of translation.",
+    "category": "Genetics",
+    "id": "fc_ai_1785392971562_352"
+  },
+  {
+    "pathwayName": "Translation",
+    "front": "How does the plant toxin Ricin (found in castor beans) inactivate eukaryotic ribosomes?",
+    "back": "Ricin is a ribosome-inactivating protein (RIP) that acts as an N-glycosidase, depurinating a specific adenine residue in the 28S rRNA of the 60S subunit, permanently preventing elongation factor binding.",
+    "category": "Genetics",
+    "id": "fc_ai_1785392971562_353"
+  },
+  {
+    "pathwayName": "Translation",
+    "front": "What recognizes stop codons (UAA, UAG, UGA) during translation termination, and how does this affect the nascent peptide?",
+    "back": "Release Factors (RFs) recognize stop codons instead of tRNAs. They bind to the A-site and activate peptidyl transferase to hydrolyze the ester bond between the peptide chain and tRNA, releasing the finished protein.",
+    "category": "Genetics",
+    "id": "fc_ai_1785392971562_354"
+  },
+  {
+    "pathwayName": "Translation",
+    "front": "What is the function of Eukaryotic Initiation Factor 4E (eIF4E) in translation, and how is its activity regulated by insulin?",
+    "back": "eIF4E binds to the 5'-methylguanosine cap of mRNA. Insulin activates the mTOR pathway, which phosphorylates 4E-BP (eIF4E-binding protein), releasing active eIF4E to initiate translation.",
+    "category": "Genetics",
+    "id": "fc_ai_1785392971562_355"
   }
 ]
