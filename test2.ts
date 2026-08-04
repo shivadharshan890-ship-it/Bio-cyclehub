@@ -18,7 +18,7 @@ async function test() {
       model: 'gemini-3.5-flash',
       contents: "Hello",
     });
-    console.log("Success:", response.text());
+    console.log("Success:", response.text);
   } catch (e: any) {
     console.log("Error:", e.message || e);
   }
