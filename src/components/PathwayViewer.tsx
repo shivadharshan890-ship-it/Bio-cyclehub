@@ -249,8 +249,8 @@ const getLayoutedElements = (reactions: ReactionNode[], isCycle: boolean, curren
         sourceHandle: 'main-source',
         type: isCycle ? 'bezier' : 'smoothstep',
         animated: isActive || currentStep > r.step,
-        style: { stroke: (isActive || currentStep > r.step) ? '#06b6d4' : '#1e293b', strokeWidth: (isActive || currentStep > r.step) ? 4 : 2 },
-        markerEnd: { type: MarkerType.ArrowClosed, color: (isActive || currentStep > r.step) ? '#06b6d4' : '#1e293b' }
+        style: { stroke: (isActive || currentStep > r.step) ? '#06b6d4' : '#475569', strokeWidth: (isActive || currentStep > r.step) ? 6 : 4 },
+        markerEnd: { type: MarkerType.ArrowClosed, color: (isActive || currentStep > r.step) ? '#06b6d4' : '#475569' }
       });
     }
   });
@@ -264,15 +264,15 @@ const getLayoutedElements = (reactions: ReactionNode[], isCycle: boolean, curren
       sourceHandle: 'final-source',
       type: 'bezier',
       animated: currentStep === 0 || currentStep === reactions.length,
-      style: { stroke: (currentStep === 0 || currentStep === reactions.length) ? '#06b6d4' : '#1e293b', strokeWidth: (currentStep === 0 || currentStep === reactions.length) ? 4 : 2 },
-      markerEnd: { type: MarkerType.ArrowClosed, color: (currentStep === 0 || currentStep === reactions.length) ? '#06b6d4' : '#1e293b' }
+      style: { stroke: (currentStep === 0 || currentStep === reactions.length) ? '#06b6d4' : '#475569', strokeWidth: (currentStep === 0 || currentStep === reactions.length) ? 6 : 4 },
+      markerEnd: { type: MarkerType.ArrowClosed, color: (currentStep === 0 || currentStep === reactions.length) ? '#06b6d4' : '#475569' }
     });
   }
 
   // 2. Apply Layout
   if (isCycle) {
     // CIRCULAR LAYOUT (Mathematical)
-    const radius = reactions.length * 60; // Scale radius based on steps
+    const radius = reactions.length * 80; // Scale radius based on steps
     const center = { x: 0, y: 0 };
     
     nodes.forEach((n, idx) => {
@@ -294,7 +294,7 @@ const getLayoutedElements = (reactions: ReactionNode[], isCycle: boolean, curren
     // LINEAR LAYOUT (Dagre)
     const dagreGraph = new dagre.graphlib.Graph();
     dagreGraph.setDefaultEdgeLabel(() => ({}));
-    dagreGraph.setGraph({ rankdir: 'TB', nodesep: 100, ranksep: 100 }); // Top to Bottom
+    dagreGraph.setGraph({ rankdir: 'TB', nodesep: 100, ranksep: 200 }); // Top to Bottom
 
     nodes.forEach(node => {
       dagreGraph.setNode(node.id, { width: 300, height: 250 });

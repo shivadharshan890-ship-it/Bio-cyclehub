@@ -21,7 +21,8 @@ import {
   User,
   LogOut,
   Settings,
-  HelpCircle
+  HelpCircle,
+  Stethoscope
 } from "lucide-react";
 
 export default function Header() {
@@ -42,6 +43,7 @@ export default function Header() {
     { name: "Quizzes", href: "/quiz", icon: CheckSquare },
     { name: "Flashcards", href: "/flashcards", icon: Layers },
     { name: "Study Notes", href: "/notes", icon: BookOpen },
+    { name: "Diseases", href: "/diseases", icon: Stethoscope },
     { name: "Help Center", href: "/help", icon: HelpCircle },
   ];
 
