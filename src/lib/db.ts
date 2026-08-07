@@ -470,7 +470,19 @@ export const dbService = {
       badges: [],
       weeklyActivity: [0, 0, 0, 0, 0, 0, 0],
     };
-    return getStoredData(progressKey, initialProgress);
+    const stored = getStoredData(progressKey, null);
+    if (!stored) return initialProgress;
+
+    return {
+      userId: stored.userId || initialProgress.userId,
+      xp: stored.xp || 0,
+      streak: stored.streak || 0,
+      lastActive: stored.lastActive || initialProgress.lastActive,
+      completedPathways: stored.completedPathways || [],
+      quizScores: stored.quizScores || [],
+      badges: stored.badges || [],
+      weeklyActivity: stored.weeklyActivity || [0, 0, 0, 0, 0, 0, 0],
+    };
   },
 
   saveUserProgress: (userId: string, progress: any): void => {

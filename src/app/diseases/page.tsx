@@ -34,98 +34,131 @@ const diseaseTopics = [
 
 const diseaseData: Record<string, { name: string; desc: string }[]> = {
   "Glycolysis": [
-    { name: "Pyruvate Kinase Deficiency", desc: "Causes chronic hemolytic anemia due to lack of ATP in red blood cells." },
-    { name: "Tarui Disease (GSD Type VII)", desc: "Phosphofructokinase-1 (PFK-1) deficiency causing exercise-induced muscle cramps and weakness." }
+    { name: "Pyruvate Kinase Deficiency", desc: "The most common glycolytic enzyme defect, causing chronic non-spherocytic hemolytic anemia because red blood cells lack mitochondria and rely solely on glycolysis for ATP to maintain cell membrane integrity." },
+    { name: "Phosphofructokinase Deficiency (Tarui Disease / Glycogen Storage Disease VII)", desc: "Impairs glycolysis in skeletal muscle and erythrocytes, causing muscle cramping, exertional rhabdomyolysis, and mild hemolysis." },
+    { name: "Hexokinase Deficiency", desc: "Causes severe congenital hemolytic anemia." },
+    { name: "Triosephosphate Isomerase (TPI) Deficiency", desc: "Leads to severe hemolytic anemia accompanied by progressive neurological dysfunction and recurrent infections." }
   ],
   "Krebs cycle (TCA cycle)": [
-    { name: "Fumarase Deficiency", desc: "Severe encephalopathy, seizures, and developmental delay due to impaired TCA cycle." }
+    { name: "Fumarase Deficiency (Fumaric Aciduria)", desc: "A severe neurodevelopmental disorder causing encephalopathy, seizures, hypotonia, and brain malformations in infants, as well as hereditary leiomyomatosis and renal cell cancer in heterozygous adults." },
+    { name: "Succinate Dehydrogenase (SDH) Deficiency", desc: "Impairs Complex II of the electron transport chain, causing Leigh syndrome or familial paragangliomas and pheochromocytomas." },
+    { name: "Isocitrate Dehydrogenase (IDH1/IDH2) Mutations", desc: "Somatic gain-of-function mutations produce the oncometabolite 2-hydroxyglutarate, driving gliomas and acute myeloid leukemia (AML)." }
   ],
   "Gluconeogenesis": [
-    { name: "Von Gierke Disease (GSD Type I)", desc: "Glucose-6-phosphatase deficiency causing severe fasting hypoglycemia, lactic acidosis, hepatomegaly, and hyperuricemia." }
+    { name: "Glucose-6-Phosphatase Deficiency (Von Gierke Disease / GSD Ia)", desc: "Blocks the final step of gluconeogenesis and glycogenolysis, causing severe fasting hypoglycemia, lactic acidosis, hyperuricemia, and hyperlipidemia." },
+    { name: "Fructose-1,6-Bisphosphatase Deficiency", desc: "Prevents glucose generation from lactate, alanine, and glycerol, leading to episodic fasting hypoglycemia and lactic acidosis precipitated by fasting or fever." },
+    { name: "Pyruvate Carboxylase Deficiency", desc: "Impairs the conversion of pyruvate to oxaloacetate, causing infantile lactic acidosis, hyperammonemia, and severe developmental delay." }
   ],
   "Pentose phosphate pathway": [
-    { name: "G6PD Deficiency", desc: "X-linked recessive disorder causing episodic hemolytic anemia due to oxidative stress (e.g., fava beans, antimalarials)." },
-    { name: "Wernicke-Korsakoff Syndrome", desc: "Thiamine (B1) deficiency impairing transketolase, causing confusion, ataxia, and memory loss." }
+    { name: "Glucose-6-Phosphate Dehydrogenase (G6PD) Deficiency", desc: "An X-linked disorder impairing NADPH production in erythrocytes, leaving them vulnerable to oxidative stress and causing acute hemolytic anemia (with Heinz bodies) after exposure to infections, fava beans, or oxidative drugs." },
+    { name: "Transaldolase Deficiency", desc: "A defect in the non-oxidative branch causing early-onset liver dysfunction, splenomegaly, thrombocytopenia, and dysmorphic features." },
+    { name: "Ribose-5-Phosphate Isomerase Deficiency", desc: "A rare condition presenting with leukoencephalopathy, peripheral neuropathy, and psychomotor regression." }
   ],
   "Glycogenesis": [
-    { name: "Andersen Disease (GSD Type IV)", desc: "Branching enzyme deficiency leading to accumulation of abnormal glycogen, causing cirrhosis and early death." }
+    { name: "Glycogen Synthase Deficiency (GSD Type 0)", desc: "Prevents glycogen storage in the liver, leading to fasting hypoglycemia accompanied by postprandial hyperglycemia and hyperlactatemia." },
+    { name: "Branching Enzyme Deficiency (Andersen Disease / GSD IV)", desc: "Produces abnormal, poorly branched glycogen (polyglucosan bodies) that triggers an immune response, causing progressive infantile liver cirrhosis and cardiomyopathy." }
   ],
   "Glycogenolysis": [
-    { name: "McArdle Disease (GSD Type V)", desc: "Skeletal muscle glycogen phosphorylase deficiency causing muscle cramps and myoglobinuria with strenuous exercise." },
-    { name: "Pompe Disease (GSD Type II)", desc: "Lysosomal alpha-1,4-glucosidase deficiency leading to severe cardiomegaly and early death." },
-    { name: "Cori Disease (GSD Type III)", desc: "Debranching enzyme deficiency causing milder fasting hypoglycemia and hepatomegaly." }
+    { name: "Lysosomal Acid Alpha-Glucosidase Deficiency (Pompe Disease / GSD II)", desc: "Lysosomal accumulation of glycogen leads to severe hypertrophic cardiomyopathy and generalized muscle weakness." },
+    { name: "Debranching Enzyme Deficiency (Cori / Forbes Disease / GSD III)", desc: "Accumulation of limit-dextrin glycogen causes hepatomegaly, fasting hypoglycemia, and variable skeletal muscle weakness." },
+    { name: "Muscle Glycogen Phosphorylase Deficiency (McArdle Disease / GSD V)", desc: "Selectively impairs muscle glycogen breakdown, causing painful exercise intolerance, muscle cramping, and myoglobinuria." },
+    { name: "Liver Glycogen Phosphorylase Deficiency (Hers Disease / GSD VI)", desc: "Causes benign hepatomegaly and mild fasting hypoglycemia." }
   ],
   "Fructose metabolism": [
-    { name: "Essential Fructosuria", desc: "Fructokinase defect; benign, asymptomatic condition with fructose in blood and urine." },
-    { name: "Hereditary Fructose Intolerance", desc: "Aldolase B defect; causes toxic accumulation of Fructose-1-P leading to hypoglycemia, jaundice, and cirrhosis." }
+    { name: "Essential Fructosuria (Fructokinase Deficiency)", desc: "A benign, asymptomatic autosomal recessive condition where unmetabolized fructose is excreted in urine." },
+    { name: "Hereditary Fructose Intolerance (Aldolase B Deficiency)", desc: "Fructose-1-phosphate accumulates intracellularly upon ingesting fructose, sucrose, or sorbitol, trapping inorganic phosphate, depleting ATP, and causing severe hypoglycemia, vomiting, jaundice, and acute liver/kidney failure." }
   ],
   "Galactose metabolism": [
-    { name: "Galactokinase Deficiency", desc: "Causes accumulation of galactitol, leading to infantile cataracts. Relatively mild." },
-    { name: "Classic Galactosemia", desc: "GALT deficiency; severe condition causing failure to thrive, jaundice, hepatomegaly, infantile cataracts, and intellectual disability." }
+    { name: "Classic Galactosemia (GALT Deficiency)", desc: "Accumulation of galactose-1-phosphate and galactitol causes neonatal jaundice, hepatomegaly, failure to thrive, early-onset cataracts, intellectual disability, and E. coli sepsis upon consuming lactose." },
+    { name: "Galactokinase (GALK) Deficiency", desc: "Galactose is diverted to galactitol in the ocular lens, causing early infantile cataracts without major visceral organ toxicity." },
+    { name: "UDP-Galactose 4-Epimerase (GALE) Deficiency", desc: "Ranges from a mild form confined to red blood cells to a severe classic-galactosemia-like systemic illness." }
   ],
   "Beta-Oxidation of Fatty acids": [
-    { name: "MCAD Deficiency", desc: "Medium-chain acyl-CoA dehydrogenase deficiency causing severe fasting non-ketotic hypoglycemia." },
-    { name: "Zellweger Syndrome", desc: "Peroxisomal defect preventing oxidation of Very Long Chain Fatty Acids (VLCFAs)." }
+    { name: "Medium-Chain Acyl-CoA Dehydrogenase (MCAD) Deficiency", desc: "The most common fatty acid oxidation defect; fasting or viral illness triggers hypoketotic hypoglycemia, vomiting, lethargy, and sudden death." },
+    { name: "Very Long-Chain Acyl-CoA Dehydrogenase (VLCAD) Deficiency", desc: "Causes hypoketotic hypoglycemia along with severe cardiomyopathy and exertional rhabdomyolysis." },
+    { name: "Carnitine Palmitoyltransferase II (CPT II) Deficiency", desc: "Prevents long-chain fatty acids from entering the mitochondria, presenting with muscle pain, stiffness, and myoglobinuria after exertion or fasting." },
+    { name: "Primary Systemic Carnitine Deficiency", desc: "Defective carnitine transport prevents fatty acid transport into mitochondria, leading to progressive cardiomyopathy and hypoketotic hypoglycemia." }
   ],
   "Fatty Acid synthesis": [
-    { name: "Metabolic Syndrome & Hepatic Steatosis", desc: "Excess dietary carbohydrates are converted into fatty acids, contributing to non-alcoholic fatty liver disease (NAFLD)." }
+    { name: "Malonyl-CoA Decarboxylase Deficiency", desc: "Causes elevated malonyl-CoA levels that inhibit fatty acid oxidation and disrupt lipid regulation, presenting with developmental delay, seizures, and cardiomyopathy." },
+    { name: "Fatty Acid Synthase (FASN) Overexpression", desc: "Plays a critical role in cancer metabolism (supplying lipids for tumor membrane growth) and contributes to non-alcoholic fatty liver disease (NAFLD) and metabolic syndrome." }
   ],
   "Cholesterol Biosynthesis": [
-    { name: "Familial Hypercholesterolemia (Type IIa)", desc: "Defective LDL receptors or ApoB-100, causing severe atherosclerosis and tendon xanthomas." },
-    { name: "Smith-Lemli-Opitz Syndrome", desc: "Defect in 7-Dehydrocholesterol reductase causing microcephaly, intellectual disability, and syndactyly." }
+    { name: "Smith-Lemli-Opitz Syndrome (SLOS)", desc: "Mutations in 7-dehydrocholesterol reductase (DHCR7) block the final step of cholesterol synthesis, leading to microcephaly, dysmorphic facial features, 2-3 toe syndactyly, cleft palate, and intellectual disability." },
+    { name: "Mevalonate Kinase Deficiency", desc: "Impairs early cholesterol precursor synthesis, causing recurrent periodic fever syndromes (Hyper-IgD syndrome) or severe mevalonic aciduria with neurological impairment." },
+    { name: "Desmosterolosis / Lathosterolosis", desc: "Rare cholesterol pathway defects resulting in severe congenital malformations and developmental delay." }
   ],
   "Ketogenesis": [
-    { name: "Diabetic Ketoacidosis (DKA)", desc: "Absolute insulin deficiency leads to unchecked ketogenesis (acetoacetate, beta-hydroxybutyrate), causing severe metabolic acidosis." }
+    { name: "Mitochondrial HMG-CoA Lyase Deficiency", desc: "Disrupts both ketogenesis and leucine catabolism, causing hypoketotic hypoglycemia, severe metabolic acidosis, hyperammonemia, and encephalopathy." },
+    { name: "Mitochondrial HMG-CoA Synthase Deficiency", desc: "Selectively impairs hepatic ketone body synthesis, leading to episodic fasting hypoketotic hypoglycemia and encephalopathy mimicking Reye-like syndrome." }
   ],
   "Eicosanoid synthesis": [
-    { name: "Aspirin-Induced Asthma", desc: "COX inhibition diverts arachidonic acid to the lipoxygenase pathway, overproducing leukotrienes and causing bronchoconstriction." }
+    { name: "Aspirin-Exacerbated Respiratory Disease (AERD / Samter's Triad)", desc: "Inhibition of COX-1 shunts arachidonic acid to the 5-lipoxygenase pathway, causing cysteinyl leukotriene overproduction that triggers asthma, nasal polyps, and aspirin sensitivity." },
+    { name: "Thromboxane Synthase Deficiency", desc: "Leads to a bleeding diathesis due to impaired thromboxane A2 production and defective platelet aggregation." },
+    { name: "COX-2 Overexpression", desc: "Drives chronic inflammation, gastric ulcers under non-selective NSAID use, and solid tumor growth (e.g., colorectal cancer)." }
   ],
   "Sphingolipid synthesis": [
-    { name: "Tay-Sachs Disease", desc: "Hexosaminidase A deficiency; GM2 ganglioside accumulates. Cherry-red spot on macula, neurodegeneration." },
-    { name: "Gaucher Disease", desc: "Glucocerebrosidase deficiency; most common lysosomal storage disease. Hepatosplenomegaly, bone crises, Gaucher cells." },
-    { name: "Niemann-Pick Disease", desc: "Sphingomyelinase deficiency; hepatosplenomegaly and cherry-red spot on macula (unlike Tay-Sachs)." }
+    { name: "Gaucher Disease (Glucocerebrosidase Deficiency)", desc: "Accumulation of glucosylceramide in macrophages leads to hepatosplenomegaly, bone marrow infiltration, bone pain/crises, and cytopenias." },
+    { name: "Tay-Sachs Disease (Hexosaminidase A Deficiency)", desc: "GM2 ganglioside accumulates in neurons, causing progressive neurodegeneration, developmental regression, a cherry-red macular spot, and early death." },
+    { name: "Niemann-Pick Disease Types A & B (Sphingomyelinase Deficiency)", desc: "Sphingomyelin storage causes hepatosplenomegaly and progressive neurodegeneration (Type A) or visceral involvement (Type B)." },
+    { name: "Fabry Disease (Alpha-Galactosidase A Deficiency)", desc: "An X-linked condition causing globotriaosylceramide accumulation, presenting with painful acroparesthesias, angiokeratomas, renal failure, and early stroke." }
   ],
   "Steroid Hormone synthesis": [
-    { name: "21-Hydroxylase Deficiency", desc: "Most common form of Congenital Adrenal Hyperplasia. Causes salt wasting, hypotension, and female virilization." },
-    { name: "17-Alpha-Hydroxylase Deficiency", desc: "Causes hypertension, hypokalemia, and delayed puberty/ambiguous genitalia." }
+    { name: "21-Hydroxylase Deficiency (Classic CAH)", desc: "Accounts for >90% of Congenital Adrenal Hyperplasia cases; blocks cortisol and aldosterone synthesis while increasing adrenal androgens, causing salt-wasting crises, hypotension, and virilization of female genitalia." },
+    { name: "11-Beta-Hydroxylase Deficiency", desc: "Elevates 11-deoxycorticosterone and androgens, causing virilization alongside hypertension and hypokalemia." },
+    { name: "17-Alpha-Hydroxylase Deficiency", desc: "Prevents sex hormone and cortisol production while elevating mineralocorticoids, causing sexual infantilism, amenorrhea, and hypertension." },
+    { name: "StAR Deficiency (Lipoid CAH)", desc: "Prevents cholesterol entry into adrenal mitochondria, leading to severe early-onset adrenal failure." }
   ],
   "The urea cycle": [
-    { name: "Ornithine Transcarbamylase (OTC) Deficiency", desc: "X-linked recessive; causes severe hyperammonemia, increased orotic acid in blood/urine, and encephalopathy." },
-    { name: "CPS1 Deficiency", desc: "Autosomal recessive; causes hyperammonemia without orotic aciduria." }
+    { name: "Ornithine Transcarbamylase (OTC) Deficiency", desc: "The most common urea cycle defect and the only X-linked form; causes severe hyperammonemia, elevated urinary orotic acid, encephalopathy, and coma in newborns." },
+    { name: "Carbamoyl Phosphate Synthetase I (CPS1) Deficiency", desc: "Causes life-threatening neonatal hyperammonemia without elevated urinary orotic acid." },
+    { name: "Argininosuccinate Synthetase Deficiency (Citrullinemia Type I)", desc: "Causes severe hyperammonemia, lethargy, and seizures." },
+    { name: "Arginase Deficiency", desc: "Presents differently from other urea cycle defects, manifesting as progressive spastic diplegia, microcephaly, and growth failure rather than acute early hyperammonemic coma." }
   ],
   "Amino acid degradation": [
-    { name: "Phenylketonuria (PKU)", desc: "Phenylalanine hydroxylase deficiency. Causes intellectual disability, microcephaly, and a musty body odor." },
-    { name: "Alkaptonuria", desc: "Homogentisate oxidase deficiency. Causes dark connective tissue, brown sclera, and urine that turns black when exposed to air." },
-    { name: "Maple Syrup Urine Disease (MSUD)", desc: "Branched-chain alpha-ketoacid dehydrogenase deficiency. Causes severe CNS defects and sweet-smelling urine." }
+    { name: "Phenylketonuria (PKU)", desc: "Deficiency of phenylalanine hydroxylase leads to phenylalanine accumulation, causing severe intellectual disability, microcephaly, seizures, hypopigmentation, and a musty body odor if untreated." },
+    { name: "Maple Syrup Urine Disease (MSUD)", desc: "Deficiency in branched-chain alpha-keto acid dehydrogenase blocks leucine, isoleucine, and valine breakdown, causing sweet-smelling urine, neonatal ketoacidosis, and neurodegeneration." },
+    { name: "Alkaptonuria", desc: "Homogentisate 1,2-dioxygenase deficiency causes homogentisic acid buildup, leading to urine turning dark upon standing, connective tissue pigmentation (ochronosis), and early-onset debilitating arthritis." },
+    { name: "Homocystinuria", desc: "Cystathionine beta-synthase deficiency causes high homocysteine levels, leading to a marfanoid habitus, ectopia lentis (downward lens dislocation), intellectual disability, and premature thromboembolism." }
   ],
   "Purine synthesis": [
-    { name: "PRPP Synthetase Overactivity", desc: "X-linked disorder leading to purine overproduction and gout." }
+    { name: "PRPP Synthetase Superactivity", desc: "An X-linked gain-of-function disorder driving excessive purine production, resulting in hyperuricemia, early-onset gout, uric acid kidney stones, and neurodevelopmental abnormalities." },
+    { name: "Adenylosuccinate Lyase (ADSL) Deficiency", desc: "Blocks de novo purine synthesis, causing succinylpurine accumulation in CSF, leading to severe psychomotor delay, intractable infantile seizures, and autistic features." }
   ],
   "Pyrimidine synthesis": [
-    { name: "Orotic Aciduria", desc: "Defect in UMP synthase. Causes megaloblastic anemia unresponsive to B12/folate, and growth retardation." }
+    { name: "Hereditary Orotic Aciduria", desc: "Caused by UMP Synthase deficiency, preventing pyrimidine generation; results in severe megaloblastic anemia unresponsive to B12/folate, failure to thrive, and heavy urinary orotic acid crystals (without hyperammonemia)." },
+    { name: "Dihydropyrimidine Dehydrogenase (DPD) Deficiency", desc: "Impairs pyrimidine breakdown, leading to neurological symptoms and severe, potentially fatal toxicity if exposed to 5-fluorouracil (5-FU) chemotherapy." }
   ],
   "Purine Degradation and salvage": [
-    { name: "Lesch-Nyhan Syndrome", desc: "HGPRT deficiency in purine salvage. Causes hyperuricemia, gout, intellectual disability, and self-mutilation." },
-    { name: "Adenosine Deaminase (ADA) Deficiency", desc: "Autosomal recessive cause of SCID (Severe Combined Immunodeficiency) due to dATP toxicity to lymphocytes." }
+    { name: "Lesch-Nyhan Syndrome", desc: "Complete HGPRT deficiency blocks hypoxanthine and guanine salvage, driving purine breakdown to uric acid; causes severe hyperuricemia, gout, choreoathetosis, intellectual disability, and self-mutilating behaviors." },
+    { name: "Adenosine Deaminase (ADA) Deficiency", desc: "Toxic dATP accumulates in lymphocytes, inhibiting ribonucleotide reductase and destroying immune cells, causing Severe Combined Immunodeficiency (SCID)." },
+    { name: "Gout", desc: "Hyperuricemia caused by purine overproduction or renal underexcretion leads to monosodium urate crystal deposition in joints (tophi, acute arthritis) and kidneys." }
   ],
   "DNA Replication": [
-    { name: "Xeroderma Pigmentosum", desc: "Defect in nucleotide excision repair. Extreme sensitivity to UV light and highly increased risk of skin cancer." },
-    { name: "Bloom Syndrome", desc: "Defect in BLM helicase. Causes growth retardation, facial rash, and immunodeficiency." }
+    { name: "Xeroderma Pigmentosum", desc: "Defective nucleotide excision repair mechanisms (which repair UV-induced thymine dimers during replication) cause extreme photosensitivity and a severe risk of skin cancers." },
+    { name: "Bloom Syndrome (BLM Helicase Deficiency)", desc: "Impaired DNA unwinding during replication causes genomic instability, growth retardation, facial erythema, high sister chromatid exchange, and early malignancies." },
+    { name: "Werner Syndrome (WRN Helicase Deficiency)", desc: "Causes adult progeria marked by premature aging, cataracts, atherosclerosis, and sarcomas." }
   ],
   "Transcription": [
-    { name: "Alpha-amanitin Poisoning", desc: "Toxin from death cap mushrooms (Amanita phalloides) strongly inhibits RNA polymerase II, causing severe hepatotoxicity." }
+    { name: "Cockayne Syndrome", desc: "Mutations in transcription-coupled repair proteins (CSA or CSB) cause RNA polymerase II stalling during transcription, leading to severe microcephaly, neurodegeneration, cachectic dwarfism, and premature aging." },
+    { name: "Treacher Collins Syndrome", desc: "Defective RNA Polymerase I transcription of ribosomal RNA leads to neural crest cell apoptosis and severe craniofacial dysostosis." },
+    { name: "Alpha-Amanitin Poisoning (Death Cap Mushroom)", desc: "Potently inhibits RNA Polymerase II, stopping mRNA synthesis and causing acute liver and kidney failure." }
   ],
   "Translation": [
-    { name: "Diphtheria", desc: "Corynebacterium diphtheriae toxin inactivates Elongation Factor 2 (EF-2) via ADP-ribosylation, stopping translation." }
+    { name: "Leukoencephalopathy with Vanishing White Matter", desc: "Mutations in eukaryotic initiation factor 2B (eIF2B) impair translational stress responses, causing progressive brain white matter loss triggered by fever or head trauma." },
+    { name: "Wolcott-Rallison Syndrome", desc: "Mutations in PERK (an eIF2-alpha kinase) disrupt translational regulation during ER stress, causing neonatal diabetes and skeletal dysplasia." },
+    { name: "Charcot-Marie-Tooth Disease Type 2D", desc: "Mutations in glycyl-tRNA synthetase (GARS) disrupt peripheral nerve protein translation, causing motor and sensory neuropathy." }
   ],
   "Heme synthesis": [
-    { name: "Acute Intermittent Porphyria (AIP)", desc: "Defect in porphobilinogen deaminase. Causes painful abdomen, port-wine urine, polyneuropathy, and psychological disturbances." },
-    { name: "Porphyria Cutanea Tarda (PCT)", desc: "Defect in uroporphyrinogen decarboxylase. Causes blistering cutaneous photosensitivity and tea-colored urine." },
-    { name: "Lead Poisoning", desc: "Inhibits ALA dehydratase and ferrochelatase, causing microcytic anemia, lead lines on gums, and encephalopathy." }
+    { name: "Acute Intermittent Porphyria (AIP)", desc: "Hydroxymethylbilane synthase deficiency causes accumulation of ALA and PBG, manifesting as acute abdominal pain, neurological symptoms, and dark urine without skin lesions." },
+    { name: "Porphyria Cutanea Tarda (PCT)", desc: "Uroporphyrinogen decarboxylase deficiency causes photosensitive blistering, skin fragility, and hyperpigmentation on sun-exposed skin." },
+    { name: "X-Linked Sideroblastic Anemia", desc: "ALAS2 deficiency impairs the initial step of heme synthesis in bone marrow, causing microcytic anemia with ringed sideroblasts." }
   ],
   "Heme Degradation": [
-    { name: "Gilbert Syndrome", desc: "Mild, benign reduction in UDP-glucuronosyltransferase (UGT) activity causing asymptomatic jaundice during stress." },
-    { name: "Crigler-Najjar Syndrome", desc: "Severe or absent UGT activity. Causes dangerous unconjugated hyperbilirubinemia and kernicterus in infants." }
+    { name: "Gilbert Syndrome", desc: "Reduced activity of UGT1A1 causes mild, benign unconjugated hyperbilirubinemia triggered by stress, fasting, or illness." },
+    { name: "Crigler-Najjar Syndrome Type I", desc: "Total absence of UGT1A1 activity leads to severe unconjugated hyperbilirubinemia, kernicterus, and fatal brain damage in infants unless treated with phototherapy or liver transplantation." },
+    { name: "Dubin-Johnson Syndrome", desc: "Defective MRP2 canalicular transporter prevents conjugated bilirubin excretion, causing conjugated hyperbilirubinemia and a darkly pigmented liver." },
+    { name: "Rotor Syndrome", desc: "Defective hepatic reuptake of conjugated bilirubin leads to conjugated hyperbilirubinemia without liver pigmentation." }
   ]
 };
 

@@ -51,7 +51,7 @@ export default function Dashboard() {
 
   if (authLoading || !user) {
     return (
-      <div className="flex flex-col min-h-screen">
+      <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-slate-950/20">
         <Header />
         <div className="flex-grow flex items-center justify-center">
           <div className="text-center space-y-2">
@@ -63,35 +63,44 @@ export default function Dashboard() {
     );
   }
 
-  // Load User Stats & Data
-  const progress = dbService.getUserProgress(user.uid);
-  const pathways = dbService.getPathways();
-  const notes = dbService.getNotes();
-  const flashcards = dbService.getFlashcards();
+  // Load User Stats & Data with safety fallbacks
+  const progress = dbService.getUserProgress(user.uid) || {};
+  const pathways = dbService.getPathways() || [];
+  const notes = dbService.getNotes() || [];
+  const flashcards = dbService.getFlashcards() || [];
 
-  const userLevel = Math.floor(progress.xp / 100) + 1;
-  const currentLevelXp = progress.xp % 100;
+  const xp = progress.xp || 0;
+  const userLevel = Math.floor(xp / 100) + 1;
+  const currentLevelXp = xp % 100;
+  const streak = progress.streak || 0;
 
   // Filter Bookmarks
-  const bookmarkedNotes = notes.filter(n => n.bookmarked);
-  const bookmarkedFlashcards = flashcards.filter(c => c.bookmarked);
+  const bookmarkedNotes = notes.filter(n => n?.bookmarked);
+  const bookmarkedFlashcards = flashcards.filter(c => c?.bookmarked);
 
   // Compute stats
-  const completedCount = progress.completedPathways.length;
+  const completedPathways = progress.completedPathways || [];
+  // Filter out any stale/deleted pathway slugs from older local storage states
+  const validCompletedPathways = completedPathways.filter((slug: string) => 
+    pathways.some((p: Pathway) => p.slug === slug)
+  );
+  const completedCount = validCompletedPathways.length;
   const totalPathways = pathways.length;
   const completionRate = totalPathways > 0 ? Math.round((completedCount / totalPathways) * 100) : 0;
 
   // Recharts: Chart Data formatting
   const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+  const weeklyActivity = progress.weeklyActivity || [0, 0, 0, 0, 0, 0, 0];
   const activityData = daysOfWeek.map((day, idx) => ({
     name: day,
-    actions: progress.weeklyActivity[idx] || 0
+    actions: weeklyActivity[idx] || 0
   }));
 
-  const quizScoresData = progress.quizScores.map((qs: any, idx: any) => ({
+  const quizScores = progress.quizScores || [];
+  const quizScoresData = quizScores.map((qs: any, idx: any) => ({
     quizIndex: `Quiz ${idx + 1}`,
-    scorePercent: Math.round((qs.score / qs.total) * 100),
-    title: qs.quizId
+    scorePercent: qs.total ? Math.round((qs.score / qs.total) * 100) : 0,
+    title: qs.quizId || `Quiz ${idx + 1}`
   }));
 
   // Standard Achievement Badges Definition
@@ -104,8 +113,13 @@ export default function Dashboard() {
     { id: "streak3", title: "Flame Runner", desc: "Maintained a 3-day learning streak", icon: Zap, color: "text-orange-500 bg-orange-500/10 border-orange-200" },
   ];
 
-  const unlockedBadges = badgesList.filter(b => progress.badges.includes(b.id) || progress.badges.includes(`${b.id.split("_")[0]}_master`));
-  const lockedBadges = badgesList.filter(b => !progress.badges.includes(b.id) && !progress.badges.includes(`${b.id.split("_")[0]}_master`));
+  const userBadges = progress.badges || [];
+  const unlockedBadges = badgesList.filter(b => userBadges.includes(b.id) || userBadges.includes(`${b.id.split("_")[0]}_master`));
+  const lockedBadges = badgesList.filter(b => !userBadges.includes(b.id) && !userBadges.includes(`${b.id.split("_")[0]}_master`));
+
+  // Safe user display name processing
+  const displayName = user.displayName || "Student";
+  const initials = displayName.split(" ").map(n => n[0]).join("").toUpperCase().substring(0, 2);
 
   return (
     <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-slate-950/20">
@@ -116,18 +130,18 @@ export default function Dashboard() {
         {/* 1. WELCOME HERO METRIC CARD */}
         <section className="bg-card border border-border p-6 rounded-3xl shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
           <div className="flex items-center space-x-4">
-            <div className="h-14 w-14 rounded-full bg-gradient-to-tr from-primary to-accent text-white flex items-center justify-center font-black text-lg shadow-md">
-              {user.displayName.split(" ").map(n => n[0]).join("").toUpperCase()}
+            <div className="h-14 w-14 rounded-full bg-gradient-to-tr from-primary to-accent text-white flex items-center justify-center font-black text-lg shadow-md shrink-0">
+              {initials}
             </div>
             <div>
-              <h2 className="text-xl font-bold text-foreground">Welcome back, {user.displayName}!</h2>
+              <h2 className="text-xl font-bold text-foreground">Welcome back, {displayName}!</h2>
               <p className="text-sm text-muted-foreground">{user.email}</p>
               <div className="flex items-center text-xs text-muted-foreground space-x-3 mt-1">
                 <span>Pharmacy Student</span>
                 <span>•</span>
                 <span className="flex items-center text-orange-500 font-semibold">
                   <Zap className="h-3.5 w-3.5 fill-orange-500 mr-1 animate-bounce" />
-                  {progress.streak} Day Study Streak
+                  {streak} Day Study Streak
                 </span>
               </div>
             </div>
@@ -177,7 +191,7 @@ export default function Dashboard() {
             </div>
             <div>
               <span className="text-[10px] uppercase font-bold text-muted-foreground tracking-wider">Quizzes Taken</span>
-              <h3 className="text-lg font-black text-foreground mt-0.5">{progress.quizScores.length} Sessions</h3>
+              <h3 className="text-lg font-black text-foreground mt-0.5">{quizScores.length} Sessions</h3>
               <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold block mt-0.5">
                 Practice makes perfect
               </span>
@@ -212,8 +226,8 @@ export default function Dashboard() {
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={activityData} margin={{ top: 10, right: 10, left: -25, bottom: 0 }}>
                     <XAxis dataKey="name" stroke="#888888" fontSize={10} tickLine={false} axisLine={false} />
-                    <YAxis stroke="#888888" fontSize={10} tickLine={false} axisLine={false} />
-                    <Tooltip contentStyle={{ background: "var(--card)", border: "1px solid var(--border)", borderRadius: "8px", fontSize: "11px" }} />
+                    <YAxis stroke="#888888" fontSize={10} tickLine={false} axisLine={false} allowDecimals={false} />
+                    <Tooltip contentStyle={{ background: "var(--card)", border: "1px solid var(--border)", borderRadius: "8px", fontSize: "11px" }} cursor={{fill: 'var(--muted)', opacity: 0.4}} />
                     <Bar dataKey="actions" fill="var(--primary)" radius={[4, 4, 0, 0]} barSize={25} />
                   </BarChart>
                 </ResponsiveContainer>
@@ -234,12 +248,13 @@ export default function Dashboard() {
                       <XAxis dataKey="quizIndex" stroke="#888888" fontSize={10} tickLine={false} axisLine={false} />
                       <YAxis stroke="#888888" fontSize={10} tickLine={false} axisLine={false} domain={[0, 100]} />
                       <Tooltip contentStyle={{ background: "var(--card)", border: "1px solid var(--border)", borderRadius: "8px", fontSize: "11px" }} />
-                      <Line type="monotone" dataKey="scorePercent" stroke="var(--accent)" strokeWidth={3} dot={{ r: 4, strokeWidth: 2 }} />
+                      <Line type="monotone" dataKey="scorePercent" stroke="var(--accent)" strokeWidth={3} dot={{ r: 4, strokeWidth: 2 }} activeDot={{ r: 6 }} />
                     </LineChart>
                   </ResponsiveContainer>
                 ) : (
-                  <div className="h-full flex items-center justify-center text-xs text-muted-foreground">
-                    Complete your first quiz to generate accuracy trends.
+                  <div className="h-full flex flex-col items-center justify-center text-xs text-muted-foreground bg-muted/20 rounded-xl border border-dashed border-border/50">
+                    <CheckSquare className="h-8 w-8 text-muted-foreground/30 mb-2" />
+                    Complete your first quiz to see trends.
                   </div>
                 )}
               </div>
@@ -287,7 +302,7 @@ export default function Dashboard() {
                       <p className="text-[9px] text-muted-foreground/60 leading-none mt-1">Locked</p>
                     </div>
                     {/* Hover requirement info */}
-                    <div className="absolute inset-0 bg-card rounded-xl p-2 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity text-[9px] text-center font-bold pointer-events-none">
+                    <div className="absolute inset-0 bg-card/90 backdrop-blur-sm rounded-xl p-2 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity text-[9px] text-center font-bold">
                       Req: {badge.desc}
                     </div>
                   </div>
@@ -305,10 +320,10 @@ export default function Dashboard() {
 
             <div className="space-y-3">
               {bookmarkedNotes.length === 0 && bookmarkedFlashcards.length === 0 ? (
-                <div className="text-center py-8 text-xs text-muted-foreground">
+                <div className="text-center py-8 text-xs text-muted-foreground bg-muted/20 rounded-xl border border-dashed border-border/50">
                   <Bookmark className="h-6 w-6 mx-auto text-muted-foreground/60 mb-2" />
                   <p>No bookmarks saved yet.</p>
-                  <p className="text-[10px] text-muted-foreground/50 mt-0.5">Click the bookmark icon on notes or flashcards.</p>
+                  <p className="text-[10px] text-muted-foreground/50 mt-0.5">Save notes or flashcards to see them here.</p>
                 </div>
               ) : (
                 <div className="space-y-4">
@@ -359,7 +374,7 @@ export default function Dashboard() {
               <p className="text-[10px] text-muted-foreground">Your XP development over the past week</p>
             </div>
             <div className="text-right">
-              <span className="text-2xl font-black text-primary">{progress.xp}</span>
+              <span className="text-2xl font-black text-primary">{xp}</span>
               <span className="text-[10px] text-muted-foreground block uppercase font-bold tracking-wider">Total XP</span>
             </div>
           </div>
@@ -376,7 +391,7 @@ export default function Dashboard() {
               </thead>
               <tbody className="divide-y divide-border">
                 {daysOfWeek.map((day, idx) => {
-                  const actions = progress.weeklyActivity[idx] || 0;
+                  const actions = weeklyActivity[idx] || 0;
                   const estimatedXP = actions * 30; // ~30 XP per action
                   return (
                     <tr key={day} className="hover:bg-muted/50 transition-colors text-xs">
