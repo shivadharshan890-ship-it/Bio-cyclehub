@@ -98,6 +98,10 @@ export default function Auth() {
       await loginWithGoogle();
       router.push("/dashboard");
     } catch (err: any) {
+      if (err.code === 'auth/popup-closed-by-user' || (err.message && err.message.includes('auth/popup-closed-by-user'))) {
+        setLoading(false);
+        return;
+      }
       setError(err.message || "Google Sign-In failed.");
       setLoading(false);
     }

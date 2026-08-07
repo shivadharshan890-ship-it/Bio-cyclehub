@@ -439,7 +439,7 @@ export default function PathwayViewer({ pathway }: PathwayViewerProps) {
           title="Toggle Mindmap View"
         >
           <Network className="h-4 w-4 shrink-0" />
-          <span>Mindmap</span>
+          <span>{viewMode === 'mindmap' ? 'Flow View' : 'Mindmap'}</span>
         </button>
 
         <button
@@ -459,10 +459,11 @@ export default function PathwayViewer({ pathway }: PathwayViewerProps) {
         )}
       </motion.div>
 
-      {/* Canvas */}
-      {viewMode === 'mindmap' ? (
-        pathway.mindMapUrl ? (
+      {/* Canvas Container */}
+      <div className={`absolute inset-0 transition-opacity duration-300 ${viewMode === 'mindmap' ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'}`}>
+        {pathway.mindMapUrl ? (
           <ReactFlow
+            id="mindmap-flow"
             nodes={mindMapNodes}
             edges={[]}
             fitView
@@ -483,9 +484,12 @@ export default function PathwayViewer({ pathway }: PathwayViewerProps) {
               <p className="font-semibold tracking-wide">Mind map not available</p>
             </div>
           </div>
-        )
-      ) : (
+        )}
+      </div>
+
+      <div className={`absolute inset-0 transition-opacity duration-300 ${viewMode === 'flow' ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'}`}>
         <ReactFlow
+          id="pathway-flow"
           nodes={nodes}
           edges={edges}
           onNodesChange={onNodesChange}
@@ -495,11 +499,13 @@ export default function PathwayViewer({ pathway }: PathwayViewerProps) {
           fitViewOptions={{ padding: 0.2 }}
           minZoom={0.2}
           className="bg-[#020617]"
+          nodesDraggable={true}
+          panOnDrag={true}
         >
           <Background variant={BackgroundVariant.Dots} gap={30} size={2} color="#1e293b" />
           <Controls className="bg-slate-800 border-slate-700 fill-white" />
         </ReactFlow>
-      )}
+      </div>
 
     </div>
   );

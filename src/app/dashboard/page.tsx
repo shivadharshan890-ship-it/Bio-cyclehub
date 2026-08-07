@@ -121,6 +121,7 @@ export default function Dashboard() {
             </div>
             <div>
               <h2 className="text-xl font-bold text-foreground">Welcome back, {user.displayName}!</h2>
+              <p className="text-sm text-muted-foreground">{user.email}</p>
               <div className="flex items-center text-xs text-muted-foreground space-x-3 mt-1">
                 <span>Pharmacy Student</span>
                 <span>•</span>
@@ -344,6 +345,60 @@ export default function Dashboard() {
                 </div>
               )}
             </div>
+          </div>
+        </section>
+
+        {/* 5. DAILY EXPERIENCE SCOREBOARD */}
+        <section className="bg-card border border-border p-6 rounded-3xl shadow-sm space-y-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <h3 className="text-sm font-bold text-foreground flex items-center gap-2">
+                <Award className="h-4 w-4 text-accent" />
+                Daily Experience Scoreboard
+              </h3>
+              <p className="text-[10px] text-muted-foreground">Your XP development over the past week</p>
+            </div>
+            <div className="text-right">
+              <span className="text-2xl font-black text-primary">{progress.xp}</span>
+              <span className="text-[10px] text-muted-foreground block uppercase font-bold tracking-wider">Total XP</span>
+            </div>
+          </div>
+          
+          <div className="overflow-x-auto border border-border rounded-xl">
+            <table className="w-full text-left border-collapse">
+              <thead>
+                <tr className="bg-muted/30 border-b border-border text-[10px] uppercase tracking-wider text-muted-foreground">
+                  <th className="py-3 px-4 font-black">Day</th>
+                  <th className="py-3 px-4 font-black">Activities</th>
+                  <th className="py-3 px-4 font-black">XP Earned (Est.)</th>
+                  <th className="py-3 px-4 font-black">Status</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border">
+                {daysOfWeek.map((day, idx) => {
+                  const actions = progress.weeklyActivity[idx] || 0;
+                  const estimatedXP = actions * 30; // ~30 XP per action
+                  return (
+                    <tr key={day} className="hover:bg-muted/50 transition-colors text-xs">
+                      <td className="py-3 px-4 font-bold text-foreground">{day}</td>
+                      <td className="py-3 px-4 text-muted-foreground">{actions} sessions</td>
+                      <td className="py-3 px-4 font-black text-primary">+{estimatedXP} XP</td>
+                      <td className="py-3 px-4">
+                        {actions > 0 ? (
+                          <span className="inline-flex items-center px-2 py-1 rounded-md text-[9px] font-black uppercase tracking-wider bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
+                            Active
+                          </span>
+                        ) : (
+                          <span className="inline-flex items-center px-2 py-1 rounded-md text-[9px] font-black uppercase tracking-wider bg-slate-500/10 text-slate-500 border border-slate-500/20">
+                            Rest
+                          </span>
+                        )}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
           </div>
         </section>
 

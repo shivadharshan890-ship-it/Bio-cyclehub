@@ -123,7 +123,7 @@ export default function Header() {
               <div className="flex items-center space-x-3">
                 <div className="flex flex-col text-right">
                   <span className="text-xs font-semibold">{user.displayName}</span>
-                  <span className="text-[10px] text-muted-foreground">Student</span>
+                  <span className="text-[10px] text-muted-foreground">{user.email}</span>
                 </div>
                 
                 <div className="relative group">
@@ -226,7 +226,10 @@ export default function Header() {
                   <div className="h-8 w-8 rounded-full bg-gradient-to-tr from-primary to-accent text-white flex items-center justify-center font-bold text-xs">
                     {user.displayName.split(" ").map(n => n[0]).join("").toUpperCase()}
                   </div>
-                  <span className="text-sm font-semibold">{user.displayName}</span>
+                  <div className="flex flex-col">
+                    <span className="text-sm font-semibold">{user.displayName}</span>
+                    <span className="text-xs text-muted-foreground">{user.email}</span>
+                  </div>
                 </div>
                 <Link
                   href="/admin"
