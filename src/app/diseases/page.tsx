@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Header from "@/components/Header";
-import { ChevronRight, Stethoscope, AlertCircle, ShieldAlert } from "lucide-react";
+import { ChevronRight, ChevronLeft, Stethoscope, AlertCircle, ShieldAlert } from "lucide-react";
 
 const diseaseTopics = [
   "Glycolysis",
@@ -164,6 +164,7 @@ const diseaseData: Record<string, { name: string; desc: string }[]> = {
 
 export default function DiseasesPage() {
   const [selectedTopic, setSelectedTopic] = useState(diseaseTopics[0]);
+  const [isMobileDetailView, setIsMobileDetailView] = useState(false);
   const currentDiseases = diseaseData[selectedTopic] || [];
 
   return (
@@ -173,7 +174,7 @@ export default function DiseasesPage() {
       <main className="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col md:flex-row gap-6">
         
         {/* Left Side: Sidebar navigation */}
-        <section className="w-full md:w-80 shrink-0 space-y-4">
+        <section className={`w-full md:w-80 shrink-0 space-y-4 ${isMobileDetailView ? 'hidden md:block' : 'block'}`}>
           <div className="space-y-1">
             <h1 className="text-xl font-black text-foreground flex items-center gap-2">
               <Stethoscope className="w-6 h-6 text-primary" />
@@ -188,7 +189,10 @@ export default function DiseasesPage() {
               return (
                 <button
                   key={idx}
-                  onClick={() => setSelectedTopic(topic)}
+                  onClick={() => {
+                    setSelectedTopic(topic);
+                    setIsMobileDetailView(true);
+                  }}
                   className={`w-full text-left p-4 flex justify-between items-center transition ${
                     active ? "bg-primary/5 text-primary" : "hover:bg-muted/30"
                   }`}
@@ -206,7 +210,15 @@ export default function DiseasesPage() {
         </section>
 
         {/* Right Side: Content Area */}
-        <section className="flex-grow bg-card border border-border rounded-3xl shadow-sm p-6 sm:p-12 flex flex-col relative h-[calc(100vh-140px)] overflow-y-auto">
+        <section className={`flex-grow bg-card border border-border rounded-3xl shadow-sm p-6 sm:p-12 flex-col relative h-[calc(100vh-140px)] overflow-y-auto ${!isMobileDetailView ? 'hidden md:flex' : 'flex'}`}>
+          <button 
+            className="md:hidden flex items-center gap-2 text-primary font-bold mb-6 bg-primary/10 hover:bg-primary/20 transition px-4 py-2 rounded-xl w-fit text-sm"
+            onClick={() => setIsMobileDetailView(false)}
+          >
+            <ChevronLeft className="w-4 h-4" />
+            Back to Pathways
+          </button>
+          
           <div className="mb-8 border-b border-border pb-4">
             <h2 className="text-2xl font-black text-foreground flex items-center gap-2">
               {selectedTopic}
