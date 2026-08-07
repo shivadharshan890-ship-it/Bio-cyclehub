@@ -3,6 +3,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, X, Send, Bot, User, Loader2 } from "lucide-react";
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 type Message = {
   role: "user" | "assistant";
@@ -31,12 +33,13 @@ export default function ChatAssistant() {
     }
   }, [messages, isOpen]);
 
-  const handleSendMessage = async (e?: React.FormEvent) => {
+  const handleSendMessage = async (e?: React.FormEvent, directMessage?: string) => {
     e?.preventDefault();
     
-    if (!input.trim() || isLoading) return;
+    const messageToSend = directMessage || input.trim();
+    if (!messageToSend || isLoading) return;
 
-    const userMessage: Message = { role: "user", content: input.trim() };
+    const userMessage: Message = { role: "user", content: messageToSend };
     const newMessages = [...messages, userMessage];
     
     setMessages(newMessages);
@@ -102,7 +105,7 @@ export default function ChatAssistant() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.9 }}
             transition={{ duration: 0.2 }}
-            className="mb-4 w-[350px] sm:w-[400px] h-[500px] max-h-[80vh] flex flex-col rounded-2xl overflow-hidden glass-premium shadow-2xl border border-white/20"
+            className="mb-4 w-[350px] sm:w-[450px] h-[600px] max-h-[85vh] flex flex-col rounded-2xl overflow-hidden glass-premium shadow-2xl border border-white/20"
           >
             {/* Header */}
             <div className="bg-primary/90 text-primary-foreground p-4 flex justify-between items-center backdrop-blur-md">
@@ -138,16 +141,21 @@ export default function ChatAssistant() {
                   )}
                   
                   <div
-                    className={`px-4 py-2.5 rounded-2xl max-w-[80%] text-sm ${
+                    className={`px-4 py-2.5 rounded-2xl max-w-[85%] text-sm overflow-hidden ${
                       msg.role === "user"
                         ? "bg-primary text-primary-foreground rounded-tr-sm"
                         : "bg-card text-card-foreground border border-border shadow-sm rounded-tl-sm"
                     }`}
                   >
-                    <div 
-                      className="whitespace-pre-wrap leading-relaxed" 
-                      dangerouslySetInnerHTML={{ __html: msg.content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }}
-                    />
+                    {msg.role === "assistant" ? (
+                      <div className="prose prose-sm dark:prose-invert max-w-none prose-p:leading-relaxed prose-pre:p-0 prose-pre:bg-transparent prose-td:border prose-th:border prose-th:bg-muted/50 prose-table:w-full prose-table:text-xs">
+                        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                          {msg.content}
+                        </ReactMarkdown>
+                      </div>
+                    ) : (
+                      <div className="whitespace-pre-wrap leading-relaxed">{msg.content}</div>
+                    )}
                   </div>
 
                   {msg.role === "user" && (
@@ -171,6 +179,25 @@ export default function ChatAssistant() {
               )}
               <div ref={messagesEndRef} />
             </div>
+
+            {/* Quick Actions */}
+            {messages.length === 1 && !isLoading && (
+              <div className="px-4 pb-3 flex flex-wrap gap-2 bg-background/50 backdrop-blur-sm">
+                {[
+                  "📅 Make a 3-day study schedule for Glycolysis",
+                  "✨ Give me exam highlights for the TCA cycle",
+                  "❓ Explain ATP synthesis like I'm 5"
+                ].map((action, i) => (
+                  <button
+                    key={i}
+                    onClick={() => handleSendMessage(undefined, action)}
+                    className="text-[11px] font-medium bg-primary/10 hover:bg-primary/20 text-primary border border-primary/20 rounded-full px-3 py-1.5 transition-colors text-left"
+                  >
+                    {action}
+                  </button>
+                ))}
+              </div>
+            )}
 
             {/* Input Area */}
             <div className="p-3 bg-card border-t border-border">
