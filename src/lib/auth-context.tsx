@@ -213,6 +213,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       if (isFirebaseEnabled) {
         const auth = getAuth();
         const provider = new GoogleAuthProvider();
+        provider.setCustomParameters({
+          prompt: 'select_account'
+        });
         const credentials = await signInWithPopup(auth, provider);
         const loggedUser: UserSession = {
           uid: credentials.user.uid,
