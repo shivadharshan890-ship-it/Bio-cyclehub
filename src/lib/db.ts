@@ -14,8 +14,10 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
-// Check if Firebase is fully configured
-export const isFirebaseEnabled = true; // Forced to true for debugging
+export const isFirebaseEnabled = !!(
+  process.env.NEXT_PUBLIC_FIREBASE_API_KEY &&
+  process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID
+);
 
 export let app: any;
 export let auth: any;

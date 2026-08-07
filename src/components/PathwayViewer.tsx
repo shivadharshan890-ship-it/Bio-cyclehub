@@ -30,22 +30,68 @@ import dagre from 'dagre';
 
 const getPubChemName = (name: string) => {
   if (!name) return "";
-  // Split by '+' and take the first part
-  let clean = name.split('+')[0].trim();
-  // Remove leading stoichiometric numbers and spaces (e.g., "2 Pyruvate" -> "Pyruvate")
+  
+  const dictionary: Record<string, string> = {
+    "fructose-1,6-bisphosphate": "Fructose 1,6-bisphosphate",
+    "fructose-6-phosphate": "Fructose 6-phosphate",
+    "glucose-6-phosphate": "Glucose 6-phosphate",
+    "glucose-1-phosphate": "Glucose 1-phosphate",
+    "alpha-ketoglutarate": "alpha-Ketoglutarate",
+    "succinyl-coa": "Succinyl-CoA",
+    "dhap": "Dihydroxyacetone phosphate",
+    "dihydroxyacetone phosphate": "Dihydroxyacetone phosphate",
+    "glyceraldehyde-3-phosphate": "Glyceraldehyde 3-phosphate",
+    "g3p": "Glyceraldehyde 3-phosphate",
+    "phosphoenolpyruvate": "Phosphoenolpyruvate",
+    "pep": "Phosphoenolpyruvate",
+    "acetyl-coa": "Acetyl-CoA",
+    "ubiquinone": "Ubiquinone",
+    "ubiquinol": "Ubiquinol",
+    "beta-hydroxybutyrate": "3-Hydroxybutyric acid",
+    "acetoacetate": "Acetoacetic acid",
+    "hmg-coa": "3-Hydroxy-3-methylglutaryl-CoA",
+    "mevalonate": "Mevalonic acid",
+    "prpp": "Phosphoribosyl pyrophosphate",
+    "malonyl-coa": "Malonyl-CoA",
+    "1,3-bisphosphoglycerate": "1,3-Bisphosphoglyceric acid",
+    "3-phosphoglycerate": "3-Phosphoglyceric acid",
+    "2-phosphoglycerate": "2-Phosphoglyceric acid",
+    "pyruvate": "Pyruvic acid",
+    "lactate": "Lactic acid",
+    "citrate": "Citric acid",
+    "isocitrate": "Isocitric acid",
+    "succinate": "Succinic acid",
+    "fumarate": "Fumaric acid",
+    "malate": "Malic acid",
+    "oxaloacetate": "Oxaloacetic acid"
+  };
+
+  let clean = name.trim();
+  
+  // Remove everything after ampersand or plus (e.g. "Cytochrome C & 4 Protons")
+  clean = clean.split('&')[0];
+  clean = clean.split('+')[0];
+  
+  // Remove leading stoichiometric numbers (e.g., "2 Pyruvate" -> "Pyruvate")
   clean = clean.replace(/^[0-9]+\s+/, '');
   
-  // Remove anything in parentheses (e.g. "Phosphoenolpyruvate (PEP)" -> "Phosphoenolpyruvate")
-  clean = clean.replace(/\s*\([^)]*\)/g, '').trim();
+  // Remove anything in parentheses
+  clean = clean.replace(/\s*\([^)]*\)/g, '');
   
-  // Replace terminal -P with -Phosphate (e.g. "Glucose-1-P" -> "Glucose-1-Phosphate")
+  clean = clean.trim();
+  
+  // Replace terminal -P with -Phosphate
   clean = clean.replace(/-P$/, '-Phosphate');
-  
-  // Some edge cases for common biochemistry terms that PubChem might not like directly
+
   const lower = clean.toLowerCase();
-  if (lower.includes('limit dextrin') || lower.includes('dna') || lower.includes('rna') || lower.includes('primer') || lower.includes('amino acids') || lower.includes('glycogen')) {
+  if (dictionary[lower]) {
+    return dictionary[lower];
+  }
+  
+  if (lower.includes('limit dextrin') || lower.includes('dna') || lower.includes('rna') || lower.includes('primer') || lower.includes('amino acids') || lower.includes('glycogen') || lower.includes('proton') || lower.includes('gradient')) {
     return '';
   }
+  
   return clean;
 };
 
